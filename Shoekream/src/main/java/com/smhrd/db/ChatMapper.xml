@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.ChatMapper">
+
+<!-- 메세지 목록 가져오기 -->
+    <select id="getChatListByID" resultType="com.smhrd.model.ChatDTO">
+        SELECT * FROM CHAT
+        WHERE ((fromID = #{fromID} AND toID = #{toID}) OR (fromID = #{toID} AND toID = #{fromID}))
+        AND chatID > #{chatID}
+        ORDER BY chatTime
+    </select>
+
+    <!-- 최근 메세지 목록 가져오기 -->
+    <select id="getChatListByRecent" resultType="ChatDTO">
+        SELECT * FROM (
+            SELECT * FROM CHAT
+            WHERE (fromID = #{fromID} AND toID = #{toID})
+            OR (fromID = #{toID} AND toID = #{fromID})
+            ORDER BY chatTime DESC
+        ) WHERE ROWNUM <= #{number}
+    </select>
+
+    <!-- 메세지 전송 -->
+    <insert id="submit" parameterType="com.smhrd.model.ChatDTO">
+        INSERT INTO CHAT (chatID, fromID, toID, chatContent, chatTime)
+        VALUES (seq_chat.nextval, #{fromID}, #{toID}, #{chatContent}, SYSDATE)
+    </insert>
+
+    <!-- 메세지 읽음 처리 -->
+    <update id="readChat" parameterType="java.util.Map">
+        UPDATE CHAT SET chatRead = 1
+        WHERE fromID = #{fromID} AND toID = #{toID}
+    </update>
+
+    <!-- 안 읽은 메세지 수 가져오기 -->
+    <select id="getAllUnreadChat" parameterType="String" resultType="int">
+        SELECT COUNT(chatID) FROM CHAT
+        WHERE toID = #{userID} AND chatRead = 0
+    </select>
+
+    <!-- 대화 상자 가져오기 -->
+    <select id="getBox" resultType="com.smhrd.model.ChatDTO">
+        SELECT * FROM CHAT
+        WHERE chatID IN (
+            SELECT MAX(chatID) FROM CHAT
+            WHERE toID = #{userID} OR fromID = #{userID}
+            GROUP BY fromID, toID
+        )
+    </select>
+
+    <!-- 특정 사용자로부터 온 안 읽은 메세지 수 -->
+    <select id="getUnreadChat" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(chatID) FROM CHAT
+        WHERE fromID = #{fromID} AND toID = #{toID} AND chatRead = 0
+    </select>
+
+</mapper>
+
