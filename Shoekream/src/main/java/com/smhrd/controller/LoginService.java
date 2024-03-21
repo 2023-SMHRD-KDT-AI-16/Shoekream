@@ -25,7 +25,7 @@ public class LoginService extends HttpServlet {
 				//2.데이터 꺼내오기
 				String id =request.getParameter("id");
 				String pw = request.getParameter("pw");
-				System.out.println(id+pw);
+				System.out.println("id :" +id+" pw : "+pw);
 	}
 
 }
