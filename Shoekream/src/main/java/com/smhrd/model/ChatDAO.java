@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ChatDAO {
 
-    SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
+    SqlSessionFactory sqlSessionFactory = SqlSessionFactory.getSqlSession();
     
 	 // 최근 메세지 목록 가져오기
     public List<ChatDTO> getChatListByRecent(String fromID, String toID, int number) {
