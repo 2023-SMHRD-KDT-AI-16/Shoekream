@@ -6,6 +6,8 @@
 
 <typeAliases>
 	<typeAlias type="com.smhrd.model.ChatDTO" alias="ChatDTO"/>
+	<typeAlias type="com.smhrd.model.UserDTO" alias="UserDTO"/>
+	
 	</typeAliases>
 
   <environments default="development">
@@ -13,7 +15,7 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@localhost:1523:xe"/>
+        <property name="url" value="jdbc:oracle:thin:@project-db-campus.smhrd.com:1523:xe"/>
         <property name="username" value="mp_21K_bigdata22_p2_2"/>
         <property name="password" value="smhrd2"/>
       </dataSource>
@@ -23,6 +25,7 @@
   <!--  SQL 문장을 연결할 수 있는 mappers -->
   <mappers>
     <mapper resource="com/smhrd/db/ChatMapper.xml"/>
+    <mapper resource="com/smhrd/db/UserMapper.xml"/>
  
   </mappers>
 </configuration>
