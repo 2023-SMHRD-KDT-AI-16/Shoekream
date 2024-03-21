@@ -16,8 +16,8 @@ public class ChatDAO {
 	public ChatDAO() {
 		try {
 			InitialContext initContext = new InitialContext();
-			Context envContext = (Context) initContext.lookup("java:/comp/env"); // �ҽ��� ���� �� �� �ֵ��� �ϴ� ���
-			dataSource = (DataSource) envContext.lookup("jdbc/UserChat"); // �ҽ� �߰��ϰ� �Ǹ� ������Ʈ ����
+			Context envContext = (Context) initContext.lookup("java:/comp/env"); 
+			dataSource = (DataSource) envContext.lookup("jdbc/UserChat"); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -26,7 +26,7 @@ public class ChatDAO {
 	public ArrayList<ChatDTO> getChatListByID(String fromID, String toID, String chatID) {
 		ArrayList<ChatDTO> chatList = null;
 		Connection conn = null;
-		PreparedStatement pstmt = null; // SQL Injection���� ��ŷ������ ������ְ� ���������� SQL���� �����ϰ� ����
+		PreparedStatement pstmt = null; 
 		ResultSet rs = null;
 		String SQL = "SELECT * FROM CHAT WHERE ((fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?)) AND chatID > ? ORDER BY chatTime";
 		try {
@@ -42,7 +42,6 @@ public class ChatDAO {
 			while (rs.next()) {
 				ChatDTO chat = new ChatDTO();
 				chat.setChatID(rs.getInt("chatID"));
-				// SQL injection, cross site scripting ���� � ���� ����ϱ� ���� Ư������ ġȯ
 				chat.setFromID(rs.getString("fromID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 				chat.setToID(rs.getString("toID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
@@ -81,7 +80,7 @@ public class ChatDAO {
 	public ArrayList<ChatDTO> getChatListByRecent(String fromID, String toID, int number) {
 		ArrayList<ChatDTO> chatList = null;
 		Connection conn = null;
-		PreparedStatement pstmt = null; // SQL Injection���� ��ŷ������ ������ְ� ���������� SQL���� �����ϰ� ����
+		PreparedStatement pstmt = null; 
 		ResultSet rs = null;
 		String SQL = "SELECT * FROM CHAT WHERE ((fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?) AND chatID > (SELECT MAX(chatID) - ? FROM CHAT WHERE (fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?)) ORDER BY chatTime";
 		try {
@@ -101,7 +100,6 @@ public class ChatDAO {
 			while (rs.next()) {
 				ChatDTO chat = new ChatDTO();
 				chat.setChatID(rs.getInt("chatID"));
-				// SQL injection, cross site scripting ���� � ���� ����ϱ� ���� Ư������ ġȯ
 				chat.setFromID(rs.getString("fromID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
 						.replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 				chat.setToID(rs.getString("toID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;")
