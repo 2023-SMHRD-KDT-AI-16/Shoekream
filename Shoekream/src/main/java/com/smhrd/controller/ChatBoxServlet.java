@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.smhrd.model.ChatDAO;
 import com.smhrd.model.ChatDTO;
-import user.UserDAO;
 
 @WebServlet("/ChatBoxServlet")
 public class ChatBoxServlet extends HttpServlet {
@@ -55,9 +54,9 @@ public class ChatBoxServlet extends HttpServlet {
                 if(unread.equals("0")) unread = "";
             }
             if(userID.equals(chatList.get(i).getToID())) {
-                userProfile = new UserDAO().getProfile(chatList.get(i).getFromID());
+                //userProfile = new UserDAO().getProfile(chatList.get(i).getFromID());
             } else {
-                userProfile = new UserDAO().getProfile(chatList.get(i).getToID());
+                //userProfile = new UserDAO().getProfile(chatList.get(i).getToID());
             }
             result.append("[{\"value\": \"" + chatList.get(i).getFromID() + "\"},");
             result.append("{\"value\": \"" + chatList.get(i).getToID() + "\"},");
