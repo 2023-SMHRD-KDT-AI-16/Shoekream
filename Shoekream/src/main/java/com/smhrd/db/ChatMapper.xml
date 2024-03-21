@@ -11,14 +11,16 @@
     </select>
 
     <!-- 최근 메세지 목록 가져오기 -->
-    <select id="getChatListByRecent" resultType="ChatDTO">
+ <select id="getChatListByRecent" resultType="ChatDTO">
+    <![CDATA[
         SELECT * FROM (
             SELECT * FROM CHAT
             WHERE (fromID = #{fromID} AND toID = #{toID})
             OR (fromID = #{toID} AND toID = #{fromID})
             ORDER BY chatTime DESC
         ) WHERE ROWNUM <= #{number}
-    </select>
+    ]]>
+</select>
 
     <!-- 메세지 전송 -->
     <insert id="submit" parameterType="com.smhrd.model.ChatDTO">
