@@ -4,34 +4,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user.UserMapper">
 
-    <select id="login" parameterType="map" resultType="int">
-        SELECT userPassword FROM USER WHERE userID = #{userID}
-    </select>
-    
-    <select id="registerCheck" parameterType="string" resultType="int">
-        SELECT COUNT(*) FROM USER WHERE userID = #{userID}
-    </select>
-    
-    <insert id="register" parameterType="com.smhrd.model.UserDTO">
-        INSERT INTO USER (userID, userPassword, userName, userAge, userGender, userEmail, userProfile)
-        VALUES (#{userID}, #{userPassword}, #{userName}, #{userAge}, #{userGender}, #{userEmail}, #{userProfile})
-    </insert>
-    
-    <select id="getUser" parameterType="string" resultType="com.smhrd.model.UserDTO">
-        SELECT * FROM USER WHERE userID = #{userID}
-    </select>
-    
-    <update id="update" parameterType="map">
-        UPDATE USER SET userPassword = #{userPassword}, userName = #{userName}, userAge = #{userAge},
-        userGender = #{userGender}, userEmail = #{userEmail} WHERE userID = #{userID}
-    </update>
-    
-    <update id="profile" parameterType="map">
-        UPDATE USER SET userProfile = #{userProfile} WHERE userID = #{userID}
-    </update>
-    
-    <select id="getProfile" parameterType="string" resultType="string">
-        SELECT userProfile FROM USER WHERE userID = #{userID}
-    </select>
+ <!-- 로그인-->
+	<select id="login" parameterType="com.smhrd.model.UserDTO" resultType="com.smhrd.model.UserDTO">
+		select * from USER_INFO where user_id= #{user_id} and user_pw = #{user_pw}
+	</select>
+	
+	<!-- 네이버 로그인 검사 -->
+	<select id="naverlogin" parameterType="com.smhrd.model.UserDTO" resultType="com.smhrd.model.UserDTO">
+		select * from USER_INFO where user_id= #{user_id}
+	</select>
+	
+    <!-- 회원가입-->
+	<insert id="join" parameterType="com.smhrd.model.UserDTO">
+		insert into
+		USER_INFO(user_id,user_pw,user_name,user_phone,user_email,user_nick,user_rank,joined_at,admin_yn)
+		values(#{user_id}, #{user_pw}, #{user_name}, #{user_phone},
+		#{user_email}, #{user_nick}, #{user_rank}, sysdate, #{admin_yn})
+	</insert>
     
 </mapper>

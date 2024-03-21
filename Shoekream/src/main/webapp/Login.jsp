@@ -30,9 +30,11 @@
 	</form>
 
 	<!-- 네이버 로그인 버튼 -->
-	<a href="<%=apiURL%>"><img height="50"
+	<a href="<%=apiURL%>"><img height="30"
 		src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
-
+	<br>
+	<!-- 회원가입 버튼 -->
+	<button><a href="Join.jsp">회원가입</a></button>
 
 </body>
 </html>

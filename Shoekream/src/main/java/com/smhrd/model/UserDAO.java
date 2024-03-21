@@ -1,65 +1,62 @@
 package com.smhrd.model;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.db.SqlSessionManager;
 
 public class UserDAO {
+	
+	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
+	SqlSession sqlSession = sqlSessionFactory.openSession(true);
 
-    SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
-    
-    public int login(String userID, String userPassword) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            String dbPassword = session.selectOne("user.UserMapper.login", userID);
-            if (dbPassword != null) {
-                return dbPassword.equals(userPassword) ? 1 : 2;
-            }
-            return 0;
-        }
-    }
-    
-    public int registerCheck(String userID) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            Integer count = session.selectOne("user.UserMapper.registerCheck", userID);
-            return (count != null && count > 0) || userID.equals("") ? 0 : 1;
-        }
-    }
-    
-    public int register(UserDTO user) {
-        try (SqlSession session = sqlSessionFactory.openSession(true)) {
-            return session.insert("user.UserMapper.register", user);
-        }
-    }
-    
-    public UserDTO getUser(String userID) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectOne("user.UserMapper.getUser", userID);
-        }
-    }
-    
-    public int update(UserDTO user) {
-        try (SqlSession session = sqlSessionFactory.openSession(true)) {
-            return session.update("user.UserMapper.update", user);
-        }
-    }
-    
-    public int profile(String userID, String userProfile) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("userID", userID);
-        params.put("userProfile", userProfile);
-        try (SqlSession session = sqlSessionFactory.openSession(true)) {
-            return session.update("user.UserMapper.profile", params);
-        }
-    }
-    
-    public String getProfile(String userID) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectOne("user.UserMapper.getProfile", userID);
-        }
-    }
+	// 회원가입 메서드 생성
+	public int join(UserDTO dto) {
+		// 1.sqlSession 빌려오기
+		SqlSession sqlSession = sqlSessionFactory.openSession(true); // -->true : 오토커밋
+
+		// 2.sql문장 전달
+		int result = sqlSession.insert("join", dto);
+
+		// 3.결과 처리
+		// 4.sqlSession 반납
+		sqlSession.close();
+
+		return result;
+	}
+
+	//로그인 메서드 생성
+	public UserDTO login(UserDTO dto) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		
+		UserDTO logindto=null;
+		
+		try {
+			System.out.println("flag2");
+			logindto=sqlSession.selectOne("login",dto);
+			System.out.println("flag3");
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally {
+					sqlSession.close();
+				}
+				return logindto;
+	}
+
+	//네이버 로그인 메서드
+	public UserDTO Naverlogin(UserDTO dto) {
+SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		
+		UserDTO logindto=null;
+		
+		try {
+			logindto=sqlSession.selectOne("naverlogin",dto);
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally {
+					sqlSession.close();
+				}
+				return logindto;
+	}
+
 }

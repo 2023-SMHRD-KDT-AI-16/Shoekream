@@ -1,3 +1,6 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@page import="com.smhrd.model.UserDAO"%>
+<%@page import="com.smhrd.model.UserDTO"%>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.net.URL" %>
 <%@ page import="java.net.HttpURLConnection" %>
@@ -45,7 +48,7 @@
         int startIndex = resStr.indexOf("access_token\":\"") + "access_token\":\"".length();
         int endIndex = resStr.indexOf("\"", startIndex);
         accessToken = resStr.substring(startIndex, endIndex);
-        out.println("액세스 토큰: " + accessToken);
+        //out.println("액세스 토큰: " + accessToken);
       } else {  // 에러 발생
         br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
         String inputLine;
@@ -104,22 +107,26 @@
         
         // Json 문자열을 JsonObject로 변환
         JsonObject jsonObject = gson.fromJson(response2.toString(), JsonObject.class);
-        
+      
         // JsonObject에서 프로필 정보를 가져오기
-        String id = jsonObject.getAsJsonObject("response").get("id").getAsString();
-        String nickname = jsonObject.getAsJsonObject("response").get("nickname").getAsString();
-        String name = jsonObject.getAsJsonObject("response").get("name").getAsString();
-        String email=jsonObject.getAsJsonObject("response").get("email").getAsString();
-        String profile_image=jsonObject.getAsJsonObject("response").get("profile_image").getAsString();
+        String user_id = jsonObject.getAsJsonObject("response").get("id").getAsString();
+        String user_nick = jsonObject.getAsJsonObject("response").get("nickname").getAsString();
+        String user_name = jsonObject.getAsJsonObject("response").get("name").getAsString();
+        String user_email=jsonObject.getAsJsonObject("response").get("email").getAsString();
+        String user_phone=jsonObject.getAsJsonObject("response").get("mobile").getAsString();
+       
+        out.print(user_id);
         
-        // 이하 원하는 모든 필드를 가져와서 변수에 저장
+       request.setAttribute("user_id", user_id);
+       request.setAttribute("user_nick", user_nick);
+       request.setAttribute("user_name", user_name);
+       request.setAttribute("user_email", user_email);
+       request.setAttribute("user_phone", user_phone);
+       RequestDispatcher rd=request.getRequestDispatcher("NaverService");
+	   rd.forward(request, response);
+		        
+
         
-        // 가져온 정보를 화면에 출력
-        out.println("아이디: " + id);
-        out.println("닉네임: " + nickname);
-        out.println("이름: " + name);
-       out.println("이메일: " + email);
-       out.println("프로필 이미지"+profile_image);
       } else {
         // 에러 응답인 경우
         out.println("에러 응답 코드: " + responseCode);
@@ -131,5 +138,6 @@
     }
    
   %>
+  
   </body>
 </html>
