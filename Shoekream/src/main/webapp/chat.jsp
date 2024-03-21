@@ -7,29 +7,52 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-    <%
-        // 세션에서 userID 가져오기
-        String userID = (String) session.getAttribute("userID");
-        if(userID == null || userID.trim().isEmpty()) {
-            // userID가 없는 경우, 로그인 페이지로 리디렉션
-            response.sendRedirect("login.jsp");
-            return;
-        }
-    %>
     <script type="text/javascript">
-        // 세션에서 가져온 userID를 JavaScript 변수로 설정
-        var userID = '<%= userID %>';
-        console.log("현재 사용자 ID: " + userID);
+        // userID를 가져오기 위한 스크립틀릿
+        var userID = '<%= (String) session.getAttribute("userID") %>';
         
-        $(document).ready(function(){
-            // 페이지가 로드될 때 실행될 기능들
-            // 예: 채팅 로드, 메시지 전송 기능 등
+        $(document).ready(function() {
+            // 페이지 로드 시에 채팅 내용을 로드하는 함수 호출
+            loadChatBox();
+
+            // 여기에 메시지 전송에 관한 스크립트 추가
+            // ...
         });
 
-        // 추가적인 JavaScript 함수들
+        function loadChatBox() {
+            // 채팅 상자 내용 로드하기
+            $.ajax({
+                type: "POST",
+                url: "ChatBoxServlet",
+                data: {
+                    userID: userID
+                },
+                dataType: "text",
+                success: function(response) {
+                    // 채팅 상자에 메시지들을 로드
+                    $("#chatBox").html(response);
+                }
+            });
+        }
+
+        // 채팅 전송 함수 (가정)
+        function sendChat() {
+            var message = $("#chatMessage").val();
+            // 메시지 전송 AJAX 구현
+            // ...
+        }
     </script>
-    <!-- 여기에 HTML 마크업과 다른 로직을 추가하세요. -->
+</head>
+<body>
+    <div class="container">
+        <!-- 로그인된 유저의 채팅 상자 -->
+        <div id="chatBox" class="chat-box">
+            <!-- 채팅 내용이 여기에 동적으로 로드됩니다. -->
+        </div>
+        <!-- 메시지 입력 필드 -->
+        <input type="text" id="chatMessage" />
+        <!-- 메시지 전송 버튼 -->
+        <button onclick="sendChat()">메시지 전송</button>
+    </div>
 </body>
 </html>
