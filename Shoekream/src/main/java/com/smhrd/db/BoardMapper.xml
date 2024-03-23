@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.BoardMapper">
+
+<!-- 게시글 작성 DB 저장 -->
+<insert id="upload" parameterType="com.smhrd.model.BoardDTO">
+	insert into post_info (post_content,post_img,posted_at,user_id)
+	values(#{post_content},#{post_img},sysdate,#{user_id})
+</insert>
+
+<select id = "showboard" resultType = "com.smhrd.model.BoardDTO">
+select * from post_info
+</select>
+
+<select id = "postuser" parameterType ="String" resultType="com.smhrd.model.UserDTO">
+select * from user_info where user_id = 'test'
+</select>
+
+</mapper>

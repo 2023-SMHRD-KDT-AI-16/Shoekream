@@ -37,6 +37,7 @@ public class NaverService extends HttpServlet {
 		if(result !=null) {
 			//회원의 정보를 저장하여 이동할 수 있도록 수정 ! -> session 영역 
 			//session 영역 불러오기 
+			
 			HttpSession session = request.getSession();//request의 session을 가져와서 session변수에 담기
 			session.setAttribute("user_info",result);
 			System.out.println("로그인 성공");

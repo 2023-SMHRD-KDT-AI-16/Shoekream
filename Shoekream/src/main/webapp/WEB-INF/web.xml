@@ -22,6 +22,18 @@
   	<description></description>
   	<servlet-class>com.smhrd.controller.NaverService</servlet-class>
   </servlet>
+    <servlet>
+  	<servlet-name>WriterService</servlet-name>
+  	<display-name>WriterService</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.WriterService</servlet-class>
+  </servlet>
+    <servlet>
+    	<servlet-name>LogoutService</servlet-name>
+    	<display-name>LogoutService</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.LogoutService</servlet-class>
+    </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -34,4 +46,12 @@
   	<servlet-name>NaverService</servlet-name>
   	<url-pattern>/NaverService</url-pattern>
   </servlet-mapping>
+   <servlet-mapping>
+  	<servlet-name>WriterService</servlet-name>
+  	<url-pattern>/WriterService</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>LogoutService</servlet-name>
+   	<url-pattern>/LogoutService</url-pattern>
+   </servlet-mapping>
 </web-app>

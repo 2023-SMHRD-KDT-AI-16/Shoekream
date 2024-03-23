@@ -17,9 +17,9 @@
     <!-- 회원가입-->
 	<insert id="join" parameterType="com.smhrd.model.UserDTO">
 		insert into
-		USER_INFO(user_id,user_pw,user_name,user_phone,user_email,user_nick,user_rank,joined_at,admin_yn)
+		USER_INFO(user_id,user_pw,user_name,user_phone,user_email,user_nick,user_rank,joined_at,admin_yn,user_profile_img)
 		values(#{user_id}, #{user_pw}, #{user_name}, #{user_phone},
-		#{user_email}, #{user_nick}, #{user_rank}, sysdate, #{admin_yn})
+		#{user_email}, #{user_nick}, #{user_rank}, sysdate, #{admin_yn},'img/profile.png')
 	</insert>
     
 </mapper>
