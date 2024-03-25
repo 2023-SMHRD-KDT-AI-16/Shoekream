@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SHOEKREAM</title>
 <style>
 #modalOpenButton, #modalCloseButton {
 	cursor: pointer;
@@ -42,7 +42,7 @@
 
 </head>
 <body>
-	Main화면입니다
+	<h1>SHOEKREAM</h1>
 
 	<%
 	//로그인 한 유저 정보 가져오기
