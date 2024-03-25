@@ -35,5 +35,13 @@ public class BoardDAO {
 		return result;
 	}
 	
+	//게시글 상세정보를 불러오는 메서드 
+	public BoardDTO showDetail(Double postIdx) {
+		System.out.println("showDetial 도착");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		BoardDTO result = sqlSession.selectOne("showDetail", postIdx);
+		return result;
+	}
+	
 
 }

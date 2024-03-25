@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.BoardDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.smhrd.model.BoardDAO"%>
@@ -44,11 +45,8 @@
 	Main화면입니다
 
 	<%
+	//로그인 한 유저 정보 가져오기
 UserDTO user_info = (UserDTO) session.getAttribute("user_info");
-// 프로필사진 출력(프로필 사진 없을시 기본이미지 출력)
-//if (user_info.getUserProfileImg() == null) {
-//	user_info.setUserProfileImg("img/profile.png");
-//}
 %>
 
 	<p>로그인한 객체 정보 출력</p>
@@ -60,6 +58,7 @@ UserDTO user_info = (UserDTO) session.getAttribute("user_info");
 	<button><a href="LogoutService">로그아웃</a></button>
 
 
+	<!-- -------------------------------------------------------------- -->
 	<!-- 게시글 작성 모달창 열기 -->
 
 	<br>
@@ -112,28 +111,77 @@ UserDTO user_info = (UserDTO) session.getAttribute("user_info");
 	ArrayList<BoardDTO> p_list = dao.showboard();
 	for (int i = 0; i < p_list.size(); i++) {
 		String post_user_id = p_list.get(i).getUserId();
-		UserDTO post_user = dao.postuser(post_user_id);
-		
+		UserDTO post_user = dao.postuser(post_user_id);	
 	%>
 	
 	<table>
 		<tr>
-			<td>아이디:<%=p_list.get(i).getUserId()%></td>
-			<td>내용:<%=p_list.get(i).getPostContent()%></td>
-			<td>프로필: <%=post_user.getUserProfileImg()%></td>
+			<td><img src=<%=user_info.getUserProfileImg()%> alt=""
+								style="max-width: 50px; max-height: 50px;" />
+			<%=p_list.get(i).getUserId()%>
+			</td>
+			
 		</tr>
+		<tr>
+			<td>
+			<a href="PostDetail.jsp?postIdx=<%=p_list.get(i).getPostIdx()%>" ><img alt="게시글이미지" src="post_img/<%=p_list.get(i).getPostImg()%>"></a>
+		
+			</td>
+		</tr>
+		<tr>	
+			<td>내용:<%=p_list.get(i).getPostContent()%></td>
+		</tr>
+		<tr>
+		<td></td></tr>
+		<!-- 댓글 달기 -->
+	
+		<input type="hidden" name="postIdx" value="<%=p_list.get(i).getPostIdx()%>">
+		<td><input type ="text" name ="comment" id="inputComment" class="comment"> </td>
+		<td><button onclick="writeComment(<%=i%>)"> 댓글작성</button></td>
+	
 	</table>
 
+	<%}%>
 
-	<%
-	}
-	%>
 
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type ="text/javascript">
+
+
+function writeComment(i){
+	var inputComment = $('[name="comment"]').eq(i).val();
+	var postIdx = $('[name="postIdx"]').eq(i).val();
+	
+	$.ajax({
+		//1.어디로 요청할 것인지
+		url:'WriteCommentService',
+		//2.요청할 데이터 {key:value} --> request객체에 담김
+		data:{"postIdx": postIdx, "inputComment": inputComment},
+		//3.요청방식
+		type:'get',
+		//요청에 성공했을때 무엇을 할 것인지
+		success: function(result){
+			console.log("통신 성공")
+				
+			
+		},
+		//요청에 실패했을때
+		error:function(){
+		console.log("통신 실패")
+		}
+		
+		
+	});
+	
+}
+</script>
 
 
 
 
 	<script>
+	//게시글 작성 모달창, 게시글 출력
 	const modalOpenButton = document.getElementById('modalOpenButton');
 	const modalCloseButton = document.getElementById('modalCloseButton');
 	const modal = document.getElementById('modalContainer');
@@ -180,6 +228,8 @@ UserDTO user_info = (UserDTO) session.getAttribute("user_info");
 	  fileSelectionScreen.style.display = 'block';
 	  photoPreviewScreen.style.display = 'none';
 	});
+	
+
 	</script>
 
 

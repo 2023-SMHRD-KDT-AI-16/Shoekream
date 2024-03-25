@@ -27,7 +27,7 @@
     <mapper resource="com/smhrd/db/ChatMapper.xml"/>
     <mapper resource="com/smhrd/db/UserMapper.xml"/>
     <mapper resource="com/smhrd/db/BoardMapper.xml"/>
-    
+     <mapper resource="com/smhrd/db/CommentMapper.xml"/>
  
   </mappers>
 </configuration>
