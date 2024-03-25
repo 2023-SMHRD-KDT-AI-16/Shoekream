@@ -48,8 +48,11 @@ public class LoginService extends HttpServlet {
 					System.out.println(result.getUserName());
 					response.sendRedirect("Main.jsp");
 					
+				}else {
+				    // 로그인 실패 시 오류 메시지를 설정하여 Login.jsp로 이동
+				    request.setAttribute("errorMessage", "아이디 또는 비밀번호가 올바르지 않습니다.");
+				    request.getRequestDispatcher("Login.jsp").forward(request, response);
 				}
-				
 				
 				
 	}

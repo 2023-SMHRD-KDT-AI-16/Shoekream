@@ -59,4 +59,19 @@ SqlSession sqlSession = sqlSessionFactory.openSession(true);
 				return logindto;
 	}
 
+	
+	//아이디 중복확인 메서드 
+		public boolean checkID(String user_id) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			boolean result = false;
+			try {
+				result=sqlSession.selectOne("checkID",user_id);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				sqlSession.close();
+			}
+			return result;
+		}
+	
 }

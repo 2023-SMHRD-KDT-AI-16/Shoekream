@@ -21,7 +21,7 @@
 			+ "&redirect_uri=" + redirectURI + "&state=" + state;
 	session.setAttribute("state", state);
 	%>
-
+ 	
  <section>
         <div class="form-box">
             <div class="form-value">
@@ -43,12 +43,12 @@
                     <div class="forget">
                         <label for=""><input type="checkbox" >아이디 기억하기    <a href="#">비밀번호 찾기</a></label>
                     </div>
-                    <button type="submit">로그인</button> 
+                    <button type="submit" id="login">로그인</button> 
                 </form>
                      <br>
                      <div class="naver" >
                       <a href="<%=apiURL%>"><img height="30"
-		src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
+								src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
                     </div>
                      <div class="join_pass">
                     <br>
@@ -58,6 +58,16 @@
         </div>
     </section>
 
+
+	<!-- 로그인 실패시 오류 메세지 출력 -->
+ 	<%
+        String errorMessage = (String) request.getAttribute("errorMessage");
+        if(errorMessage != null) {
+    %>
+        <script>alert('<%= errorMessage %>');</script>
+    <%
+        }
+    %>
 
 
 </body>

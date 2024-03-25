@@ -21,5 +21,11 @@
 		values(#{user_id}, #{user_pw}, #{user_name}, #{user_phone},
 		#{user_email}, #{user_nick}, #{user_rank}, sysdate, #{admin_yn},'img/profile.png')
 	</insert>
+	
+	 
+    <!-- 아이디 중복 확인 -->
+    <select id = "checkID" parameterType = "String" resultType="boolean">
+    select case when count(*)>0 then 1 else 0 end result from user_info where user_id = #{user_id}
+    </select>
     
 </mapper>

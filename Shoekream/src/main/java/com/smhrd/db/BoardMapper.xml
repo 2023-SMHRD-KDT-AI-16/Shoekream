@@ -16,4 +16,8 @@ select * from post_info
 select * from user_info where user_id = 'test'
 </select>
 
+<select id="showDetail" parameterType ="Double" resultType="com.smhrd.model.BoardDTO">
+select * from post_info where post_idx=#{post_idx}
+</select>
+
 </mapper>
