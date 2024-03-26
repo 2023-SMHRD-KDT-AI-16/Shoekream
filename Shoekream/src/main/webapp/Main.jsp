@@ -1,3 +1,10 @@
+<%@page import="com.smhrd.model.FollowDAO"%>
+<%@page import="com.smhrd.model.FollowDTO"%>
+<%@page import="com.smhrd.model.LikeDTO"%>
+<%@page import="com.smhrd.model.LikeDAO"%>
+<%@page import="com.smhrd.model.CommentDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.CommentDAO"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.BoardDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,6 +17,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SHOEKREAM</title>
+<link rel="stylesheet" href="./CSS/Main.css">
 <style>
 #modalOpenButton, #modalCloseButton {
 	cursor: pointer;
@@ -46,8 +54,11 @@
 
 	<%
 	//로그인 한 유저 정보 가져오기
-UserDTO user_info = (UserDTO) session.getAttribute("user_info");
-%>
+	UserDTO user_info = (UserDTO) session.getAttribute("user_info");
+	%>
+
+
+	<!-- ------------------------------------------------------------------------- -->
 
 	<p>로그인한 객체 정보 출력</p>
 	<%=user_info.getUserNick()%>
@@ -55,7 +66,9 @@ UserDTO user_info = (UserDTO) session.getAttribute("user_info");
 
 
 	<!-- 로그아웃 -->
-	<button><a href="LogoutService">로그아웃</a></button>
+	<button>
+		<a href="LogoutService">로그아웃</a>
+	</button>
 
 
 	<!-- -------------------------------------------------------------- -->
@@ -107,134 +120,106 @@ UserDTO user_info = (UserDTO) session.getAttribute("user_info");
 	<!-- 게시글 출력  -->
 
 	<%
+	//게시글 정보 가져오기 
 	BoardDAO dao = new BoardDAO();
 	ArrayList<BoardDTO> p_list = dao.showboard();
+	LikeDAO ldao= new LikeDAO();
 	for (int i = 0; i < p_list.size(); i++) {
 		String post_user_id = p_list.get(i).getUserId();
-		UserDTO post_user = dao.postuser(post_user_id);	
+		UserDTO post_user = dao.postuser(post_user_id);
+		
+		CommentDAO cdao = new CommentDAO();
+		List<CommentDTO> c_list = cdao.showComment(p_list.get(i).getPostIdx());
+		
+		LikeDTO ldto= new LikeDTO();
+		ldto.setPost_idx(p_list.get(i).getPostIdx());
+		ldto.setUser_id(user_info.getUserId());
+		boolean isLike =ldao.isLike(ldto);
+		
+		FollowDTO fdto = new FollowDTO();
+		FollowDAO fdao = new FollowDAO();
+		fdto.setFollowee(post_user_id);
+		fdto.setFollower(user_info.getUserId());
+		boolean isfollow = fdao.isfollow(fdto);
+		
+		
 	%>
-	
-	<table>
+
+	<table border=1>
 		<tr>
 			<td><img src=<%=user_info.getUserProfileImg()%> alt=""
-								style="max-width: 50px; max-height: 50px;" />
-			<%=p_list.get(i).getUserId()%>
+				style="max-width: 50px; max-height: 50px;" /> 
+				<%=p_list.get(i).getUserId()%>
+				<input type="hidden" name="post_userid" value="<%=p_list.get(i).getUserId()%>">
+				<%if(isfollow==true){ %>
+				<button class="follow" id="follow_<%= i %>" onclick="togglefollowY(<%= i %>)">팔로잉</button>
+				<%}else{ %>
+				<button class="follow" id="follow_<%= i %>" onclick="togglefollowN(<%= i %>)">팔로우</button>
+				<%} %>
 			</td>
-			
+
 		</tr>
 		<tr>
-			<td>
-			<a href="PostDetail.jsp?postIdx=<%=p_list.get(i).getPostIdx()%>" ><img alt="게시글이미지" src="post_img/<%=p_list.get(i).getPostImg()%>"></a>
-		
+			<td><a href="PostDetail.jsp?postIdx=<%=p_list.get(i).getPostIdx()%>"><img
+					alt="게시글이미지" src="post_img/<%=p_list.get(i).getPostImg()%>"></a>
+
 			</td>
 		</tr>
-		<tr>	
+		<tr>
 			<td>내용:<%=p_list.get(i).getPostContent()%></td>
 		</tr>
+		
+		
+		<!-- 좋아요 버튼 -->
 		<tr>
-		<td></td></tr>
+		<td>
+		<%if(isLike==true){ %>
+	<button class="like" id="like_<%= i %>" onclick="toggleLikeY(<%= i %>)">❤️</button>
+		<%}else{ %>
+		<button class="like" id="like_<%= i %>" onclick="toggleLikeN(<%= i %>)">🤍</button>
+		<%} %>
+		
+		</td>
+		<td><%		//게시글 좋아요 정보 가져오기 
+		int like = ldao.Like(p_list.get(i).getPostIdx());
+		out.print(like); 
+		
+
+		%>
+		</td>
+		</tr>
+		
+		
+		
+		
+		<tr>
+		<!-- 댓글 출력 -->
+		<%
+		if(!c_list.isEmpty()){
+			out.print("<td>");
+		out.print("댓글 내용 : "+c_list.get(0).getCmt_content() );
+		out.print("</td>");
+		}
+		%>
+		</tr>
+		
+		<tr>
 		<!-- 댓글 달기 -->
-	
-		<input type="hidden" name="postIdx" value="<%=p_list.get(i).getPostIdx()%>">
-		<td><input type ="text" name ="comment" id="inputComment" class="comment"> </td>
-		<td><button onclick="writeComment(<%=i%>)"> 댓글작성</button></td>
-	
+		<input type="hidden" name="postIdx"
+			value="<%=p_list.get(i).getPostIdx()%>">
+		<td><input type="text" name="comment" id="inputComment"
+			class="comment"></td>
+		<td><button onclick="writeComment(<%=i%>)">댓글작성</button></td>
+		</tr>
+		
 	</table>
 
-	<%}%>
+	<%
+	}
+	%>
 
-
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script type ="text/javascript">
-
-
-function writeComment(i){
-	var inputComment = $('[name="comment"]').eq(i).val();
-	var postIdx = $('[name="postIdx"]').eq(i).val();
-	
-	$.ajax({
-		//1.어디로 요청할 것인지
-		url:'WriteCommentService',
-		//2.요청할 데이터 {key:value} --> request객체에 담김
-		data:{"postIdx": postIdx, "inputComment": inputComment},
-		//3.요청방식
-		type:'get',
-		//요청에 성공했을때 무엇을 할 것인지
-		success: function(result){
-			console.log("통신 성공")
-				
-			
-		},
-		//요청에 실패했을때
-		error:function(){
-		console.log("통신 실패")
-		}
-		
-		
-	});
-	
-}
-</script>
-
-
-
-
-	<script>
-	//게시글 작성 모달창, 게시글 출력
-	const modalOpenButton = document.getElementById('modalOpenButton');
-	const modalCloseButton = document.getElementById('modalCloseButton');
-	const modal = document.getElementById('modalContainer');
-	const fileInput = document.getElementById('fileInput');
-	const nextButton = document.getElementById('nextButton');
-	const prevButton = document.getElementById('prevButton');
-	const preview = document.getElementById('preview');
-	const fileSelectionScreen = document.getElementById('fileSelectionScreen');
-	const photoPreviewScreen = document.getElementById('photoPreviewScreen');
-
-	modalOpenButton.addEventListener('click', () => {
-	  modal.classList.remove('hidden');
-	  fileSelectionScreen.style.display = 'block'; // Show file selection screen
-	  photoPreviewScreen.style.display = 'none'; // Hide photo preview screen
-	});
-
-	modalCloseButton.addEventListener('click', () => {
-	  modal.classList.add('hidden');
-	});
-
-	nextButton.addEventListener('click', () => {
-	  // Check if a file is selected
-	  if (fileInput.files.length > 0) {
-	    // Display the selected image
-	    const file = fileInput.files[0];
-	    const reader = new FileReader();
-	    reader.onload = function(event) {
-	      const img = document.createElement('img');
-	      img.src = event.target.result;
-	      img.style.maxWidth = '100%'; // Adjust as needed
-	      preview.innerHTML = ''; // Clear previous preview
-	      preview.appendChild(img);
-	    };
-	    reader.readAsDataURL(file);
-	    fileSelectionScreen.style.display = 'none'; // Hide file selection screen
-	    photoPreviewScreen.style.display = 'block'; // Show photo preview screen
-	  } else {
-	    alert('파일을 선택하세요.');
-	  }
-	});
-	
-	prevButton.addEventListener('click', () => {
-	  // Show file selection screen and hide photo preview screen
-	  fileSelectionScreen.style.display = 'block';
-	  photoPreviewScreen.style.display = 'none';
-	});
-	
-
-	</script>
-
-
-
-
+<script src="./JS/Main.js"></script>
+ <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 
 </body>

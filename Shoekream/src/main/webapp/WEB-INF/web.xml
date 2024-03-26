@@ -46,6 +46,18 @@
     	<description></description>
     	<servlet-class>com.smhrd.controller.IdCheckService</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>LIkeService</servlet-name>
+    	<display-name>LIkeService</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.LIkeService</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>FollowService</servlet-name>
+    	<display-name>FollowService</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.FollowService</servlet-class>
+    </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -73,5 +85,13 @@
    <servlet-mapping>
    	<servlet-name>IdCheckService</servlet-name>
    	<url-pattern>/IdCheckService</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>LIkeService</servlet-name>
+   	<url-pattern>/LIkeService</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>FollowService</servlet-name>
+   	<url-pattern>/FollowService</url-pattern>
    </servlet-mapping>
 </web-app>

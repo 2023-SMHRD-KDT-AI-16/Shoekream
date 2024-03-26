@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.LikeMapper">
+
+<!-- 게시글별 좋아요수 출력 -->
+<select id = "Like" parameterType="Double" resultType ="int">
+select count(*) from post_like_info where post_idx=#{post_idx}
+</select>
+
+<!-- 좋아요 저장 -->
+<insert id="saveLike" parameterType = "com.smhrd.model.LikeDTO">
+insert into post_like_info (post_idx,user_id,liked_at) values(#{post_idx},#{user_id},sysdate)
+</insert>
+
+<!-- 좋아요 삭제 -->
+<delete id="delLike" parameterType = "com.smhrd.model.LikeDTO">
+delete from post_like_info where post_idx=#{post_idx} and user_id=#{user_id}
+</delete>
+
+<!-- 좋아요 여부 -->
+<select id = "isLike" parameterType="com.smhrd.model.LikeDTO" resultType="boolean">
+select case when count(*)>0 then 1 else 0 end result from post_like_info where post_idx=#{post_idx} and user_id=#{user_id}
+</select>
+</mapper>

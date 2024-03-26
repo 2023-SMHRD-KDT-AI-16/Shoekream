@@ -28,6 +28,8 @@
     <mapper resource="com/smhrd/db/UserMapper.xml"/>
     <mapper resource="com/smhrd/db/BoardMapper.xml"/>
      <mapper resource="com/smhrd/db/CommentMapper.xml"/>
+     <mapper resource="com/smhrd/db/LikeMapper.xml"/>
+     <mapper resource="com/smhrd/db/FollowMapper.xml"/>
  
   </mappers>
 </configuration>
