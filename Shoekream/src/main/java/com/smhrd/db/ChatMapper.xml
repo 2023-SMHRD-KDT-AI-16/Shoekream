@@ -2,59 +2,103 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.db.ChatMapper">
 
-<!-- 메세지 목록 가져오기 -->
-    <select id="getChatListByID" resultType="com.smhrd.model.ChatDTO">
-        SELECT * FROM CHAT
-        WHERE ((fromID = #{fromID} AND toID = #{toID}) OR (fromID = #{toID} AND toID = #{fromID}))
-        AND chatID > #{chatID}
-        ORDER BY chatTime
-    </select>
-
-    <!-- 최근 메세지 목록 가져오기 -->
- <select id="getChatListByRecent" resultType="ChatDTO">
-    <![CDATA[
-        SELECT * FROM (
-            SELECT * FROM CHAT
-            WHERE (fromID = #{fromID} AND toID = #{toID})
-            OR (fromID = #{toID} AND toID = #{fromID})
-            ORDER BY chatTime DESC
-        ) WHERE ROWNUM <= #{number}
-    ]]>
+	<!-- 특정 채팅방의 메세지 목록 가져오기 -->
+<select id="getMessagesByRoom" parameterType="java.util.Map" resultType="com.smhrd.model.ChatDTO">
+    SELECT * FROM CHATTING WHERE ROOM_IDX = #{roomIdx} ORDER BY CHATTED_AT DESC
 </select>
 
-    <!-- 메세지 전송 -->
-    <insert id="submit" parameterType="com.smhrd.model.ChatDTO">
-        INSERT INTO CHAT (chatID, fromID, toID, chatContent, chatTime)
-        VALUES (seq_chat.nextval, #{fromID}, #{toID}, #{chatContent}, SYSDATE)
-    </insert>
+	<!-- 채팅방에 메세지 전송 -->
+	<insert id="submitMessageToRoom"
+		parameterType="com.smhrd.model.ChatDTO">
+		INSERT INTO CHATTING (CHAT_IDX, ROOM_IDX, CHATTER, CHAT_FROM, CHAT_CONTENT,
+		CHATTED_AT)
+		VALUES (#{chatID}, #{roomIdx}, #{fromID}, #{toID}, #{chatContent}, SYSDATE)
+	</insert>
 
-    <!-- 메세지 읽음 처리 -->
-    <update id="readChat" parameterType="java.util.Map">
-        UPDATE CHAT SET chatRead = 1
-        WHERE fromID = #{fromID} AND toID = #{toID}
-    </update>
+	<!-- 채팅방 내 안 읽은 메세지 수 가져오기 -->
+	<select id="getUnreadCountByRoom" parameterType="java.util.Map"
+		resultType="int">
+		SELECT COUNT(*) FROM CHATTING
+		WHERE ROOM_IDX = #{roomIdx} AND CHAT_FROM = #{userID} AND CHAT_READ = '0'
+	</select>
 
-    <!-- 안 읽은 메세지 수 가져오기 -->
-    <select id="getAllUnreadChat" parameterType="String" resultType="int">
-        SELECT COUNT(chatID) FROM CHAT
-        WHERE toID = #{userID} AND chatRead = 0
-    </select>
+	<!-- 채팅방 내 메세지 읽음 처리 -->
+	<update id="markMessagesAsReadInRoom"
+		parameterType="java.util.Map">
+		UPDATE CHATTING SET CHAT_READ = '1'
+		WHERE ROOM_IDX = #{roomIdx} AND CHATTER = #{fromID} AND CHAT_FROM = #{toID}
+	</update>
+	<!-- 메세지 목록 가져오기 -->
+	<select id="getChatListByID"
+		resultType="com.smhrd.model.ChatDTO">
+		SELECT * FROM CHATTING
+		WHERE ((CHATTER = #{fromID} AND CHAT_FROM = #{toID}) OR (CHATTER = #{toID}
+		AND CHAT_FROM = #{fromID}))
+		AND CHAT_IDX > #{chatID}
+		ORDER BY CHATTED_AT
+	</select>
 
-    <!-- 대화 상자 가져오기 -->
-    <select id="getBox" resultType="com.smhrd.model.ChatDTO">
-        SELECT * FROM CHAT
-        WHERE chatID IN (
-            SELECT MAX(chatID) FROM CHAT
-            WHERE toID = #{userID} OR fromID = #{userID}
-            GROUP BY fromID, toID
-        )
-    </select>
+	<!-- 최근 메세지 목록 가져오기 -->
+	<select id="getChatListByRecent"
+		resultType="com.smhrd.model.ChatDTO">
+        <![CDATA[
+        SELECT * FROM (
+            SELECT * FROM CHATTING
+            WHERE (CHATTER = #{fromID} AND CHAT_FROM = #{toID})
+            OR (CHATTER = #{toID} AND CHAT_FROM = #{fromID})
+            ORDER BY CHATTED_AT DESC
+        ) WHERE ROWNUM <= #{number}
+        ]]>
+	</select>
 
-    <!-- 특정 사용자로부터 온 안 읽은 메세지 수 -->
-    <select id="getUnreadChat" parameterType="java.util.Map" resultType="int">
-        SELECT COUNT(chatID) FROM CHAT
-        WHERE fromID = #{fromID} AND toID = #{toID} AND chatRead = 0
-    </select>
+	<!-- 메세지 전송 -->
+	<insert id="submit" parameterType="com.smhrd.model.ChatDTO">
+		INSERT INTO CHATTING (CHAT_IDX, CHATTER, CHAT_FROM, CHAT_CONTENT,
+		CHATTED_AT)
+		VALUES (#{chatID}, #{fromID}, #{toID}, #{chatContent}, SYSDATE)
+	</insert>
+
+	<!-- 메세지 읽음 처리 -->
+	<update id="readChat" parameterType="java.util.Map">
+		UPDATE CHATTING SET CHAT_READ = '1'
+		WHERE CHATTER = #{fromID} AND CHAT_FROM = #{toID}
+	</update>
+
+	<!-- 안 읽은 메세지 수 가져오기 -->
+	<select id="getAllUnreadChat" parameterType="java.lang.String"
+		resultType="int">
+		SELECT COUNT(*) FROM CHATTING
+		WHERE CHAT_FROM = #{userID} AND CHAT_READ = '0'
+	</select>
+
+	<!-- 대화 상자 가져오기 -->
+	<select id="getBox" resultType="com.smhrd.model.ChatDTO">
+		SELECT * FROM CHATTING
+		WHERE CHATTER = #{userID} OR CHAT_FROM = #{userID}
+		GROUP BY CHATTER, CHAT_FROM
+		ORDER BY MAX(CHATTED_AT) DESC
+	</select>
+
+	<!-- 특정 사용자로부터 온 안 읽은 메세지 수 -->
+	<select id="getUnreadChat" parameterType="java.util.Map"
+		resultType="int">
+		SELECT COUNT(*) FROM CHATTING
+		WHERE CHATTER = #{fromID} AND CHAT_FROM = #{toID} AND CHAT_READ = '0'
+	</select>
+
+	<!-- fromID에 해당하는 모든 채팅 가져오기 -->
+	<select id="selectChatsByFromID" parameterType="string"
+		resultType="com.smhrd.model.ChatDTO">
+		SELECT * FROM CHATTING
+		WHERE CHATTER = #{fromID}
+		ORDER BY CHATTED_AT DESC
+	</select>
+
+	<!-- chatID를 사용하여 특정 채팅 메시지 가져오기 -->
+	<select id="selectChatByID" parameterType="int"
+		resultType="com.smhrd.model.ChatDTO">
+		SELECT * FROM CHATTING
+		WHERE CHAT_IDX = #{chatID}
+	</select>
 
 </mapper>
-
