@@ -17,6 +17,7 @@
 <%
 // 쿼리 문자열로 전달된 데이터 받기
 
+
 Double postIdx=Double.parseDouble(request.getParameter("postIdx"));
 // postIdx를 사용하여 원하는 작업 수행
 out.println("Post Index: " + postIdx);
