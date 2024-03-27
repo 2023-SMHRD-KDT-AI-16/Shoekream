@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="loginSuccess.css" />
+    <link rel="stylesheet" href="Success.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        .display{
+            width: 1920px;
+            height: 1080px;
+        }
+        /* Close button hover effect */
+        .close-btn:hover {
+            cursor: pointer;
+        }
+
+        /* MAIN-JOIN 스타일 수정 */
+        .MAIN-JOIN {
+            width: 90%;
+            height: 90%;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+        }
+
+        .MAIN-JOIN .element {
+            width: 550px;
+            height: 80px;
+        }
+
+        .MAIN-JOIN .icon-jam-icons {
+            width: 124px;
+            height: 124px;
+        }
+
+        .MAIN-JOIN .section-text {
+            display: flex;
+            flex-direction: column;
+            width: 1280px;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .MAIN-JOIN .top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .MAIN-JOIN .main-headline {
+            margin-top: -1px;
+            font-family: "Roboto-Bold", Helvetica;
+            font-weight: 700;
+            color: var(--coolgray-90);
+            font-size: 30px;
+            text-align: center;
+            letter-spacing: 0;
+            line-height: 33px;
+        }
+
+        /* 3D 버튼 스타일 추가 */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #4CAF50;
+            box-shadow: 0 5px #008000;
+            transition: box-shadow 0.3s;
+            width: 491px; /* 버튼 너비 조정 */
+            height: 42px; /* 버튼 높이 조정 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px; /* 버튼과 텍스트 간의 간격 조정 */
+        }
+
+        .button:hover {
+            cursor: pointer;
+           
+        }
+
+        .button:active {
+            box-shadow: none;
+            transform: translateY(4px);
+        }
+
+        .text-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0px 16px;
+            margin-top: -5px;
+            margin-bottom: -5px;
+        }
+
+        .button-text {
+            width: fit-content;
+            margin-top: -1px;
+            font-family: var(--button-l-font-family);
+            font-weight: var(--button-l-font-weight);
+            color: var(--primary-60);
+            font-size: var(--button-l-font-size);
+            letter-spacing: var(--button-l-letter-spacing);
+            line-height: var(--button-l-line-height);
+            white-space: nowrap;
+            font-style: var(--button-l-font-style);
+        }
+
+        .icon-ionicons {
+            width: 40px;
+            height: 40px;
+            top: 23px;
+            left: 27px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+   <div class="display"> 
+    <button aria-label="close" class="close-btn x" onclick="closeButtonClicked()">✖️</button>
+    <div class="MAIN-JOIN">
+    <div class="element"></div>
+    <img class="icon-jam-icons" src="/MAIN/img/check.png" />
+    <div class="section-text">
+        <div class="top">
+            <div class="main-headline">완료되었습니다!</div>
+        </div>
+    </div>
+    <a href="#" class="button" onclick="buttonClicked()"> <!-- 여기에 다른 페이지의 URL을 넣으세요 -->
+        <div class="text-container">
+            <div class="button-text">로그인 하러가기</div>
+        </div>
+     </a>
+    </div>
+</div>
+<script>
+    function closeButtonClicked() {
+        // 닫기 버튼 클릭 시 실행할 동작
+        console.log("닫기 버튼이 클릭되었습니다!");
+    }
+
+    function buttonClicked() {
+        // 버튼 클릭 시 실행할 동작
+        console.log("버튼이 클릭되었습니다!");
+    }
+</script>
+</body>
