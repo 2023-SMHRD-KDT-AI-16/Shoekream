@@ -1,0 +1,35 @@
+:root {
+  --coolgray-90: rgba(33, 39, 42, 1);
+  --primary-60: rgba(15, 98, 254, 1);
+  --primary-90: rgba(0, 29, 108, 1);
+  --button-l-font-family: "Roboto", Helvetica;
+  --button-l-font-weight: 500;
+  --button-l-font-size: 20px;
+  --button-l-letter-spacing: 0.5px;
+  --button-l-line-height: 100%;
+  --button-l-font-style: normal;
+  --other-caption-font-family: "Roboto", Helvetica;
+  --other-caption-font-weight: 700;
+  --other-caption-font-size: 20px;
+  --other-caption-letter-spacing: 1px;
+  --other-caption-line-height: 100%;
+  --other-caption-font-style: normal;
+  --heading-1-font-family: "Roboto", Helvetica;
+  --heading-1-font-weight: 700;
+  --heading-1-font-size: 54px;
+  --heading-1-letter-spacing: 0px;
+  --heading-1-line-height: 110.00000238418579%;
+  --heading-1-font-style: normal;
+  --heading-2-font-family: "Roboto", Helvetica;
+  --heading-2-font-weight: 700;
+  --heading-2-font-size: 42px;
+  --heading-2-letter-spacing: 0px;
+  --heading-2-line-height: 110.00000238418579%;
+  --heading-2-font-style: normal;
+  --body-l-font-family: "Roboto", Helvetica;
+  --body-l-font-weight: 400;
+  --body-l-font-size: 18px;
+  --body-l-letter-spacing: 0px;
+  --body-l-line-height: 139.9999976158142%;
+  --body-l-font-style: normal;
+}

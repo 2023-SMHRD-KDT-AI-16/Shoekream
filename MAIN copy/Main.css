@@ -1,0 +1,151 @@
+input[id="menuicon"] {display: none;}
+body{
+	width: 1920px; height: 100%;
+}
+
+
+/* 헤더 */
+header {width: 100%;background: #ffffff;}
+header > div {position: relative; width: 1920px;   margin:15 auto;}
+header > div ul.navi{font-size: 0;}
+header > div ul.navi > li{font-size: 50px; display: inline-block; vertical-align: middle;}
+header > div ul.navi > li > a {display: block; width: auto; padding: 20px;}
+header > div ul.navi > li.logp > a{padding: 20px 50px; font-size: 20px; font-weight: 900;}
+
+/* 왼쪽 프로필 */
+*{box-sizing: border-box; margin: 0; padding: 0;}
+h1{font-weight: normal; font-size:1.0rem;}
+a{text-decoration: none; color: #222; }
+#profile_wrap{
+  width: 360px;  
+} 
+#profile_wrap .profile_box1 {
+  padding: 30px; border: 1px solid #555;
+}
+#profile_wrap .profile_box1 .photo{
+width: 150px; height: 150px; background: lightgreen;
+border-radius: 50%;
+display: flex; flex-flow: row nowrap; overflow: hidden;
+}
+
+#profile_wrap .profile_box1 .photo img{
+	
+}
+#profile_wrap .profile_box1 .right{}
+#profile_wrap .profile_box1 .right h1{}
+#profile_wrap .profile_box1 .right p{}
+#profile_wrap .profile_box1 #open_close{}
+#profile_wrap .profile_box2 {}
+#profile_wrap .profile_box2 a {}
+
+/* 각영역의 라벨(중앙정렬) */
+.area_desc {position: absolute; top: 50%;left: 50%; transform: translate(-50%, -50%); font-size: 20px; }
+
+/* 메뉴버튼 */
+.menubtn {display: block;  width: 50px; height: 50px; position: fixed; top: 50px; right: 16%; transform: translateY(-50%);cursor: pointer; }
+.menubtn span {display: block; position: absolute; width: 80%; height: 5px; border-radius: 30px; background: #222; transition: all .35s; }
+.menubtn span:nth-child(1) {top:20%;left: 50%; transform: translateX(-50%);}
+.menubtn span:nth-child(2) {top:50%;left: 50%; transform: translate(-50%,-50%);}
+.menubtn span:nth-child(3) {bottom: 20%;left: 50%; transform: translatex(-50%);}
+
+/* 컨텐츠영역 */
+.container { display: flex;  flex-direction: row-reverse; width: 1600px; position:relative; }
+.container .content {  width: 800px;  height: 900px; margin:0 auto;min-height: 700px; border : 1px solid #835151;background: #ffffff; align-content: center;}
+.container .sidebar { position:fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #ffffff; border:1px solid #eee;z-index: 30; transition: .35s;}
+
+/* 체크 변화값 */
+input[id=menuicon]:checked ~ header .menubtn{z-index: 2;}
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(1) {top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(135deg);}
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(2) {left: 50%; transform: translate(-50%,-50%) scale(2);opacity: 0;}
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(3) {bottom: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-135deg);}
+input[id=menuicon]:checked ~ .container .sidebar {right: 0;}
+/* 메뉴 버튼 기능구현 */
+input[id*="answer"]{
+	display: none;
+}
+input[id*="answer"] + label{
+	display: block;
+	padding: 20px;
+	border: 1px solid #292626;
+	border-bottom: 0;
+	color: #312c2c;
+	font-weight: 900;
+	background: rgb(247, 239, 245);
+	cursor: pointer;
+	position: relative;
+}
+input[id*="answer"] + label em {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	width: 30px;
+	height: 30px;
+	margin-top: -15px;
+	display: inline-block;
+	background:url(/MAIN/icon.png) 0 0 no-repeat; 
+}
+input[id*="answer"] + label + div {
+	max-height: 0;
+	transition: all .35s;
+	overflow: hidden;
+	background: #edf8ff;
+	font-size: 11px;
+}
+input[id*="answer"] + label + div p {
+	display: inline-block;
+	padding: 20px;
+}
+input[id*="answer"]:checked + label + div {max-height: 100px;}
+input[id*="answer"]:checked + label  em {background-position: -30px;}
+
+.instagram-post {
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+	padding: 10px;
+  }
+  
+  .post-header {
+	display: flex;
+	align-items: center;
+  }
+  
+  .post-header img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 10px;
+  }
+  
+  .post-content img {
+	width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+  }
+  
+  .post-footer {
+	margin-top: 10px;
+	border: 15;
+  }
+
+  .post-content > img{
+	width: 776px;
+	height: 800px;
+	align-content: center;
+	margin-bottom: 25px;
+  }
+ 
+.emoji-icons{
+	cursor: pointer;
+}
+.menubtn{
+	/* position: fixed; 
+	margin-bottom: 800px; */
+
+}
+.profile_box1{
+	position: fixed;
+	
+}
+.head{
+	cursor: pointer;
+}
