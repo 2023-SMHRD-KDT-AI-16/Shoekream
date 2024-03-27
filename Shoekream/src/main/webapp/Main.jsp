@@ -103,7 +103,10 @@
 									style="resize: none;"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input type="text"></td>
+							<td colspan="2"><input type="text" class="filter"></td>
+						</tr>
+						<tr>
+						<td> <span class="shoetags"></span>
 						</tr>
 					</table>
 					<button type="button" id="prevButton">이전</button>
