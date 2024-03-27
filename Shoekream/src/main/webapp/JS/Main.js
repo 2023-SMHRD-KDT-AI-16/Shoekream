@@ -239,4 +239,27 @@ function writeComment(i){
 	  fileSelectionScreen.style.display = 'block';
 	  photoPreviewScreen.style.display = 'none';
 	});
+//----------------------------------------------------------
+//신발 정보 검색
+function filterShoes() {
+    var inputText = $('#filterInput').val(); 
+   
+		$.ajax({
+        url: "ShowShoes",
+        data: { "inputText": inputText },
+        type: "get",
+        success: function(result) {
+            var arr = result;
+            $('#shoesOptions').empty();
+            arr.forEach(function(shoes) {
+                $('#shoesOptions').append($('<option>', {
+                    value: shoes.id, 
+                    text: shoes.shoe_name
+                }));
+            });
+        }
+    });
+	
+    
+}
 	

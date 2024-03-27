@@ -58,6 +58,12 @@
     	<description></description>
     	<servlet-class>com.smhrd.controller.FollowService</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>ShowShoes</servlet-name>
+    	<display-name>ShowShoes</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.ShowShoes</servlet-class>
+    </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -93,5 +99,9 @@
    <servlet-mapping>
    	<servlet-name>FollowService</servlet-name>
    	<url-pattern>/FollowService</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>ShowShoes</servlet-name>
+   	<url-pattern>/ShowShoes</url-pattern>
    </servlet-mapping>
 </web-app>

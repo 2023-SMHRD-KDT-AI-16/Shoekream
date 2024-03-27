@@ -30,6 +30,7 @@
      <mapper resource="com/smhrd/db/CommentMapper.xml"/>
      <mapper resource="com/smhrd/db/LikeMapper.xml"/>
      <mapper resource="com/smhrd/db/FollowMapper.xml"/>
+     <mapper resource="com/smhrd/db/ShoesMapper.xml"/>
  
   </mappers>
 </configuration>

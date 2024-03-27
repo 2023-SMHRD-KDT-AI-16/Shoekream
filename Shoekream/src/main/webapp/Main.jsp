@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.ShoesDTO"%>
+<%@page import="com.smhrd.model.ShoesDAO"%>
 <%@page import="com.smhrd.model.FollowDAO"%>
 <%@page import="com.smhrd.model.FollowDTO"%>
 <%@page import="com.smhrd.model.LikeDTO"%>
@@ -89,7 +91,7 @@
 					<button type="button" id="nextButton">다음</button>
 				</div>
 
-				<!-- 게시글 파일 미리보기, 본문 작성  -->
+			<!-- 게시글 파일 미리보기, 본문 작성  -->
 				<div id="photoPreviewScreen" style="display: none;">
 					<table>
 						<tr>
@@ -103,15 +105,25 @@
 									style="resize: none;"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input type="text" class="filter"></td>
-						</tr>
-						<tr>
-						<td> <span class="shoetags"></span>
+							<td colspan="2">
+ <!-- 신발태그 검색 -->
+ <% 
+ ShoesDAO sdao = new ShoesDAO();
+ ArrayList<ShoesDTO> s_list = sdao.showShoes();
+ %>
+ 
+<input type="text" id="filterInput" oninput="filterShoes()">
+<br>
+<select id="shoesOptions">
+<option value="basic">신발을 검색해주세요</option>
+    <!-- 여기에 옵션들이 동적으로 추가될 것입니다. -->
+</select></td>
 						</tr>
 					</table>
 					<button type="button" id="prevButton">이전</button>
 					<button type="submit">게시글 작성 완료</button>
 			</form>
+
 
 
 		</div>
