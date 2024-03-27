@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link  rel="stylesheet" href="Main.css">
+<link  rel="stylesheet" href="./CSS/Main.css">
   <style>
     /* 추가한 스타일 */
     .hidden {
