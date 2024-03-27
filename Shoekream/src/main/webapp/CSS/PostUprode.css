@@ -1,0 +1,61 @@
+@charset "UTF-8";
+.postuprode{
+    display: flex;
+    width: 1920px;
+    height: 1080px;
+    border: 5px;
+    background-color: ffffff;
+    position: fixed;
+}
+.photo{
+    display: flex;
+    width: 600px;
+    height: 800px;
+    border: 4px;
+    background-color: ffffff;
+    margin-left: 400px;
+    margin-top: 50px;
+
+}
+.postuprode_info{
+    
+    width: 400px;
+    height: 800px;
+    background-color: beige;
+    margin-top: 50px;
+}
+.photo > img{
+ 
+    display: flex;
+    width: 600px;
+    height: 800px;
+
+   
+}
+.user_photo > img {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.user_name {
+    margin-left: 10px;
+    font-size: medium;
+}
+.post_info > #text {
+    font-size: 20px;
+    margin-left: 10px;  
+    width: 360px;
+    height: 500px;
+    
+
+}
+
+.sohes_tag{
+    margin: 10px;
+}
+button{
+    width: 60px;
+    height: 10%;
+    
+}
