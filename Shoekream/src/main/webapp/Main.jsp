@@ -178,6 +178,10 @@ input[id*="answer"] + label + div p {
 input[id*="answer"]:checked + label + div {max-height: 100px;}
 input[id*="answer"]:checked + label  em {background-position: -30px;}
 
+.instargram-post > div{
+	padding-bottom: 30px;
+}
+
 .instagram-post {
 
 	margin-bottom: 20px;
@@ -194,6 +198,7 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
 	height: 50px;
 	border-radius: 50%;
 	margin-right: 10px;
+	background-color: black;
   }
   
   .post-content img {
@@ -213,6 +218,8 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
 	height: 800px;
 	align-content: center;
 	margin-bottom: 25px;
+	    border: solid 1px;
+    border-color: #000;
   }
  
 .emoji-icons{
@@ -269,7 +276,10 @@ element.style {
     padding-bottom: 40px;
 
 }
-
+/* 팔로우 버튼 */
+follow_0{
+ height: 20px;
+}
 </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -305,7 +315,7 @@ element.style {
   <!-- ----------------------------------------------------------------------- -->
   
 <div class="container">
-    <div class="content" style="height: auto;">
+    <div class="content" style="height: auto; margin-right: 520px">
       <span class="area_desc"></span> 
       <!-- 위에 괄호 안이 content영역 -->
       <div id="instagram-posts">
