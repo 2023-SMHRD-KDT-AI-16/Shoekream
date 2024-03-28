@@ -20,4 +20,9 @@ select * from user_info where user_id = 'test'
 select * from post_info where post_idx=#{post_idx}
 </select>
 
+<select id="countPost" parameterType ="String" resultType ="int">
+select count(*) from post_info where user_id=#{user_id}
+</select>
+
+
 </mapper>

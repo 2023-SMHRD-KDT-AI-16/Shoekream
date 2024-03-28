@@ -40,10 +40,18 @@ public class BoardDAO {
 		System.out.println("showDetial 도착");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		BoardDTO result = sqlSession.selectOne("showDetail", postIdx);
+		sqlSession.close();
 		return result;
 	}
 	
-	
+	public int countPost(String user_id) {
+		System.out.println("user_id:"+user_id);
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result = sqlSession.selectOne("countPost",user_id);
+		sqlSession.close();
+		System.out.println(result);
+		return result;
+	}
 	
 
 }

@@ -73,5 +73,21 @@ SqlSession sqlSession = sqlSessionFactory.openSession(true);
 			}
 			return result;
 		}
+		
+		
+	//아이디로 닉네임 찾기~
+		public String usernick(String user_id) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			String result = null;
+			try {
+				result=sqlSession.selectOne("usernick",user_id);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				sqlSession.close();
+			}
+			return result;
+			
+		}
 	
 }

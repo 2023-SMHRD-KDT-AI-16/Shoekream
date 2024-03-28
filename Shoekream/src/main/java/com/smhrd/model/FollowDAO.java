@@ -37,7 +37,23 @@ public class FollowDAO {
 		return result;
 	}
 	
+	//팔로우 수 구하는 메서드 
+	public int countfollow(String user_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result = sqlSession.selectOne("countfollow",user_id);
+		sqlSession.close();
+		System.out.println("팔로우 수 :"+result);
+		return result;
+	}
 	
+	//팔로워 수 구하는 메서드
+	public int countfollower(String user_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result = sqlSession.selectOne("countfollower",user_id);
+		sqlSession.close();
+		System.out.println("팔로워 수 :"+result);
+		return result;
+	}
 	
 	
 }

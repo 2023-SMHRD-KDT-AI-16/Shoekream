@@ -64,6 +64,12 @@
     	<description></description>
     	<servlet-class>com.smhrd.controller.ShowShoes</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>getPostService</servlet-name>
+    	<display-name>getPostService</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.getPostService</servlet-class>
+    </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -103,5 +109,9 @@
    <servlet-mapping>
    	<servlet-name>ShowShoes</servlet-name>
    	<url-pattern>/ShowShoes</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>getPostService</servlet-name>
+   	<url-pattern>/getPostService</url-pattern>
    </servlet-mapping>
 </web-app>
