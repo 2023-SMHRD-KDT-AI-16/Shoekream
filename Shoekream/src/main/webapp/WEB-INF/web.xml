@@ -70,6 +70,12 @@
     	<description></description>
     	<servlet-class>com.smhrd.controller.getPostService</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>MypageService</servlet-name>
+    	<display-name>MypageService</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.MypageService</servlet-class>
+    </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -113,5 +119,9 @@
    <servlet-mapping>
    	<servlet-name>getPostService</servlet-name>
    	<url-pattern>/getPostService</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>MypageService</servlet-name>
+   	<url-pattern>/MypageService</url-pattern>
    </servlet-mapping>
 </web-app>
