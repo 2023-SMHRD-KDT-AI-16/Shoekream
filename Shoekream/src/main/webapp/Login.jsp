@@ -13,6 +13,7 @@
 
 <body>
 	<%
+	
 	String clientId = "FAb4bunxl3DNMBTgbAkh";//애플리케이션 클라이언트 아이디값";
 	String redirectURI = URLEncoder.encode("http://localhost:8081/Shoekream/callback.jsp", "UTF-8");
 	SecureRandom random = new SecureRandom();
