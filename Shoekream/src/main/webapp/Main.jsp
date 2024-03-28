@@ -43,18 +43,22 @@ font-weight: revert-layer;
 font-size: x-large;
 }}
 h1{
-    margin-left: 30px;
+    color: white;
+    margin-left: 45px;
+
 }
 /*팔로우 팔로워 폰트 수정*/
 span{span{
 font-weight: revert-layer;
 font-size: x-large;
 margin-left: 10px;
+color: white;
 }}
 h5{span{
 font-weight: revert-layer;
 font-size: x-large;
     margin: auto;
+    color: white;
 }
 }
 a{text-decoration: none; color: #222; }
@@ -64,13 +68,16 @@ a{text-decoration: none; color: #222; }
 } 
 #profile_wrap .profile_box1 {
   padding: 30px; 
- /* border: 1px solid #555; 프로필영역 라인*/ 
+      border: solid 3px;
+    border-color: white;
+    border-radius: 5%
   
 }
 #profile_wrap .profile_box1 .photo{
-width: 150px; height: 150px; background: lightgreen;
+width: 150px; height: 150px; background: white;
 border-radius: 50%;
 display: flex; flex-flow: row nowrap; overflow: hidden;
+    margin-left: 20px;
 }
 
 #profile_wrap .profile_box1 .photo img{
@@ -94,9 +101,37 @@ display: flex; flex-flow: row nowrap; overflow: hidden;
 .menubtn span:nth-child(3) {bottom: 20%;left: 50%; transform: translatex(-50%);}
 
 /* 컨텐츠영역 */
-.container { display: flex;  flex-direction: row-reverse; width: 1920px; height: auto; position:relative; background:url('')}
-.container .content {  width: 800px;  height:100px; margin:0 auto;min-height: 700px; border : 1px solid #835151;background: #ffffff; align-content: center;}
-.container .sidebar { position:fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #ffffff; border:1px solid #eee;z-index: 30; transition: .35s;}
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 1920px;
+  height: auto;
+  position: relative;
+  background-image: url(img/goodwpss.jpg);
+  background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
+  background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
+}
+
+.container .content {
+  width: 800px;
+  height: 100px;
+  margin: 0 auto;
+  min-height: 700px;
+  background: #ffffff;
+  align-content: center;
+}
+
+.container .sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background: #ffffff;
+  border: 1px solid #eee;
+  z-index: 30;
+  transition: .35s;
+}
 
 /* 체크 변화값 */
 input[id=menuicon]:checked ~ header .menubtn{z-index: 2;}
@@ -232,7 +267,7 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
 /*댓글 밑 line*/
 element.style {
     padding-bottom: 40px;
-    
+
 }
 
 </style>
