@@ -34,7 +34,7 @@ public class getPostService extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		// 인덱스 번호 받아오기
 	
-		
+		System.out.println("getPost");
 		HttpSession session = request.getSession();
 
 
