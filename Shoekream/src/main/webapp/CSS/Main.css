@@ -11,12 +11,17 @@ header {width: 100%;background: #ffffff;}
 header > div {position: relative; width: 1920px;   margin:15 auto;}
 header > div ul.navi{font-size: 0;}
 header > div ul.navi > li{font-size: 50px; display: inline-block; vertical-align: middle;}
-header > div ul.navi > li > a {display: block; width: auto; padding: 20px;}
-header > div ul.navi > li.logp > a{padding: 20px 50px; font-size: 20px; font-weight: 900;}
+header > div ul.navi > li > a {display: block; width: auto; padding: 20px; }
+header > div ul.navi > li.logp > a{padding: 20px 50px; font-size: 20px; font-weight: 900; position:fixed;}
 
 /* 왼쪽 프로필 */
 *{box-sizing: border-box; margin: 0; padding: 0;}
-h1{font-weight: normal; font-size:1.0rem;}
+h1{font-weight: revert-layer;
+font-size: x-large;}
+span{
+font-weight: revert-layer;
+font-size: x-large;
+}
 a{text-decoration: none; color: #222; }
 #profile_wrap{
   width: 360px;  

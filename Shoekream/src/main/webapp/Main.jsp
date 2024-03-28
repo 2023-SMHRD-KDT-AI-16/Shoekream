@@ -38,13 +38,34 @@ header > div ul.navi > li.logp > a{padding: 20px 50px; font-size: 20px; font-wei
 
 /* 왼쪽 프로필 */
 *{box-sizing: border-box; margin: 0; padding: 0;}
-h1{font-weight: normal; font-size:1.0rem;}
+h1{span{
+font-weight: revert-layer;
+font-size: x-large;
+}}
+h1{
+    margin-left: 30px;
+}
+/*팔로우 팔로워 폰트 수정*/
+span{span{
+font-weight: revert-layer;
+font-size: x-large;
+margin-left: 10px;
+}}
+h5{span{
+font-weight: revert-layer;
+font-size: x-large;
+    margin: auto;
+}
+}
 a{text-decoration: none; color: #222; }
 #profile_wrap{
   width: 360px;  
+  margin-left: 40px;
 } 
 #profile_wrap .profile_box1 {
-  padding: 30px; border: 1px solid #555;
+  padding: 30px; 
+ /* border: 1px solid #555; 프로필영역 라인*/ 
+  
 }
 #profile_wrap .profile_box1 .photo{
 width: 150px; height: 150px; background: lightgreen;
@@ -73,7 +94,7 @@ display: flex; flex-flow: row nowrap; overflow: hidden;
 .menubtn span:nth-child(3) {bottom: 20%;left: 50%; transform: translatex(-50%);}
 
 /* 컨텐츠영역 */
-.container { display: flex;  flex-direction: row-reverse; width: 1600px; position:relative; }
+.container { display: flex;  flex-direction: row-reverse; width: 1920px; height: auto; position:relative; background:url('')}
 .container .content {  width: 800px;  height:100px; margin:0 auto;min-height: 700px; border : 1px solid #835151;background: #ffffff; align-content: center;}
 .container .sidebar { position:fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #ffffff; border:1px solid #eee;z-index: 30; transition: .35s;}
 
@@ -123,7 +144,7 @@ input[id*="answer"]:checked + label + div {max-height: 100px;}
 input[id*="answer"]:checked + label  em {background-position: -30px;}
 
 .instagram-post {
-	border: 1px solid #ccc;
+
 	margin-bottom: 20px;
 	padding: 10px;
   }
@@ -149,6 +170,7 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
   .post-footer {
 	margin-top: 10px;
 	border: 15;
+	border-bottom: solid 1px;
   }
 
   .post-content > img{
@@ -206,6 +228,12 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
 .hidden {
       display: none;
     }
+    
+/*댓글 밑 line*/
+element.style {
+    padding-bottom: 40px;
+    
+}
 
 </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -301,7 +329,8 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
             <h1><%=user_info.getUserNick()%></h1>
             <!-- 프로필 네임 안에 user_name? user_nickname? -->
             <ul>
-            <h5><span>게시글 <%=countPost %></span>  <span>팔로워 <%=countfollower %></span>  <span>팔로우 <%= countfollow%></span></h5>
+            <h5><span>게시글 <%=countPost %></span>  </span></h5>
+            <h5><span><span>팔로워 <%=countfollower %></span> <span>팔로우 <%= countfollow%></span></h5>
             <!-- 숫자사이에  넣으면 될듯?! -->
             </ul>
           </div>  
