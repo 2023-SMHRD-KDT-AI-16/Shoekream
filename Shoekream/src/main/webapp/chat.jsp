@@ -1093,7 +1093,7 @@
                                     <!-- Chats -->
                                     <div class="card-list">
                                         <!-- Card -->
-                                        <a href="chat-group.html" class="card border-0 text-reset">
+                                        <a href="chat-group.JSP" class="card border-0 text-reset">
                                             <div class="card-body">
                                                 <div class="row gx-5">
                                                     <div class="col-auto">

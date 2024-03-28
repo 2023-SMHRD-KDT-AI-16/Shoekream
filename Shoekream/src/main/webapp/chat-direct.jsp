@@ -1471,7 +1471,7 @@ function appendMessage(content, className) {
 								<!-- Chats -->
 								<div class="card-list">
 									<!-- Card -->
-									<a href="chat-group.html" class="card border-0 text-reset">
+									<a href="CHAT-GROUP.JSP" class="card border-0 text-reset">
 										<div class="card-body">
 											<div class="row gx-5">
 												<div class="col-auto">
@@ -1545,7 +1545,7 @@ function appendMessage(content, className) {
 									<!-- Card -->
 
 									<!-- Card -->
-									<a href="chat-direct.html" class="card border-0 text-reset">
+									<a href="CHAT-DIRECT.JSP" class="card border-0 text-reset">
 										<div class="card-body">
 											<div class="row gx-5">
 												<div class="col-auto">
@@ -1607,7 +1607,7 @@ function appendMessage(content, className) {
 									<!-- Card -->
 
 									<!-- Card -->
-									<a href="chat-direct.html" class="card border-0 text-reset">
+									<a href="CHAT-DIRECT.JSP" class="card border-0 text-reset">
 										<div class="card-body">
 											<div class="row gx-5">
 												<div class="col-auto">
@@ -1647,7 +1647,7 @@ function appendMessage(content, className) {
 									<!-- Card -->
 
 									<!-- Card -->
-									<a href="chat-direct.html" class="card border-0 text-reset">
+									<a href="CHAT-DIRECT.JSP" class="card border-0 text-reset">
 										<div class="card-body">
 											<div class="row gx-5">
 												<div class="col-auto">
@@ -1676,7 +1676,7 @@ function appendMessage(content, className) {
 									<!-- Card -->
 
 									<!-- Card -->
-									<a href="chat-direct.html" class="card border-0 text-reset">
+									<a href="CHAT-DIRECT.JSP" class="card border-0 text-reset">
 										<div class="card-body">
 											<div class="row gx-5">
 												<div class="col-auto">
@@ -1705,7 +1705,7 @@ function appendMessage(content, className) {
 									<!-- Card -->
 
 									<!-- Card -->
-									<a href="chat-direct.html" class="card border-0 text-reset">
+									<a href="CHAT-DIRECT.JSP" class="card border-0 text-reset">
 										<div class="card-body">
 											<div class="row gx-5">
 												<div class="col-auto">
@@ -1734,7 +1734,7 @@ function appendMessage(content, className) {
 									<!-- Card -->
 
 									<!-- Card -->
-									<a href="chat-direct.html" class="card border-0 text-reset">
+									<a href="CHAT-DIRECT.JSP" class="card border-0 text-reset">
 										<div class="card-body">
 											<div class="row gx-5">
 												<div class="col-auto">
@@ -1790,7 +1790,7 @@ function appendMessage(content, className) {
 									<!-- Card -->
 
 									<!-- Card -->
-									<a href="chat-direct.html" class="card border-0 text-reset">
+									<a href="CHAT-DIRECT.JSP" class="card border-0 text-reset">
 										<div class="card-body">
 											<div class="row gx-5">
 												<div class="col-auto">
@@ -1825,7 +1825,7 @@ function appendMessage(content, className) {
 									<!-- Card -->
 
 									<!-- Card -->
-									<a href="chat-direct.html" class="card border-0 text-reset">
+									<a href="CHAT-DIRECT.JSP" class="card border-0 text-reset">
 										<div class="card-body">
 											<div class="row gx-5">
 												<div class="col-auto">
