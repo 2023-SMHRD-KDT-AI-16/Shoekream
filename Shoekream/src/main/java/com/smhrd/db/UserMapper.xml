@@ -28,4 +28,8 @@
     select case when count(*)>0 then 1 else 0 end result from user_info where user_id = #{user_id}
     </select>
     
+      <select id="usernick" parameterType="String" resultType="String">
+		select user_nick from USER_INFO where user_id= #{user_id}
+	</select>
+    
 </mapper>

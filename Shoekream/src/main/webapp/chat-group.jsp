@@ -1151,7 +1151,7 @@
                                         <!-- Card -->
 
                                         <!-- Card -->
-                                        <a href="chat-direct.html" class="card border-0 text-reset">
+                                        <a href="chat-direct.jsp" class="card border-0 text-reset">
                                             <div class="card-body">
                                                 <div class="row gx-5">
                                                     <div class="col-auto">
@@ -1209,7 +1209,7 @@
                                         <!-- Card -->
 
                                         <!-- Card -->
-                                        <a href="chat-direct.html" class="card border-0 text-reset">
+                                        <a href="chat-direct.jsp" class="card border-0 text-reset">
                                             <div class="card-body">
                                                 <div class="row gx-5">
                                                     <div class="col-auto">
@@ -1246,7 +1246,7 @@
                                         <!-- Card -->
 
                                         <!-- Card -->
-                                        <a href="chat-direct.html" class="card border-0 text-reset">
+                                        <a href="chat-direct.jsp" class="card border-0 text-reset">
                                             <div class="card-body">
                                                 <div class="row gx-5">
                                                     <div class="col-auto">
@@ -1273,7 +1273,7 @@
                                         <!-- Card -->
 
                                         <!-- Card -->
-                                        <a href="chat-direct.html" class="card border-0 text-reset">
+                                        <a href="chat-direct.jsp" class="card border-0 text-reset">
                                             <div class="card-body">
                                                 <div class="row gx-5">
                                                     <div class="col-auto">
@@ -1300,7 +1300,7 @@
                                         <!-- Card -->
 
                                         <!-- Card -->
-                                        <a href="chat-direct.html" class="card border-0 text-reset">
+                                        <a href="chat-direct.jsp" class="card border-0 text-reset">
                                             <div class="card-body">
                                                 <div class="row gx-5">
                                                     <div class="col-auto">
@@ -1327,7 +1327,7 @@
                                         <!-- Card -->
 
                                         <!-- Card -->
-                                        <a href="chat-direct.html" class="card border-0 text-reset">
+                                        <a href="chat-direct.jsp" class="card border-0 text-reset">
                                             <div class="card-body">
                                                 <div class="row gx-5">
                                                     <div class="col-auto">
@@ -1381,7 +1381,7 @@
                                         <!-- Card -->
 
                                         <!-- Card -->
-                                        <a href="chat-direct.html" class="card border-0 text-reset">
+                                        <a href="chat-direct.jsp" class="card border-0 text-reset">
                                             <div class="card-body">
                                                 <div class="row gx-5">
                                                     <div class="col-auto">
@@ -1411,7 +1411,7 @@
                                         <!-- Card -->
 
                                         <!-- Card -->
-                                        <a href="chat-direct.html" class="card border-0 text-reset">
+                                        <a href="chat-direct.jsp" class="card border-0 text-reset">
                                             <div class="card-body">
                                                 <div class="row gx-5">
                                                     <div class="col-auto">

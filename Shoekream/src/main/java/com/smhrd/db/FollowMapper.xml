@@ -7,14 +7,24 @@
 select case when count(*)>0 then 1 else 0 end result from follow_info where follower=#{follower} and followee=#{followee}
 </select>
 
-<!-- 좋아요 저장 -->
+<!-- 팔로우 저장 -->
 <insert id="savefollow" parameterType = "com.smhrd.model.FollowDTO">
 insert into follow_info (follower,followee,followed_at) values(#{follower},#{followee},sysdate)
 </insert>
 
-<!-- 좋아요 삭제 -->
+<!-- 팔로우 삭제 -->
 <delete id="delfollow" parameterType = "com.smhrd.model.FollowDTO">
 delete from follow_info where follower=#{follower} and followee=#{followee}
 </delete>
+
+<!-- 팔로워 수 구하기 -->
+<select id="countfollower" parameterType ="String" resultType ="int">
+select count(*) from follow_info where followee=#{user_id}
+</select>
+
+<!-- 팔로우 수 구하기 -->
+<select id="countfollow" parameterType ="String" resultType ="int">
+select count(*) from follow_info where follower=#{user_id}
+</select>
 
 </mapper>
