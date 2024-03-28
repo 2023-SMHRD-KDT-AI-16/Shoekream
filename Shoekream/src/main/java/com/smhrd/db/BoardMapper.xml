@@ -24,5 +24,7 @@ select * from post_info where post_idx=#{post_idx}
 select count(*) from post_info where user_id=#{user_id}
 </select>
 
-
+<select id="id_post" parameterType ="String" resultType ="com.smhrd.model.BoardDTO">
+select * from post_info where user_id=#{user_id}
+</select>
 </mapper>

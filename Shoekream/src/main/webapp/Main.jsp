@@ -335,7 +335,8 @@ follow_0{
         <label for="answer01">홈<em></em></label>
         <div><p>여기에 내용</p></div>
         <input type="checkbox" name="accordion" id="answer02">
-        <label for="answer02">게시글작성<em></em></label>
+        <label for="answer02">게시글작성<button id="modalOpenButton">게시글 작성</button>
+        <em></em></label>
          <div><p>여기에 내용</p></div>
         <input type="checkbox" name="accordion" id="answer03">
         <label for="answer03">채팅<em></em></label>
@@ -369,7 +370,7 @@ follow_0{
 	
 	<div id="profile_wrap">
        <div class="profile_box1">
-          <div class="photo"><img src=<%=user_info.getUserProfileImg()%> alt="프로필이미지"></div>
+          <div class="photo"><img src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지"></div>
           <div class="right">
             <h1><%=user_info.getUserNick()%></h1>
             <!-- 프로필 네임 안에 user_name? user_nickname? -->
@@ -394,9 +395,9 @@ follow_0{
 	<!-- -------------------------------------------------------------- -->
 	<!-- 게시글 작성 모달창 열기 -->
 
-	<br>
-	<button id="modalOpenButton">게시글 작성</button>
-	<br>
+	
+	
+	
 	<div id="modalContainer" class="hidden">
 		<div id="modalContent">
 
@@ -766,7 +767,7 @@ function filterShoes() {
 					const postData= `
         <div class="instagram-post">
           <div class="post-header">
-            <img src="img/" alt="프로필 사진">
+            <a href="MypageService?post_userid=${post_result.post_user_id}"><img src="img/${post_result.post_profileimg}" alt="프로필 사진"></a>
             <div class="profile-info">
               <h2 class="head" >${post_result.post_nick} 
               <button id="follow_${page}" onclick ="${togglefollow}">${isfollow}</button> 

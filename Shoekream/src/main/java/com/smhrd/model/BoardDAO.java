@@ -44,6 +44,7 @@ public class BoardDAO {
 		return result;
 	}
 	
+	//유저별 게시글 개수 
 	public int countPost(String user_id) {
 		System.out.println("user_id:"+user_id);
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
@@ -51,6 +52,15 @@ public class BoardDAO {
 		sqlSession.close();
 		System.out.println(result);
 		return result;
+	}
+	
+	
+	//유저별 게시글 정보 
+	public ArrayList<BoardDTO> id_post(String post_userid) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		ArrayList<BoardDTO> p_list= (ArrayList) sqlSession.selectList("id_post",post_userid);
+		sqlSession.close();
+		return p_list;
 	}
 	
 
