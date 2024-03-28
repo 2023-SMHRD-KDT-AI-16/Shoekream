@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./MAIN/CSS/MyPage.css">
+    <link rel="stylesheet" href="CSS/MyPage.css">
     <style>
         /* 추가한 스타일 */
         .hidden {
@@ -15,6 +15,11 @@
 </head>
 
 <body>
+<script>
+
+</script>
+	
+
     <input type="checkbox" id="menuicon">
     <header>
         <div>

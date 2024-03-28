@@ -31,5 +31,13 @@
       <select id="usernick" parameterType="String" resultType="String">
 		select user_nick from USER_INFO where user_id= #{user_id}
 	</select>
+	
+	<select id="profileimg" parameterType="String" resultType="String">
+		select user_profile_img from USER_INFO where user_id= #{user_id}
+	</select>
+	
+	<select id="getUser" parameterType ="String" resultType="com.smhrd.model.UserDTO">
+	select * from USER_INFO where user_id= #{user_id}
+	</select>
     
 </mapper>

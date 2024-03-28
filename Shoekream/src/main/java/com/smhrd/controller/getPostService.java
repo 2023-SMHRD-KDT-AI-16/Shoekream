@@ -55,6 +55,7 @@ public class getPostService extends HttpServlet {
 			System.out.println(index+"++");
 			BoardDTO post_info = p_list.get(index);
 			String post_nick=udao.usernick(post_info.getUserId());
+			String post_profileimg = udao.profileimg(post_info.getUserId());
 			
 
 			// Gson 객체 생성
@@ -70,6 +71,7 @@ public class getPostService extends HttpServlet {
 			jsonObject.addProperty("posted_at", post_info.getPostedAt().toString());
 			jsonObject.addProperty("post_user_id", post_info.getUserId());
 			jsonObject.addProperty("post_nick", post_nick);
+			jsonObject.addProperty("post_profileimg", post_profileimg);
 			jsonObject.addProperty("shoe_tag1", post_info.getShoeTag1());
 			jsonObject.addProperty("shoe_tag2", post_info.getShoeTag2());
 			jsonObject.addProperty("shoe_tag3", post_info.getShoeTag3());

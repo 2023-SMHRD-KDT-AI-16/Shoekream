@@ -89,5 +89,36 @@ SqlSession sqlSession = sqlSessionFactory.openSession(true);
 			return result;
 			
 		}
+		
+		
+	//아이디로 프로필 이미지 불러오기 
+		public String profileimg(String user_id) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			String result = null;
+			try {
+				result=sqlSession.selectOne("profileimg",user_id);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				sqlSession.close();
+			}
+			return result;
+		}
+		
+		
+		
+	//아이디로 UserDTO 객체 불러오기
+		public UserDTO getUser(String user_id) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			UserDTO result = null;
+			try {
+				result=sqlSession.selectOne("getUser",user_id);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				sqlSession.close();
+			}
+			return result;	
+		}
 	
 }
