@@ -77,6 +77,15 @@
     <artifactId>commons-fileupload</artifactId>
     <version>1.4</version> <!-- or the latest version available -->
 </dependency>
+<!-- 채팅용 라이브러리 2개 / web socket : 소켓 생성 라이브러리 / gson : java 객체를 javascript 객체로 바꾸거나 / javascript객체를 java 객체로 변환 -->		
+		<dependency>
+		    <groupId>javax.websocket</groupId>
+		    <artifactId>javax.websocket-client-api</artifactId>
+		    <version>1.1</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		
 
 	</dependencies>
 
