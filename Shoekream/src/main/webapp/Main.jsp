@@ -74,7 +74,7 @@ display: flex; flex-flow: row nowrap; overflow: hidden;
 
 /* 컨텐츠영역 */
 .container { display: flex;  flex-direction: row-reverse; width: 1600px; position:relative; }
-.container .content {  width: 800px;  height: 900px; margin:0 auto;min-height: 700px; border : 1px solid #835151;background: #ffffff; align-content: center;}
+.container .content {  width: 800px;  height:100px; margin:0 auto;min-height: 700px; border : 1px solid #835151;background: #ffffff; align-content: center;}
 .container .sidebar { position:fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #ffffff; border:1px solid #eee;z-index: 30; transition: .35s;}
 
 /* 체크 변화값 */
@@ -381,12 +381,13 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
 	<!-- 게시글 출력  -->
 
 <script>
-console.log("Test123123")
-function togglefollowN(index) {
-    var followButton = document.getElementById('follow_' + index);
+
+function togglefollowN(page,post_user_id) {
+	console.log("togglefollowN")
+    var followButton = document.getElementById('follow_' + page);
     followButton.classList.toggle('active');
-    var post_userid = document.querySelector('input[name="post_userid"]').value;
-    
+    var post_userid = post_user_id;
+    console.log("togglefollowN , post_userid:"+post_userid)
     if (followButton.classList.contains('active')) {
         followButton.textContent = '팔로잉';
         
@@ -418,11 +419,12 @@ function togglefollowN(index) {
     }
 }
 
-function togglefollowY(index) {
-	
-    var followButton = document.getElementById('follow_' + index);
-    followButton.classList.toggle('active');
-    var post_userid = document.querySelector('input[name="post_userid"]').value;
+function togglefollowY(page,post_user_id) {
+	console.log("togglefollowY")
+	  var followButton = document.getElementById('follow_' + page);
+	 followButton.classList.toggle('active');
+	    var post_userid = post_user_id;
+	    console.log("togglefollowN , post_userid:"+post_userid)
     
     if (followButton.classList.contains('active')) {
 		followButton.textContent = '팔로우';
@@ -667,14 +669,34 @@ function filterShoes() {
 							loading = 'err'
 							alert("마지막 게시글입니다")
 						}else{
-					var post_result =JSON.parse(result);
+							
+					var post_result =JSON.parse(result)		
+					console.log(result)
+					
+					//follow여부에 따라 follow버튼 바꾸기
+					var isfollow = post_result.isfollow
+					var togglefollow = null
+					console.log(isfollow)
+					if(!isfollow){
+						isfollow="팔로우"
+						console.log(post_result.post_user_id)
+							togglefollow = `togglefollowN(${page}, '${post_result.post_user_id}')`;
+					}else{
+						isfollow="팔로잉"
+						togglefollow=`togglefollowY(${page},'${post_result.post_user_id}')`
+					}
+					
+					
+					
 					 
 					const postData= `
         <div class="instagram-post">
           <div class="post-header">
             <img src="img/" alt="프로필 사진">
             <div class="profile-info">
-              <h2 class="head" >${post_result.post_nick} <button>팔로우</button> <span class="icon">❤️</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"   viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1); margin-left: 450px; transform: ;msFilter:;"><path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></h2>
+              <h2 class="head" >${post_result.post_nick} 
+              <button id="follow_${page}" onclick ="${togglefollow}">${isfollow}</button> 
+              <span class="icon">❤️</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"   viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1); margin-left: 450px; transform: ;msFilter:;"><path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></h2>
               <p>${post_result.posted_at}</p>
             </div>
             <div></div>
@@ -702,7 +724,8 @@ function filterShoes() {
       //console.log(postData)	
 
       page++;
-      loading = 'false';}
+      loading = 'false'
+      ;}
 					},
 					//요청에 실패했을때
 					error:function(){
