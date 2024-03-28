@@ -272,7 +272,7 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
           <div><p>여기에 내용</p></div>
           <input type="checkbox" name="accordion" id="answer05">
           <label for="answer05">프로필<em></em></label>
-            <div><p>여기에 내용</p></div>
+            <div><p>여기에  내용</p></div>
       </div>
       
       <!-- 이건 뭘까 -->
