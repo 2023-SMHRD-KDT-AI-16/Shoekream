@@ -335,7 +335,7 @@ follow_0{
         <label for="answer01">홈<em></em></label>
         <div><p>여기에 내용</p></div>
         <input type="checkbox" name="accordion" id="answer02">
-        <label for="answer02">게시글작성<button id="modalOpenButton">게시글 작성</button>
+       <label for="answer02"><a id="modalOpenButton"> 게시글작성 </a>
         <em></em></label>
          <div><p>여기에 내용</p></div>
         <input type="checkbox" name="accordion" id="answer03">
