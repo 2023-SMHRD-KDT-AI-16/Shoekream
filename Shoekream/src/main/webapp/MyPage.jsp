@@ -194,18 +194,15 @@
 						</tr>
 						<tr>
 							<td colspan="2">
- <!-- 신발태그 검색 -->
- <% 
+ <%
  ShoesDAO sdao = new ShoesDAO();
  ArrayList<ShoesDTO> s_list = sdao.showShoes();
- %>
- 
-<input type="text" id="filterInput" oninput="filterShoes()">
-<br>
-<select id="shoesOptions">
-<option value="basic">신발을 검색해주세요</option>
-    <!-- 여기에 옵션들이 동적으로 추가될 것입니다. -->
-</select></td>
+ %> 
+								<br> 
+								<!-- <select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="Search for shoes">
+								</select> -->
+								<select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="Search for shoes">
+								</select></td>
 						</tr>
 					</table>
 					<button type="button" id="prevButton">이전</button>
@@ -217,6 +214,11 @@
 		<button id="modalCloseButton">닫기</button>
 	</div>
 	</div>
+	
+	
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 <script>
 	const modalOpenButton = document.getElementById('modalOpenButton');
@@ -266,6 +268,42 @@
 	  photoPreviewScreen.style.display = 'none';
 	});
 
+	
+	//----------------------------------------------------------
+	//신발 정보 검색
+	    $(document).ready(function() {
+	        $('#shoesOptions').select2({
+	            maximumSelectionLength: 3
+	        });
+	        filterShoes();
+	        filterShoes();
+	    });
+	    
+	    function filterShoes() {
+	    		$.ajax({
+	            url: "ShowShoes",
+	            type: "get",
+	            success: function(result) {
+	               console.log(result)
+	               var arr = result;
+	              
+	               $('#shoesOptions').empty();
+	               arr.forEach(function(shoes) {
+	                   $('#shoesOptions').append($('<option>', {
+	                       value: shoes.shoe_tag, 
+	                       text: shoes.shoe_name
+	                   }));
+	               });
+	            }
+	        });
+	    	
+	        
+	    }
+	    
+	    filterShoes()
+	
+	
+	
 	</script>
 	
 
