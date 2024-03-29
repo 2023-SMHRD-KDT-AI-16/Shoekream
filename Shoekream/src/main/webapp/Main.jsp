@@ -510,8 +510,11 @@ follow_0 {
 					<a href="chat.jsp">채팅방 가기</a>
 				</button> <em></em></label> 
 				<input type="checkbox" name="accordion" id="answer04">
-			<label for="answer04"><span id="emo">&#128100;</span><a href="MyPage.jsp">프로필</a><em></em></label>
-																	<!-- 프로필 안가짐 ㅠㅡㅠ -->
+			<label for="answer04">
+			<span id="emo">&#128100;</span>
+			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
+			<em></em></label>
+																
 			<input type="checkbox" name="accordion" id="answer05"> <label
 				for="answer05"><span id="emo">&#128276;</span>알림<em></em></label>
 

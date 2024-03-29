@@ -31,7 +31,7 @@ public class MypageService extends HttpServlet {
 		
 		//마이페이지의 유저 아이디
 		String my_userid = request.getParameter("post_userid");
-
+		System.out.println(my_userid);
 		//로그인한 유저 정보
 		HttpSession session = request.getSession();
 		UserDTO user_info = (UserDTO) session.getAttribute("user_info");
