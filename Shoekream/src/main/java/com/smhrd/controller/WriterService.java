@@ -28,18 +28,19 @@ public class WriterService extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		//신발정보 불러오기
-		String[] selectedShoes = request.getParameterValues("selectedShoes");
+		//String[] selectedShoes = request.get("selectedShoes");
+
 		
 //		//파일 업로드를 위한 multi 불러오기 
-//		String path ="C:\\Users\\User\\git\\Shoekream\\Shoekream\\src\\main\\webapp\\post_img";
-//		int maxSize = 1024*1024*7;
-//		String encoding = "UTF-8";
-//		DefaultFileRenamePolicy rename= new DefaultFileRenamePolicy();
-//		
-//		MultipartRequest multi = new MultipartRequest(request,path,maxSize,encoding,rename);
-//		String filename= URLEncoder.encode(multi.getFilesystemName("filename"),"UTF-8");
-//		String content = multi.getParameter("content");
-//		System.out.println(content+":"+filename);
+		String path ="C:\\Users\\User\\git\\Shoekream\\Shoekream\\src\\main\\webapp\\post_img";
+		int maxSize = 1024*1024*7;
+		String encoding = "UTF-8";
+		DefaultFileRenamePolicy rename= new DefaultFileRenamePolicy();
+		
+		MultipartRequest multi = new MultipartRequest(request,path,maxSize,encoding,rename);
+		String filename= URLEncoder.encode(multi.getFilesystemName("filename"),"UTF-8");
+		String content = multi.getParameter("content");
+		System.out.println(content+":"+filename);
 //		
 //		//-----------------------------------------------------------
 //		HttpSession session = request.getSession();

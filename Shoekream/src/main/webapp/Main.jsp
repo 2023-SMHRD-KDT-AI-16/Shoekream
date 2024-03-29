@@ -397,8 +397,8 @@ input[id*="answer"]:checked+label  em {
 #modalContent {
 	position: absolute;
 	background-color: #ffffff;
-	width: 600px;
-	height: auto;
+	width: 1200px;
+	height: 800px;
 	padding: 15px;
 }
 
@@ -447,9 +447,23 @@ follow_0 {
 	margin-left: 5px;
 	margin-right: 15px;
 }
+
+
+#shoesOptions{
+width:300px;
+height:auto;
+display: block;
+font-size:5px;
+}
+
+
+.select2-results__option{
+width:300px;
+height:auto;
+font-size:16px;
+color:gray;
+}
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -499,16 +513,14 @@ follow_0 {
 				id="emo">&#128269;</span><input type="text" placeholder="검색"><em></em></label>
 
 			<input type="checkbox" name="accordion" id="answer01"> <label
-				for="answer01"><span id="emo">&#127968;</span>홈<em></em></label> <input
+				for="answer01"><span id="emo">&#127968;</span><a href="Main.jsp">홈</a><em></em></label> <input
 				type="checkbox" name="accordion" id="answer02"> <label
 				for="answer02"><span id="emo_post">&#9997;</span><a
 				id="modalOpenButton"> 게시글작성 </a><em></em></label> <input type="checkbox"
 				name="accordion" id="answer03"> <label for="answer03"><span
 				id="emo">&#128172;</span>
-				<button type="button" class="btn btn-primary btn-sm"
-					style="bottom: 200px; right: 20px;">
 					<a href="chat.jsp">채팅방 가기</a>
-				</button> <em></em></label> 
+				 <em></em></label> 
 				<input type="checkbox" name="accordion" id="answer04">
 			<label for="answer04">
 			<span id="emo">&#128100;</span>
@@ -578,7 +590,7 @@ function getSiblings(element) {
 		int countfollow = fdao.countfollow(user_info.getUserId());
 		int countfollower = fdao.countfollower(user_info.getUserId());
 		%>
-
+<a href="MypageService?post_userid=<%=user_info.getUserId()%>">
 		<div id="profile_wrap">
 			<div class="profile_box1">
 				<div class="photo">
@@ -601,7 +613,7 @@ function getSiblings(element) {
 			</div>
 		</div>
 	</div>
-
+</a>
 
 
 
@@ -616,8 +628,10 @@ function getSiblings(element) {
 	<div id="modalContainer" class="hidden">
 		<div id="modalContent">
 
-			<form id="uploadForm" action="WriterService" method="post"
-				enctype="multipart/form-data">
+			<!-- <form id="uploadForm" action="WriterService" method="post"
+				enctype="multipart/form-data"> -->
+				<form id="uploadForm" action="WriterService" method="post" enctype="multipart/form-data"
+				>
 
 				<!-- 게시글 파일 선택 -->
 				<div id="fileSelectionScreen">
@@ -636,23 +650,25 @@ function getSiblings(element) {
 						</tr>
 						<tr>
 							<td colspan="2"><textarea name="content" rows="10"
-									style="resize: none;"></textarea></td>
+									style="resize: none;" required></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<!-- 신발태그 검색 --> <%
+								<!-- 신발태그 검색 --> 
+								<%
  ShoesDAO sdao = new ShoesDAO();
  ArrayList<ShoesDTO> s_list = sdao.showShoes();
- %> <input type="text" id="filterInput" oninput="filterShoes()">
-								<br> <select id="shoesOptions">
-									<option value="basic">신발을 검색해주세요</option>
-									<!-- 여기에 옵션들이 동적으로 추가될 것입니다. -->
-							</select>
+ %> 
+								<br> 
+								<!-- <select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="Search for shoes">
+								</select> -->
+								<select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="Search for shoes">
+								</select>
 							</td>
 						</tr>
 					</table>
 					<button type="button" id="prevButton">이전</button>
-					<button type="submit">게시글 작성 완료</button>
+					<button type="submit">게시글 작성 완료2</button>
 			</form>
 
 
@@ -662,10 +678,9 @@ function getSiblings(element) {
 	</div>
 
 
-
-
-	<!-- -------------------------------------------------------------- -->
-	<!-- 게시글 출력  -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 	<script>
 
@@ -915,29 +930,36 @@ function writeComment(i){
 	
 //----------------------------------------------------------
 //신발 정보 검색
-function filterShoes() {
-	console.log("trest3")
-    var inputText = $('#filterInput').val(); 
-   
-		$.ajax({
-        url: "ShowShoes",
-        data: { "inputText": inputText },
-        type: "get",
-        success: function(result) {
-            var arr = result;
-            $('#shoesOptions').empty();
-            arr.forEach(function(shoes) {
-                $('#shoesOptions').append($('<option>', {
-                    value: shoes.id, 
-                    text: shoes.shoe_name
-                }));
-            });
-        }
+    $(document).ready(function() {
+        $('#shoesOptions').select2({
+            maximumSelectionLength: 3
+        });
+        filterShoes();
+        filterShoes();
     });
-	
     
-}
-
+    function filterShoes() {
+    		$.ajax({
+            url: "ShowShoes",
+            type: "get",
+            success: function(result) {
+               console.log(result)
+               var arr = result;
+              
+               $('#shoesOptions').empty();
+               arr.forEach(function(shoes) {
+                   $('#shoesOptions').append($('<option>', {
+                       value: shoes.shoe_tag, 
+                       text: shoes.shoe_name
+                   }));
+               });
+            }
+        });
+    	
+        
+    }
+    
+    filterShoes()
 //--------------------------------------------------------
     let page = 0;
 	var loading = 'false';
@@ -1055,7 +1077,6 @@ $(window).scroll(function(){
     loadMorePosts();
 
 </script>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
