@@ -8,6 +8,21 @@
 	values(#{post_content},#{post_img},sysdate,#{user_id})
 </insert>
 
+<insert id="uploadTag1" parameterType="com.smhrd.model.BoardDTO">
+	insert into post_info (post_content,post_img,posted_at,user_id,shoe_tag1)
+	values(#{post_content},#{post_img},sysdate,#{user_id},#{shoe_tag1})
+</insert>
+
+<insert id="uploadTag2" parameterType="com.smhrd.model.BoardDTO">
+	insert into post_info (post_content,post_img,posted_at,user_id,shoe_tag1,shoe_tag2)
+	values(#{post_content},#{post_img},sysdate,#{user_id},#{shoe_tag1},#{shoe_tag2})
+</insert>
+
+<insert id="uploadTag3" parameterType="com.smhrd.model.BoardDTO">
+	insert into post_info (post_content,post_img,posted_at,user_id,shoe_tag1,shoe_tag2,shoe_tag3)
+	values(#{post_content},#{post_img},sysdate,#{user_id},#{shoe_tag1},#{shoe_tag2},#{shoe_tag3})
+</insert>
+
 <select id = "showboard" resultType = "com.smhrd.model.BoardDTO">
 select * from post_info
 </select>

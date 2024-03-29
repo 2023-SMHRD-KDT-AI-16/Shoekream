@@ -19,6 +19,35 @@ public class BoardDAO {
 		return result;
 	}
 	
+	//신발 태그 1개 업로드 
+	public int uploadTag1(BoardDTO dto) {
+		System.out.println("upload 도착");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result= sqlSession.insert("uploadTag1",dto);
+		sqlSession.close();
+		return result;
+	}
+	
+	//신발 태그 2개 업로드 
+	public int uploadTag2(BoardDTO dto) {
+		System.out.println("upload 도착");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result= sqlSession.insert("uploadTag2",dto);
+		sqlSession.close();
+		return result;
+	}
+	
+	
+	//신발 태그 1개 업로드 
+	public int uploadTag3(BoardDTO dto) {
+		System.out.println("upload 도착");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result= sqlSession.insert("uploadTag3",dto);
+		sqlSession.close();
+		return result;
+	}
+	
+	
 	//전체 게시글을 불러오는 메서드
 	public ArrayList<BoardDTO> showboard(){
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);

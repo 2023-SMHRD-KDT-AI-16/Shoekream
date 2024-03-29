@@ -39,27 +39,54 @@ public class WriterService extends HttpServlet {
 		
 		MultipartRequest multi = new MultipartRequest(request,path,maxSize,encoding,rename);
 		String filename= URLEncoder.encode(multi.getFilesystemName("filename"),"UTF-8");
+		System.out.println("filename:"+filename);
 		String content = multi.getParameter("content");
-		System.out.println(content+":"+filename);
-//		
-//		//-----------------------------------------------------------
-//		HttpSession session = request.getSession();
-//		UserDTO user_info = (UserDTO) session.getAttribute("user_info");
-//		BoardDAO dao = new BoardDAO();
-//		BoardDTO dto = new BoardDTO();
-//		dto.setPostContent(content);
-//		dto.setPostImg(filename);
-//		dto.setUserId(user_info.getUserId());
-//		int result = dao.upload(dto);
-//		
-//		if(result>0) {
-//			System.out.println("게시글 등록 성공!");
-//		}else {
-//			System.out.println("등록 실패");
-//		}
-//		
-//		response.sendRedirect("Main.jsp");
-//	
+		System.out.println("content:"+content);
+		String [] selectedShoes = multi.getParameterValues("selectedShoes");
+		
+		for(int i = 0;i<selectedShoes.length;i++) {
+			System.out.println("신발인덱스"+selectedShoes[i]);
+		}
+		
+		
+		//-----------------------------------------------------------
+		HttpSession session = request.getSession();
+		UserDTO user_info = (UserDTO) session.getAttribute("user_info");
+		
+		BoardDAO dao = new BoardDAO();
+		BoardDTO dto = new BoardDTO();
+		dto.setPostContent(content);
+		dto.setPostImg(filename);
+		dto.setUserId(user_info.getUserId());
+		
+		
+		int result=0;
+		
+		if(selectedShoes.length==1) {
+			dto.setShoeTag1(selectedShoes[0]);
+			result= dao.uploadTag1(dto);
+		}else if(selectedShoes.length==2) {
+			dto.setShoeTag1(selectedShoes[0]);
+			dto.setShoeTag2(selectedShoes[1]);
+			result= dao.uploadTag2(dto);
+		}else if(selectedShoes.length==3) {
+			dto.setShoeTag1(selectedShoes[0]);
+			dto.setShoeTag2(selectedShoes[1]);
+			dto.setShoeTag3(selectedShoes[2]);
+			result= dao.uploadTag3(dto);
+		}else {
+			result = dao.upload(dto);
+		}
+		
+		
+		if(result>0) {
+			System.out.println("게시글 등록 성공!");
+		}else {
+			System.out.println("등록 실패");
+		}
+		
+		response.sendRedirect("Main.jsp");
+	
 	}
 
 }
