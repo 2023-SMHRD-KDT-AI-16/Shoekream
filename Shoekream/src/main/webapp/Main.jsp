@@ -21,129 +21,260 @@
 <meta charset="UTF-8">
 <title>SHOEKREAM</title>
 <style>
-
-input[id="menuicon"] {display: none;}
-body{
-	width: 1920px; height: 100%;
+input[id="menuicon"] {
+	display: none;
 }
 
+body {
+	width: 1920px;
+	height: 100%;
+}
 
 /* 헤더 */
-header {width: 100%;background: #ffffff;}
-header > div {position: relative; width: 1920px;   margin:15 auto;}
-header > div ul.navi{font-size: 0;}
-header > div ul.navi > li{font-size: 50px; display: inline-block; vertical-align: middle;}
-header > div ul.navi > li > a {display: block; width: auto; padding: 20px;}
-header > div ul.navi > li.logp > a{padding: 20px 50px; font-size: 20px; font-weight: 900;}
+header {
+	width: 100%;
+	background: #ffffff;
+}
+
+header>div {
+	position: relative;
+	width: 1920px;
+	margin: 15 auto;
+}
+
+header>div ul.navi {
+	font-size: 0;
+}
+
+header>div ul.navi>li {
+	font-size: 50px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+header>div ul.navi>li>a {
+	display: block;
+	width: auto;
+	padding: 20px;
+}
+
+header>div ul.navi>li.logp>a {
+	padding: 20px 50px;
+	font-size: 20px;
+	font-weight: 900;
+}
 
 /* 왼쪽 프로필 */
-*{box-sizing: border-box; margin: 0; padding: 0;}
-h1{span{
-font-weight: revert-layer;
-font-size: x-large;
-}}
-h1{
-    color: white;
-    margin-left: 45px;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
 
+h1 {span { font-weight:revert-layer;
+	font-size: x-large;
+}
+
+}
+h1 {
+	color: white;
+	margin-left: 45px;
 }
 /*팔로우 팔로워 폰트 수정*/
-span{span{
-font-weight: revert-layer;
-font-size: x-large;
-margin-left: 10px;
-color: white;
-}}
-h5{span{
-font-weight: revert-layer;
-font-size: x-large;
-    margin: auto;
-    color: white;
-}
-}
-a{text-decoration: none; color: #222; }
-#profile_wrap{
-  width: 360px;  
-  margin-left: 40px;
-} 
-#profile_wrap .profile_box1 {
-  padding: 30px; 
-      border: solid 3px;
-    border-color: white;
-    border-radius: 5%
-  
-}
-#profile_wrap .profile_box1 .photo{
-width: 150px; height: 150px; background: white;
-border-radius: 50%;
-display: flex; flex-flow: row nowrap; overflow: hidden;
-    margin-left: 20px;
+span {span { font-weight:revert-layer;
+	font-size: x-large;
+	margin-left: 10px;
+	color: white;
 }
 
-#profile_wrap .profile_box1 .photo img{
+}
+h5 {span { font-weight:revert-layer;
+	font-size: x-large;
+	margin: auto;
+	color: white;
+}
+
+}
+a {
+	text-decoration: none;
+	color: #222;
+}
+
+#profile_wrap {
+	width: 360px;
+	margin-left: 40px;
+}
+
+#profile_wrap .profile_box1 {
+	padding: 30px;
+	border: solid 2px;
+	border-color: white;
+	border-radius: 5%;
+	backdrop-filter: blur(15px);
+}
+
+#profile_wrap .profile_box1 .photo {
+	width: 150px;
+	height: 150px;
+	background: white;
+	border-radius: 50%;
+	display: flex;
+	flex-flow: row nowrap;
+	overflow: hidden;
+	margin-left: 20px;
+}
+
+#profile_wrap .profile_box1 .photo img {
+	border: solid 3px;
+	border-radius: 50%;
+}
+
+#profile_wrap .profile_box1 .right {
 	
 }
-#profile_wrap .profile_box1 .right{}
-#profile_wrap .profile_box1 .right h1{}
-#profile_wrap .profile_box1 .right p{}
-#profile_wrap .profile_box1 #open_close{}
-#profile_wrap .profile_box2 {}
-#profile_wrap .profile_box2 a {}
+
+#profile_wrap .profile_box1 .right h1 {
+	
+}
+
+#profile_wrap .profile_box1 .right p {
+	
+}
+
+#profile_wrap .profile_box1 #open_close {
+	
+}
+
+#profile_wrap .profile_box2 {
+	
+}
+
+#profile_wrap .profile_box2 a {
+	
+}
+
+#postchat {
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+}
 
 /* 각영역의 라벨(중앙정렬) */
-.area_desc {position: absolute; top: 50%;left: 50%; transform: translate(-50%, -50%); font-size: 20px; }
+.area_desc {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 20px;
+}
 
 /* 메뉴버튼 */
-.menubtn {display: block;  width: 50px; height: 50px; position: fixed; top: 50px; right: 16%; transform: translateY(-50%);cursor: pointer; }
-.menubtn span {display: block; position: absolute; width: 80%; height: 5px; border-radius: 30px; background: #222; transition: all .35s; }
-.menubtn span:nth-child(1) {top:20%;left: 50%; transform: translateX(-50%);}
-.menubtn span:nth-child(2) {top:50%;left: 50%; transform: translate(-50%,-50%);}
-.menubtn span:nth-child(3) {bottom: 20%;left: 50%; transform: translatex(-50%);}
+.menubtn {
+	display: block;
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	top: 50px;
+	right: 16%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	z-index: 100;
+}
+
+.menubtn span {
+	display: block;
+	position: absolute;
+	width: 80%;
+	height: 5px;
+	border-radius: 30px;
+	background: #222;
+	transition: all .35s;
+}
+
+.menubtn span:nth-child(1) {
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.menubtn span:nth-child(2) {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.menubtn span:nth-child(3) {
+	bottom: 20%;
+	left: 50%;
+	transform: translatex(-50%);
+}
 
 /* 컨텐츠영역 */
 .container {
-  display: flex;
-  flex-direction: row-reverse;
-  width: 1920px;
-  height: auto;
-  position: relative;
-  background-image: url(img/goodwpss.jpg);
-  background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
-  background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
+	display: flex;
+	flex-direction: row-reverse;
+	width: 1920px;
+	height: auto;
+	position: relative;
+	background-image: url(img/goodwpss.jpg);
+	background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
+	background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
 }
 
 .container .content {
-  width: 800px;
-  height: 100px;
-  margin: 0 auto;
-  min-height: 700px;
-  background: #ffffff;
-  align-content: center;
+	width: 800px;
+	height: 100px;
+	margin: 0 auto;
+	min-height: 700px;
+	background: #ffffff;
+	align-content: center;
 }
 
 .container .sidebar {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 300px;
-  height: 100%;
-  background: #ffffff;
-  border: 1px solid #eee;
-  z-index: 30;
-  transition: .35s;
+	position: fixed;
+	top: 0;
+	right: -300px;
+	width: 300px;
+	height: 100%;
+	/*	background: #ffffff;
+	border: 1px solid #eee; */
+	z-index: 30;
+	transition: .35s;
 }
 
 /* 체크 변화값 */
-input[id=menuicon]:checked ~ header .menubtn{z-index: 2;}
-input[id=menuicon]:checked ~ header .menubtn span:nth-child(1) {top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(135deg);}
-input[id=menuicon]:checked ~ header .menubtn span:nth-child(2) {left: 50%; transform: translate(-50%,-50%) scale(2);opacity: 0;}
-input[id=menuicon]:checked ~ header .menubtn span:nth-child(3) {bottom: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-135deg);}
-input[id=menuicon]:checked ~ .container .sidebar {right: 0;}
+input[id=menuicon]:checked ~ header .menubtn {
+	z-index: 2;
+}
+
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(1) {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(135deg);
+}
+
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(2) {
+	left: 50%;
+	transform: translate(-50%, -50%) scale(2);
+	opacity: 0;
+}
+
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(3) {
+	bottom: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+input[id=menuicon]:checked ~ .container .sidebar {
+	right: 0;
+}
 /* 메뉴 버튼 기능구현 */
-input[id*="answer"]{
+input[id*="answer"] {
 	display: none;
 }
-input[id*="answer"] + label{
+
+input[id*="answer"]+label {
 	display: block;
 	padding: 20px;
 	border: 1px solid #292626;
@@ -154,7 +285,8 @@ input[id*="answer"] + label{
 	cursor: pointer;
 	position: relative;
 }
-input[id*="answer"] + label em {
+
+input[id*="answer"]+label em {
 	position: absolute;
 	top: 50%;
 	right: 10px;
@@ -162,82 +294,89 @@ input[id*="answer"] + label em {
 	height: 30px;
 	margin-top: -15px;
 	display: inline-block;
-	background:url(/MAIN/icon.png) 0 0 no-repeat; 
+	background: url(/MAIN/icon.png) 0 0 no-repeat;
 }
-input[id*="answer"] + label + div {
+
+input[id*="answer"]+label+div {
 	max-height: 0;
 	transition: all .35s;
 	overflow: hidden;
 	background: #edf8ff;
 	font-size: 11px;
 }
-input[id*="answer"] + label + div p {
+
+input[id*="answer"]+label+div p {
 	display: inline-block;
 	padding: 20px;
 }
-input[id*="answer"]:checked + label + div {max-height: 100px;}
-input[id*="answer"]:checked + label  em {background-position: -30px;}
 
-.instargram-post > div{
+input[id*="answer"]:checked+label+div {
+	max-height: 100px;
+}
+
+input[id*="answer"]:checked+label  em {
+	background-position: -30px;
+}
+
+.instargram-post>div {
 	padding-bottom: 30px;
 }
 
 .instagram-post {
-
 	margin-bottom: 20px;
 	padding: 10px;
-  }
-  
-  .post-header {
+}
+
+.post-header {
 	display: flex;
 	align-items: center;
-  }
-  
-  .post-header img {
+}
+
+.post-header img {
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
 	margin-right: 10px;
-	background-color: black;
-  }
-  
-  .post-content img {
+	border: 2px solid black; /*이미지 테두리 지정 */
+}
+
+.post-content img {
 	width: 100%;
 	height: auto;
 	margin-bottom: 10px;
-  }
-  
-  .post-footer {
+}
+
+.post-footer {
 	margin-top: 10px;
 	border: 15;
 	border-bottom: solid 1px;
-  }
+}
 
-  .post-content > img{
+.post-content>img {
 	width: 776px;
 	height: 800px;
 	align-content: center;
-	margin-bottom: 25px;
-	    border: solid 1px;
-    border-color: #000;
-  }
- 
-.emoji-icons{
+	border: solid 1px;
+	border-color: #000;
+}
+
+.emoji-icons {
 	cursor: pointer;
 }
-.menubtn{
+
+.menubtn {
 	/* position: fixed; 
 	margin-bottom: 800px; */
-
-}
-.profile_box1{
-	position: fixed;
 	
 }
-.head{
-	cursor: pointer;
+
+.profile_box1 {
+	position: fixed;
 }
 
+.head {
+	cursor: pointer;
+}
 
 #modalOpenButton, #modalCloseButton {
 	cursor: pointer;
@@ -268,136 +407,209 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
 }
 
 .hidden {
-      display: none;
-    }
-    
+	display: none;
+}
+
 /*댓글 밑 line*/
 element.style {
-    padding-bottom: 40px;
-
+	padding-bottom: 40px;
 }
 /* 팔로우 버튼 */
-follow_0{
- height: 20px;
+follow_0 {
+	height: 20px;
+}
+/*이모티콘 마진 적용*/
+#emo {
+	margin-right: 10px;
+}
+
+#emo_post {
+	margin-right: 5px;
+}
+/* 이모티콘의 크기 조절 */
+.sidebar label span {
+	font-size: 24px; /* 이모티콘의 크기를 24px로 설정 */
+}
+
+.sidebar label {
+	display: block;
+	padding: 10px;
+	transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 */
+}
+
+.sidebar label:hover {
+	background-color: pink; /* 마우스 호버 시 배경색 변경 */
+	margin: 1px;
+	transition: .35s;
+}
+
+#emo_post2 {
+	margin-left: 5px;
+	margin-right: 15px;
 }
 </style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
 
-  	<%
+	<%
 	//세션에 저장된 로그인한 유저의 정보 불러오기 
 	UserDTO user_info = (UserDTO) session.getAttribute("user_info");
-
 	%>
 
 
 	<!-- 왼쪽 상단 메뉴 아이콘 -->
-	 <input type="checkbox" id="menuicon">
-	 
-  <header>
-    <div>
-      <ul class="navi">
-      
-           <!-- 메뉴아이콘 -->
-        <label for="menuicon" class="menubtn">
-        <span></span>
-        <span></span>
-        <span></span>
-        </label>
-        <li class="logo"><a>SHOEKREAM</a> </li><!-- 슈크림 메인 로고  -->
-      </ul>
-     
-    </div>
-  </header>
-  
-  <!-- ----------------------------------------------------------------------- -->
-  
-<div class="container">
-    <div class="content" style="height: auto; margin-right: 520px">
-      <span class="area_desc"></span> 
-      <!-- 위에 괄호 안이 content영역 -->
-      <div id="instagram-posts">
-        <!-- 여기에 포스트가 추가됩니다 -->
-      </div>
-    </div>
+	<input type="checkbox" id="menuicon">
 
-    
- <!-- ------------------------------------------------------------------------- -->   
-    <!-- 사이드바  -->
-<div class="sidebar">
-      <span class="area_desc" >SIDEBAR영역</span>
+	<header>
+		<div>
+			<ul class="navi">
 
-        <input type="checkbox" name="accordion" id="answer00">
-        <label for="answer00"> <input type="text" placeholder="검색"><em></em></label>      
-        <input type="checkbox" name="accordion" id="answer01">
-        <label for="answer01">홈<em></em></label>
-        <div><p>여기에 내용</p></div>
-        <input type="checkbox" name="accordion" id="answer02">
-       <label for="answer02"><a id="modalOpenButton"> 게시글작성 </a>
-        <em></em></label>
-         <div><p>여기에 내용</p></div>
-        <input type="checkbox" name="accordion" id="answer03">
-        <label for="answer03">채팅<em></em></label>
-          <div><p>여기에 내용</p></div>
-        <input type="checkbox" name="accordion" id="answer04">
-        <label for="answer04">알림<em></em></label>
-          <div><p>여기에 내용</p></div>
-          <input type="checkbox" name="accordion" id="answer05">
-          <label for="answer05">프로필<em></em></label>
-            <div><p>여기에  내용</p></div>
-      </div>
-      
-      <!-- 이건 뭘까 -->
-      <div class="post">
-     
-      </div>
+				<!-- 메뉴아이콘 -->
+				<label for="menuicon" class="menubtn"> <span></span> <span></span>
+					<span></span>
+				</label>
+				<li class="logo"><a>SHOEKREAM</a></li>
+				<!-- 슈크림 메인 로고  -->
+			</ul>
 
-<!-- ----------------------------------------------------------------------------------------- -->
-	<!-- 프로필 영역 -->
-	<%
-	//게시글 개수 가져오기
-  	BoardDAO dao = new BoardDAO();
-	int countPost=dao.countPost(user_info.getUserId()); 
-     
-    //팔로워 팔로우 수 가져오기
-    FollowDAO fdao = new FollowDAO();
-    int countfollow =fdao.countfollow(user_info.getUserId());
-    int countfollower =fdao.countfollower(user_info.getUserId());
-        		  
-	%>
-	
-	<div id="profile_wrap">
-       <div class="profile_box1">
-          <div class="photo"><img src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지"></div>
-          <div class="right">
-            <h1><%=user_info.getUserNick()%></h1>
-            <!-- 프로필 네임 안에 user_name? user_nickname? -->
-            <ul>
-            <h5><span>게시글 <%=countPost %></span>  </span></h5>
-            <h5><span><span>팔로워 <%=countfollower %></span> <span>팔로우 <%= countfollow%></span></h5>
-            <!-- 숫자사이에  넣으면 될듯?! -->
-            </ul>
-          </div>  
-        </div>
-      </div>
-  </div>
+		</div>
+	</header>
+
+	<!-- ----------------------------------------------------------------------- -->
+
+	<div class="container">
+		<div class="content" style="height: auto; margin-right: 520px">
+			<span class="area_desc"></span>
+			<!-- 위에 괄호 안이 content영역 -->
+			<div id="instagram-posts">
+				<!-- 여기에 포스트가 추가됩니다 -->
+			</div>
+		</div>
 
 
+		<!-- ------------------------------------------------------------------------- -->
+		<!-- 사이드바  -->
+
+		<div class="sidebar">
+			<span class="area_desc"></span> <input type="checkbox"
+				name="accordion" id="answer00"> <label for="answer00"><span
+				id="emo">&#128269;</span><input type="text" placeholder="검색"><em></em></label>
+
+			<input type="checkbox" name="accordion" id="answer01"> <label
+				for="answer01"><span id="emo">&#127968;</span>홈<em></em></label> <input
+				type="checkbox" name="accordion" id="answer02"> <label
+				for="answer02"><span id="emo_post">&#9997;</span><a
+				id="modalOpenButton"> 게시글작성 </a><em></em></label> <input type="checkbox"
+				name="accordion" id="answer03"> <label for="answer03"><span
+				id="emo">&#128172;</span>
+				<button type="button" class="btn btn-primary btn-sm"
+					style="bottom: 200px; right: 20px;">
+					<a href="chat.jsp">채팅방 가기</a>
+				</button> <em></em></label> 
+				<input type="checkbox" name="accordion" id="answer04">
+			<label for="answer04"><span id="emo">&#128100;</span><a href="MyPage.jsp">프로필</a><em></em></label>
+																	<!-- 프로필 안가짐 ㅠㅡㅠ -->
+			<input type="checkbox" name="accordion" id="answer05"> <label
+				for="answer05"><span id="emo">&#128276;</span>알림<em></em></label>
+
+			<div>
+				<p>여기에 내용</p>
+			</div>
+			<input type="checkbox" name="accordion" id="answer06"> <label
+				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
+
+			<div>
+				<p>
+					<!-- 로그아웃 -->
+					<button>
+						<a href="LogoutService">로그아웃</a>
+					</button>
+				</p>
+			</div>
+		</div>
+		<script>
+//모든 메뉴 아이템 요소를 가져옵니다.
+const menuItems = document.querySelectorAll('.sidebar input[type="checkbox"]');
+
+// 각 메뉴 아이템에 클릭 이벤트를 추가합니다.
+menuItems.forEach(item => {
+    item.addEventListener('click', function() {
+        // 클릭된 요소의 형제 요소에 대한 클래스를 제거합니다.
+        const siblings = getSiblings(this.parentElement);
+        siblings.forEach(sibling => {
+            sibling.classList.remove('active');
+        });
+        // 클릭된 요소에 active 클래스를 추가합니다.
+        this.parentElement.classList.add('active');
+    });
+});
+
+// 요소의 형제 요소를 가져오는 함수
+function getSiblings(element) {
+    const siblings = [];
+    let sibling = element.parentNode.firstChild;
+    while (sibling) {
+        if (sibling.nodeType === 1 && sibling !== element) {
+            siblings.push(sibling);
+        }
+        sibling = sibling.nextSibling;
+    }
+    return siblings;
+}
+</script>
+		<!-- 이건 뭘까 -->
+		<div class="post"></div>
+
+		<!-- ----------------------------------------------------------------------------------------- -->
+		<!-- 프로필 영역 -->
+		<%
+		//게시글 개수 가져오기
+		BoardDAO dao = new BoardDAO();
+		int countPost = dao.countPost(user_info.getUserId());
+
+		//팔로워 팔로우 수 가져오기
+		FollowDAO fdao = new FollowDAO();
+		int countfollow = fdao.countfollow(user_info.getUserId());
+		int countfollower = fdao.countfollower(user_info.getUserId());
+		%>
+
+		<div id="profile_wrap">
+			<div class="profile_box1">
+				<div class="photo">
+					<img src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지">
+				</div>
+				<div class="right">
+					<h1><%=user_info.getUserNick()%></h1>
+					<!-- 프로필 네임 안에 user_name? user_nickname? -->
+					<ul>
+						<h5>
+							<span>게시글 <%=countPost%></span> </span>
+						</h5>
+						<h5>
+							<span><span>팔로워 <%=countfollower%></span> <span>팔로우
+									<%=countfollow%></span>
+						</h5>
+						<!-- 숫자사이에  넣으면 될듯?! -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-	<!-- 로그아웃 -->
-	<button>
-		<a href="LogoutService">로그아웃</a>
-	</button>
+
+
+
 
 	<!-- -------------------------------------------------------------- -->
 	<!-- 게시글 작성 모달창 열기 -->
 
-	
-	
-	
+
+
+
 	<div id="modalContainer" class="hidden">
 		<div id="modalContent">
 
@@ -425,18 +637,15 @@ follow_0{
 						</tr>
 						<tr>
 							<td colspan="2">
- <!-- 신발태그 검색 -->
- <% 
+								<!-- 신발태그 검색 --> <%
  ShoesDAO sdao = new ShoesDAO();
  ArrayList<ShoesDTO> s_list = sdao.showShoes();
- %>
- 
-<input type="text" id="filterInput" oninput="filterShoes()">
-<br>
-<select id="shoesOptions">
-<option value="basic">신발을 검색해주세요</option>
-    <!-- 여기에 옵션들이 동적으로 추가될 것입니다. -->
-</select></td>
+ %> <input type="text" id="filterInput" oninput="filterShoes()">
+								<br> <select id="shoesOptions">
+									<option value="basic">신발을 검색해주세요</option>
+									<!-- 여기에 옵션들이 동적으로 추가될 것입니다. -->
+							</select>
+							</td>
 						</tr>
 					</table>
 					<button type="button" id="prevButton">이전</button>
@@ -455,7 +664,7 @@ follow_0{
 	<!-- -------------------------------------------------------------- -->
 	<!-- 게시글 출력  -->
 
-<script>
+	<script>
 
 function togglefollowN(page,post_user_id) {
 	console.log("togglefollowN")
@@ -765,35 +974,45 @@ function filterShoes() {
 					
 					 
 					const postData= `
-        <div class="instagram-post">
-          <div class="post-header">
-            <a href="MypageService?post_userid=${post_result.post_user_id}"><img src="img/${post_result.post_profileimg}" alt="프로필 사진"></a>
-            <div class="profile-info">
-              <h2 class="head" >${post_result.post_nick} 
-              <button id="follow_${page}" onclick ="${togglefollow}">${isfollow}</button> 
-              <span class="icon">❤️</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"   viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1); margin-left: 450px; transform: ;msFilter:;"><path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></h2>
-              <p>${post_result.posted_at}</p>
-            </div>
-            <div></div>
-          </div>
-          <div class="post-content">
-            <img src="post_img/${post_result.post_img}" alt="게시물 이미지">
-          </div>
-          <div class="post-footer">
-            <div class="emoji-icons">
-              <box-icon name='heart' class="h"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412l7.332 7.332c.17.299.498.492.875.492a.99.99 0 0 0 .792-.409l7.415-7.415c2.354-2.354 2.354-6.049-.002-8.416a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595zm6.791 1.61c1.563 1.571 1.564 4.025.002 5.588L12 18.586l-6.793-6.793c-1.562-1.563-1.561-4.017-.002-5.584.76-.756 1.754-1.172 2.799-1.172s2.035.416 2.789 1.17l.5.5a.999.999 0 0 0 1.414 0l.5-.5c1.512-1.509 4.074-1.505 5.584-.002z"></path></svg></box-icon>
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 3);transform: ;msFilter:;"><path d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.516 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8zm0 14h-.333L9 18v-2.417l-.641-.247C5.67 14.301 4 12.256 4 10c0-3.309 3.589-6 8-6s8 2.691 8 6-3.589 6-8 6z"></path></svg>
-            </div>
-          
-            <span class="likes">${post_result.countlike}</span>
-            <span class="comments">${post_result.cmtcontent}</span><br>
-            <p>게시글내용${post_result.post_content}</p>
-            <input type="text" placeholder="댓글달기...">
-            <button>전송</button>  
-          </div>
-        </div>
+						<div class="instagram-post">
+						  <div class="post-header">
+						    <a href="MypageService?post_userid=${post_result.post_user_id}"><img src="img/${post_result.post_profileimg}" alt="프로필 사진"></a>
+						    <div class="profile-info">
+						      <h2 class="head">${post_result.post_nick} 
+						        <button id="follow_${page}" onclick="${togglefollow}">${isfollow}</button> 
+						        <span class="icon">❤️</span> 
+						        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1); margin-left: 500px; transform: ;msFilter:;">
+						          <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+						        </svg>
+						      </h2>
+						      <p>${post_result.posted_at}</p>
+						    </div>
+						    <div></div>
+						  </div>
+						  <div class="post-content">
+						    <img src="post_img/${post_result.post_img}" alt="게시물 이미지">
+						  </div>
+						  <div class="post-footer">
+						    <div class="emoji-icons">
+						      <box-icon name='heart' class="h">
+						        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+						          <path d="M12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412l7.332 7.332c.17.299.498.492.875.492a.99.99 0 0 0 .792-.409l7.415-7.415c2.354-2.354 2.354-6.049-.002-8.416a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595zm6.791 1.61c1.563 1.571 1.564 4.025.002 5.588L12 18.586l-6.793-6.793c-1.562-1.563-1.561-4.017-.002-5.584.76-.756 1.754-1.172 2.799-1.172s2.035.416 2.789 1.17l.5.5a.999.999 0 0 0 1.414 0l.5-.5c1.512-1.509 4.074-1.505 5.584-.002z"></path>
+						        </svg>
+						      </box-icon>
+						      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 3);transform: ;msFilter:;">
+						        <path d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.516 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8zm0 14h-.333L9 18v-2.417l-.641-.247C5.67 14.301 4 12.256 4 10c0-3.309 3.589-6 8-6s8 2.691 8 6-3.589 6-8 6z"></path>
+						      </svg>
+						    </div>
+						    <span class="likes">${post_result.countlike}</span>
+						    <span class="comments">${post_result.cmtcontent}</span><br>
+						    <p>게시글내용${post_result.post_content}</p>
+						    <input type="text" placeholder="댓글달기..." id="postchat">
+						    <button id="openModal">전송</button>  
+						  </div>
+						</div>
       `;
 	 			
+      
 					 // 새로운 포스트를 추가합니다.
       container.innerHTML += postData+'<br>';
       //console.log(postData)	
@@ -833,8 +1052,8 @@ $(window).scroll(function(){
     loadMorePosts();
 
 </script>
- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
- <script type="text/javascript">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -845,9 +1064,8 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
- <button type="button" class="btn btn-primary btn-sm" style="position: fixed; bottom: 200px; right: 20px;">
-	<a href="chat.jsp">채팅방 가기</a></button>
-<!--End of Tawk.to Script-->
+
+	<!--End of Tawk.to Script-->
 
 
 </body>
