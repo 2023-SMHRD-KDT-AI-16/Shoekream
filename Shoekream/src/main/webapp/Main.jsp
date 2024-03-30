@@ -1086,9 +1086,9 @@ function formatSelectedShoeOption(selection) {
 						    <br>
 						    <p>게시글내용${post_result.post_content}</p>
 						    <input type="text" placeholder="댓글달기..." id="postchat">
-						
+						  
 						      <div id="ex${page}" class="modal2" style="display: none;">
-						      <p>${page}모달 텍스트</p>
+						      <p>${page}모달 텍스트</p>  <iframe src="PostDetail.jsp?postIdx=${post_result.post_idx}" frameborder="0" style="width: 100%; height: 400px;"></iframe>
 
 						    </div>
 						    <button><a href="javascript:show(${page})">모달창 열기~</a></button>
