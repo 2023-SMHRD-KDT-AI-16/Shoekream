@@ -699,8 +699,9 @@ function getSiblings(element) {
 	</div>
 	</div>
 
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
@@ -1085,17 +1086,15 @@ function formatSelectedShoeOption(selection) {
 						    <br>
 						    <p>게시글내용${post_result.post_content}</p>
 						    <input type="text" placeholder="댓글달기..." id="postchat">
-						    <button id="openModal">전송</button>  
+						
+						      <div id="ex${page}" class="modal2" style="display: none;">
+						      <p>${page}모달 텍스트</p>
+
+						    </div>
+						    <button><a href="javascript:show(${page})">모달창 열기~</a></button>
+						  
 						    
-						    <h1 class="postDetailbtn">멀티 모달창</h1>
-						    <div class="postDetailmodal">
-						    <div class="postDetailmodal-content">
-					        <span class="postDetailmoalclose">&times;</span>                         
-					        <p>${page} 번째 Modal</p>
-					      </div>
-					    </div>
-						  </div>
-						</div>
+						 
       `;
 	 			
       
@@ -1137,8 +1136,17 @@ $(window).scroll(function(){
     // 페이지 로드 시 초기 포스트들을 로드
     loadMorePosts();
 
+//------------------------------------------------------------------------
+   //모달 여러개...
+    function show(num) {
+	   console.log("선택")
+        $("#ex"+num).modal({
+          fadeDuration: 100,
+          fadeDelay: 1,
+        });
+      }
     
- //------------------------------------------------------------------------
+ 
 
     
 </script>
