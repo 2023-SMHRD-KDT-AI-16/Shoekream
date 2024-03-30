@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="CSS/ShoesPage.css">
-    <style>
+    <style type="text/css">
         /* 추가한 스타일 */
         .hidden {
             display: none;
@@ -17,7 +18,12 @@
 </head>
 
 <body>
-    <input type="checkbox" id="menuicon">
+
+	<%
+	//세션에 저장된 로그인한 유저의 정보 불러오기 
+	UserDTO user_info = (UserDTO) session.getAttribute("user_info");
+	%>    
+	<input type="checkbox" id="menuicon">
     <header>
         <div>
             <ul class="navi">

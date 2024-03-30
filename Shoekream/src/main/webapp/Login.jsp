@@ -48,7 +48,7 @@
 						">로그인</button>
 				</form>
 				<br>
-<div class="naver">ㅋ
+<div class="naver">
     <a href="<%=apiURL%>">
         <img height="40" width="300"
             src="https://go.at.or.kr/images/naver.png" />
