@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="CSS/ShoesPage.css">
+<link rel="stylesheet" href="CSS/ProfileSetting.css">
 <style type="text/css">
 /* 추가한 스타일 */
 .hidden {
