@@ -1,6 +1,8 @@
 package com.smhrd.controller;
 
+import org.owasp.encoder.Encode;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
@@ -85,8 +87,11 @@ public class WriterService extends HttpServlet {
 			System.out.println("등록 실패");
 		}
 		
-		response.sendRedirect("Main.jsp");
-	
+		request.setAttribute("result",result);
+		response.sendRedirect("Main.jsp?post_result="+result);
+		
+		
+		
 	}
 
 }

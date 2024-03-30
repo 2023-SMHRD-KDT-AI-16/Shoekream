@@ -60,11 +60,26 @@ public class getPostService extends HttpServlet {
 			
 			//신발 이름 
 			ShoesDAO sdao = new ShoesDAO();
-			//String tag1_name = sdao.shoeName(post_info.getShoeTag1());
-			//String tag2_name = sdao.shoeName(post_info.getShoeTag2());
-			//String tag3_name = sdao.shoeName(post_info.getShoeTag3());
-			//System.out.println("tag:"+tag1_name+tag2_name+tag3_name);
-	
+			String tag1_name=null;
+			String tag2_name=null;
+			String tag3_name=null;
+			if(post_info.getShoeTag1()!=null) {
+				tag1_name = sdao.shoeName(post_info.getShoeTag1());
+				System.out.println("tag1: "+tag1_name);
+			}
+			
+			if(post_info.getShoeTag2()!=null) {
+				tag2_name = sdao.shoeName(post_info.getShoeTag2());
+				System.out.println("tag2: "+tag2_name);
+			}
+		
+			if(post_info.getShoeTag3()!=null) {
+				tag3_name = sdao.shoeName(post_info.getShoeTag3());
+				System.out.println("tag3: "+tag3_name);
+			}
+		
+			
+			
 			// Gson 객체 생성
 			Gson gson = new Gson();
 
@@ -81,11 +96,11 @@ public class getPostService extends HttpServlet {
 			jsonObject.addProperty("post_profileimg", post_profileimg);
 			
 			jsonObject.addProperty("shoe_tag1", post_info.getShoeTag1());
-			//jsonObject.addProperty("tag1_name", tag1_name);			
+			jsonObject.addProperty("tag1_name", tag1_name);			
 			jsonObject.addProperty("shoe_tag2", post_info.getShoeTag2());
-			//jsonObject.addProperty("tag2_name", tag2_name);
+			jsonObject.addProperty("tag2_name", tag2_name);
 			jsonObject.addProperty("shoe_tag3", post_info.getShoeTag3());
-			//jsonObject.addProperty("tag3_name", tag3_name);
+			jsonObject.addProperty("tag3_name", tag3_name);
 
 			
 			// 좋아요 정보 가져오기

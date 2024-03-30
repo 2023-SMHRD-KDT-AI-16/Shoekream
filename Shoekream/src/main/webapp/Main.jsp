@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.smhrd.model.ShoesDAO"%>
 <%@page import="com.smhrd.model.ShoesDTO"%>
@@ -468,6 +469,14 @@ color:gray;
 </head>
 <body>
 	<%
+	if(request.getParameter("post_result")!=null){
+	if(request.getParameter("post_result").equals("success")){
+		PrintWriter out2 = response.getWriter();
+		String script = "<script>alert('게시글이 등록되었습니다');</script>";
+		out.println(script);
+	}	
+	}
+	
 	//세션에 저장된 로그인한 유저의 정보 불러오기 
 	UserDTO user_info = (UserDTO) session.getAttribute("user_info");
 	%>
@@ -1042,6 +1051,9 @@ function formatSelectedShoeOption(selection) {
 						  <div class="post-content">
 						    <img src="post_img/${post_result.post_img}" alt="게시물 이미지">
 						  </div>
+						  ${post_result.shoe_tag1 ? `<img src="shoe_img/${post_result.shoe_tag1}.png"/> <p>${post_result.tag1_name}</p>` : ''}
+					        ${post_result.shoe_tag2 ? `<img src="shoe_img/${post_result.shoe_tag2}.png"/> <p>${post_result.tag2_name}</p>` : ''}
+					        ${post_result.shoe_tag3 ? `<img src="shoe_img/${post_result.shoe_tag3}.png"/> <p>${post_result.tag3_name}</p>` : ''}
 						  <div class="post-footer">
 						    <div class="emoji-icons">
 						      <box-icon name='heart' class="h">
@@ -1053,15 +1065,14 @@ function formatSelectedShoeOption(selection) {
 						        <path d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.516 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8zm0 14h-.333L9 18v-2.417l-.641-.247C5.67 14.301 4 12.256 4 10c0-3.309 3.589-6 8-6s8 2.691 8 6-3.589 6-8 6z"></path>
 						      </svg>
 						    </div>
+						    
 						    <span class="likes">${post_result.countlike}</span>
-						    <span class="comments">${post_result.cmtcontent}</span><br>
+						    <br>
+						    ${post_result.cmtcontent?`<span class="comments">${post_result.cmtcontent}</span>`:''}
+						    <br>
 						    <p>게시글내용${post_result.post_content}</p>
 						    <input type="text" placeholder="댓글달기..." id="postchat">
 						    <button id="openModal">전송</button>  
-						    ${post_result.shoe_tag1 ? `<img src="shoe_img/${post_result.shoe_tag1}.png"/>` : ''}
-					        ${post_result.shoe_tag2 ? `<img src="shoe_img/${post_result.shoe_tag2}.png"/>` : ''}
-					        ${post_result.shoe_tag3 ? `<img src="shoe_img/${post_result.shoe_tag3}.png"/>` : ''}
-
 						  </div>
 						</div>
       `;
