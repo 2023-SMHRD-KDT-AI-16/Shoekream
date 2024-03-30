@@ -93,12 +93,12 @@
 	/* 테두리 스타일 */
 	padding: 10px 20px;
 	/* 안쪽 여백 */
-	transition: background-color 0.13 ease;
+	transition: background-color 0.5 ease;
 	/* 배경색 변화를 부드럽게 만듦 */
 }
 
 #join:hover {
-	background-color: #00ff00;
+	background-color: #0000001a;
 	margin : 2px;
 	/* 호버 시 배경색 변경 */
 }
