@@ -6,5 +6,9 @@
 select * from shoes_info
 </select>
 
+<select id = "shoeName" resultType = "String">
+select shoe_name from shoes_info where shoe_tag=#{shoe_tag}
+</select>
+
 
 </mapper>

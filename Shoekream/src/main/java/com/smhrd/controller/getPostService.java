@@ -21,6 +21,7 @@ import com.smhrd.model.FollowDAO;
 import com.smhrd.model.FollowDTO;
 import com.smhrd.model.LikeDAO;
 import com.smhrd.model.LikeDTO;
+import com.smhrd.model.ShoesDAO;
 import com.smhrd.model.UserDAO;
 import com.smhrd.model.UserDTO;
 
@@ -57,7 +58,13 @@ public class getPostService extends HttpServlet {
 			String post_nick=udao.usernick(post_info.getUserId());
 			String post_profileimg = udao.profileimg(post_info.getUserId());
 			
-
+			//신발 이름 
+			ShoesDAO sdao = new ShoesDAO();
+			//String tag1_name = sdao.shoeName(post_info.getShoeTag1());
+			//String tag2_name = sdao.shoeName(post_info.getShoeTag2());
+			//String tag3_name = sdao.shoeName(post_info.getShoeTag3());
+			//System.out.println("tag:"+tag1_name+tag2_name+tag3_name);
+	
 			// Gson 객체 생성
 			Gson gson = new Gson();
 
@@ -72,11 +79,13 @@ public class getPostService extends HttpServlet {
 			jsonObject.addProperty("post_user_id", post_info.getUserId());
 			jsonObject.addProperty("post_nick", post_nick);
 			jsonObject.addProperty("post_profileimg", post_profileimg);
+			
 			jsonObject.addProperty("shoe_tag1", post_info.getShoeTag1());
+			//jsonObject.addProperty("tag1_name", tag1_name);			
 			jsonObject.addProperty("shoe_tag2", post_info.getShoeTag2());
+			//jsonObject.addProperty("tag2_name", tag2_name);
 			jsonObject.addProperty("shoe_tag3", post_info.getShoeTag3());
-			jsonObject.addProperty("shoe_tag4", post_info.getShoeTag4());
-			jsonObject.addProperty("shoe_tag5", post_info.getShoeTag5());
+			//jsonObject.addProperty("tag3_name", tag3_name);
 
 			
 			// 좋아요 정보 가져오기

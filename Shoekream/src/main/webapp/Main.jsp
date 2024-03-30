@@ -987,6 +987,7 @@ function formatSelectedShoeOption(selection) {
     return $selection;
 }
 //--------------------------------------------------------
+//포스트(게시글 무한스크롤)
     let page = 0;
 	var loading = 'false';
 	console.log("Test2")
@@ -1006,7 +1007,7 @@ function formatSelectedShoeOption(selection) {
 						}else{
 							
 					var post_result =JSON.parse(result)		
-					console.log(result)
+					console.log("result"+result)
 					
 					//follow여부에 따라 follow버튼 바꾸기
 					var isfollow = post_result.isfollow
@@ -1020,8 +1021,6 @@ function formatSelectedShoeOption(selection) {
 						isfollow="팔로잉"
 						togglefollow=`togglefollowY(${page},'${post_result.post_user_id}')`
 					}
-					
-					
 					
 					 
 					const postData= `
@@ -1059,6 +1058,10 @@ function formatSelectedShoeOption(selection) {
 						    <p>게시글내용${post_result.post_content}</p>
 						    <input type="text" placeholder="댓글달기..." id="postchat">
 						    <button id="openModal">전송</button>  
+						    ${post_result.shoe_tag1 ? `<img src="shoe_img/${post_result.shoe_tag1}.png"/>` : ''}
+					        ${post_result.shoe_tag2 ? `<img src="shoe_img/${post_result.shoe_tag2}.png"/>` : ''}
+					        ${post_result.shoe_tag3 ? `<img src="shoe_img/${post_result.shoe_tag3}.png"/>` : ''}
+
 						  </div>
 						</div>
       `;

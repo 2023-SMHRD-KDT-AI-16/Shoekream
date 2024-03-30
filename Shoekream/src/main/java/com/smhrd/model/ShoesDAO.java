@@ -19,5 +19,11 @@ public class ShoesDAO {
 	}
 	
 	
-	
+	//신발 인덱스로 이름 반환하는 메서드 
+	public String shoeName(String tag) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		String shoeName= sqlSession.selectOne("shoeName",tag);
+		sqlSession.close();
+		return shoeName;
+	}
 }
