@@ -9,7 +9,7 @@ body{
 	width: 1920px;
 	height: 20000px;
 	position:relative;
-	background-image: url('/MAIN/img/goodwpss.jpg'); /* 원하는 배경 이미지로 변경 */
+	background-image: url('./goodwpss.jpg'); /* 원하는 배경 이미지로 변경 */
 	background-size: cover; /* 배경 이미지를 컨테이너에 맞게 확대/축소 */
 	background-position: center; /* 배경 이미지 위치를 가운데 정렬 */
 	background-attachment: fixed; /* 배경 이미지를 고정시킴 */
@@ -46,32 +46,90 @@ display: flex; flex-flow: row nowrap; overflow: hidden;
 
 
 
-/* 각영역의 라벨(중앙정렬) */
-.area_desc {position: absolute; top: 50%;left: 50%; transform: translate(-50%, -50%); font-size: 20px; }
+/* 각영역의 라벨(중앙정렬) 사이드바*/
+.area_desc {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 20px;
+}
 
 /* 메뉴버튼 */
-.menubtn {display: block;  width: 50px; height: 50px; position: fixed; top: 50px; right: 16%; transform: translateY(-50%);cursor: pointer; }
-.menubtn span {display: block; position: absolute; width: 80%; height: 5px; border-radius: 30px; background: #222; transition: all .35s; }
-.menubtn span:nth-child(1) {top:20%;left: 50%; transform: translateX(-50%);}
-.menubtn span:nth-child(2) {top:50%;left: 50%; transform: translate(-50%,-50%);}
-.menubtn span:nth-child(3) {bottom: 20%;left: 50%; transform: translatex(-50%);}
+.menubtn {
+	display: block;
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	top: 50px;
+	right: 16%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	z-index: 100;
+}
 
-/* 컨텐츠영역 */
-.container { display: flex;  flex-direction: row-reverse; width: 1920px; position:relative; }
-.container .content {  width: 800px;  height: 900px; margin-top: 350px;  min-height: 700px;  border-top: 4px #222; background: #ffffff; align-content: center; flex: content rebv;}
-.container .sidebar { position:fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #ffffff; border:1px solid #eee;z-index: 30; transition: .35s;}
+.menubtn span {
+	display: block;
+	position: absolute;
+	width: 80%;
+	height: 5px;
+	border-radius: 30px;
+	background: #222;
+	transition: all .35s;
+}
+
+.menubtn span:nth-child(1) {
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.menubtn span:nth-child(2) {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.menubtn span:nth-child(3) {
+	bottom: 20%;
+	left: 50%;
+	transform: translatex(-50%);
+}
+
+
 
 /* 체크 변화값 */
-input[id=menuicon]:checked ~ header .menubtn{z-index: 2;}
-input[id=menuicon]:checked ~ header .menubtn span:nth-child(1) {top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(135deg);}
-input[id=menuicon]:checked ~ header .menubtn span:nth-child(2) {left: 50%; transform: translate(-50%,-50%) scale(2);opacity: 0;}
-input[id=menuicon]:checked ~ header .menubtn span:nth-child(3) {bottom: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-135deg);}
-input[id=menuicon]:checked ~ .container .sidebar {right: 0;}
+input[id=menuicon]:checked ~ header .menubtn {
+	z-index: 2;
+}
+
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(1) {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(135deg);
+}
+
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(2) {
+	left: 50%;
+	transform: translate(-50%, -50%) scale(2);
+	opacity: 0;
+}
+
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(3) {
+	bottom: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+input[id=menuicon]:checked ~ .container .sidebar {
+	right: 0;
+}
 /* 메뉴 버튼 기능구현 */
-input[id*="answer"]{
+input[id*="answer"] {
 	display: none;
 }
-input[id*="answer"] + label{
+
+input[id*="answer"]+label {
 	display: block;
 	padding: 20px;
 	border: 1px solid #292626;
@@ -82,7 +140,8 @@ input[id*="answer"] + label{
 	cursor: pointer;
 	position: relative;
 }
-input[id*="answer"] + label em {
+
+input[id*="answer"]+label em {
 	position: absolute;
 	top: 50%;
 	right: 10px;
@@ -90,21 +149,65 @@ input[id*="answer"] + label em {
 	height: 30px;
 	margin-top: -15px;
 	display: inline-block;
-	background:url(/MAIN/icon.png) 0 0 no-repeat; 
+	background: url(/MAIN/icon.png) 0 0 no-repeat;
 }
-input[id*="answer"] + label + div {
+
+input[id*="answer"]+label+div {
 	max-height: 0;
 	transition: all .35s;
 	overflow: hidden;
 	background: #edf8ff;
 	font-size: 11px;
 }
-input[id*="answer"] + label + div p {
+
+input[id*="answer"]+label+div p {
 	display: inline-block;
 	padding: 20px;
 }
-input[id*="answer"]:checked + label + div {max-height: 100px;}
-input[id*="answer"]:checked + label  em {background-position: -30px;}
+
+input[id*="answer"]:checked+label+div {
+	max-height: 100px;
+}
+
+input[id*="answer"]:checked+label  em {
+	background-position: -30px;
+}
+
+/* 팔로우 버튼 */
+follow_0 {
+	height: 20px;
+}
+/*이모티콘 마진 적용*/
+#emo {
+	margin-right: 10px;
+}
+
+#emo_post {
+	margin-right: 5px;
+}
+/* 이모티콘의 크기 조절 */
+.sidebar label span {
+	font-size: 24px; /* 이모티콘의 크기를 24px로 설정 */
+}
+
+.sidebar label {
+	display: block;
+	padding: 10px;
+	transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 */
+}
+
+.sidebar label:hover {
+	background-color: pink; /* 마우스 호버 시 배경색 변경 */
+	margin: 1px;
+	transition: .35s;
+}
+
+#emo_post2 {
+	margin-left: 5px;
+	margin-right: 15px;
+}
+
+
 /* 프로필 웹 스타일 수정 */
 #profile_wrap {
     width: 700px;

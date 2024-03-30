@@ -161,7 +161,7 @@ a {
 	border-bottom-width: 0px;
 }
 
-/* 각영역의 라벨(중앙정렬) */
+/* 각영역의 라벨(중앙정렬) 사이드바*/
 .area_desc {
 	position: absolute;
 	top: 50%;
@@ -466,6 +466,12 @@ color:gray;
 }
 
 
+/* 신발 이미지 */
+img {
+	cursor: pointer;
+	
+}
+
 
 </style>
 
@@ -504,7 +510,11 @@ color:gray;
 	</header>
 
 	<!-- ----------------------------------------------------------------------- -->
-
+	<!-- 신발페이지 연결 테스트  -->
+	<form action="ShoesPage.jsp">
+	<button >신발상세페이지</button>
+		</form>
+	<!-- ----------------------------------- -->	
 	<div class="container">
 		<div class="content" style="height: auto; margin-right: 520px">
 			<span class="area_desc"></span>
