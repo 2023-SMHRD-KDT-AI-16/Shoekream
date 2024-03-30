@@ -43,17 +43,17 @@
 					<button type="submit" id="login"
 						style="width: 303.63636px; height: 43.636359999999996px; 
 						border: 2px solid rgba(255,255,255,0.5);
-						border-radius: 5px; background-color:#ffffff00; color:white;
+						border-radius: 8px; background-color:#ffffff00; color:white;
 						font-size: medium;
 						">로그인</button>
 				</form>
 				<br>
-				<div class="naver">
-					<a href="<%=apiURL%>"><img height="40" width="300"
-						object-fit="contain"
-						;
-								src="https://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
-				</div>
+<div class="naver">
+    <a href="<%=apiURL%>">
+        <img height="40" width="300"
+            src="https://go.at.or.kr/images/naver.png" />
+    </a>
+</div>
 				<div class="join_pass">
 					<br> <label for="" >아이디가 없으신가요? <a href="Join.jsp">
 							회원가입 하러가기</a></label>

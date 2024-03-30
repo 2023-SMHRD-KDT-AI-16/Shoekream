@@ -130,7 +130,10 @@ top: -5px;
 .naver img {
         width: 300px;
         height: 40px;
-        object-fit: contain; /* 이미지를 비율을 유지하면서 컨테이너에 맞게 조정합니다. */
+        object-fit: fill; /* 이미지를 비율을 유지하면서 컨테이너에 맞게 조정합니다. */
+        border-radius: 8px;
+         border: 2px solid rgba(255,255,255,0.5);    
+        transition: background-color 0.3s; /* 호버 효과를 위한 전환 효과 설정 */
     }
 /* .error{
     display: block;
@@ -145,3 +148,14 @@ top: -5px;
         transition: .35s;
         cursor: pointer; /* 호버 시 포인터 변경 */
     }
+      .naver img:hover {
+        background-color: rgba(0, 0, 0, 0.1); /* 호버 시 배경색 변경 */
+    	 margin: 2px;
+        transition: .35s;
+    }
+    
+    
+    .join_pass a {
+        color: #ff007f; /* 링크 텍스트 색상 변경 */
+    }    
+    
