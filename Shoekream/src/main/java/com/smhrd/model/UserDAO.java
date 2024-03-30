@@ -1,5 +1,7 @@
 package com.smhrd.model;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -119,6 +121,13 @@ SqlSession sqlSession = sqlSessionFactory.openSession(true);
 				sqlSession.close();
 			}
 			return result;	
+		}
+
+		public ArrayList<UserDTO> allUser() {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			ArrayList<UserDTO> u_list= (ArrayList) sqlSession.selectList("allUser");
+			sqlSession.close();
+			return u_list;
 		}
 		
 	

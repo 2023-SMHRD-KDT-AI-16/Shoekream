@@ -477,6 +477,16 @@ img {
 max-width:1200px !important;
 height:800px;
 }
+
+#Search{
+width:400px;
+height:auto;
+display: block;
+font-size:5px;
+color: black;
+}
+
+
 </style>
 
 </head>
@@ -508,11 +518,16 @@ height:800px;
 				</label>
 				<li class="logo"><a>SHOEKREAM</a></li>
 				<!-- 슈크림 메인 로고  -->
+				
 			</ul>
 
+				
+				
 		</div>
 	</header>
+	
 
+<select id="Search" name="selectedSearch" multiple="multiple"> </select>
 	<!-- ----------------------------------------------------------------------- -->
 	<!-- 신발페이지 연결 테스트  -->
 	<form action="ShoesPage.jsp">
@@ -536,7 +551,12 @@ height:800px;
 			<span class="area_desc"></span> <input type="checkbox"
 				name="accordion" id="answer00"> <label for="answer00"><span
 				id="emo">&#128269;</span><input type="text" placeholder="검색"><em></em></label>
-
+				<div>
+				<p>여기에 내용</p><br>
+				<p>여기에 내용</p>
+				
+			</div>
+			
 			<input type="checkbox" name="accordion" id="answer01"> <label
 				for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a href="Main.jsp">홈</a><em></em></label> <input
 				type="checkbox" name="accordion" id="answer02"> <label
@@ -559,13 +579,10 @@ height:800px;
 			</div>
 			<input type="checkbox" name="accordion" id="answer06"> <label
 				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
-
+	
 			<div>
 				<p>
-					<!-- 로그아웃 -->
-					<button>
 						<a href="LogoutService">로그아웃</a>
-					</button>
 				</p>
 			</div>
 		</div>
@@ -1143,10 +1160,100 @@ $(window).scroll(function(){
           fadeDelay: 1,
         });
       }
-    
- 
+ //-----------------------------------------------------------------------------
+ //전체 검색
 
+$(document).ready(function() {
+    $('#Search').select2({
+    	   maximumSelectionLength: 1,
+        templateResult: formatSearch, // Customizes option rendering
+        templateSelection: formatSelectedSearch // Customizes selected option rendering
+    });
     
+    // Call filterSearch function initially to populate options
+    filterSearch();
+});
+
+function filterSearch() {
+    // 첫 번째 데이터 소스: 신발 정보
+    var shoesPromise = $.ajax({
+        url: "ShowShoes",
+        type: "get"
+    });
+
+    // 두 번째 데이터 소스: 사용자 정보
+    var usersPromise = $.ajax({
+        url: "SearchService",
+        type: "get"
+    });
+
+    // 두 요청이 모두 완료되면 실행
+    Promise.all([shoesPromise, usersPromise]).then(function(results) {
+        // results[0]은 ShowShoes의 결과, results[1]은 SearchService의 결과
+        var shoesArr = results[0];
+        var usersArr = results[1];
+
+        $('#Search').empty(); // 한 번만 비우고
+        
+        // 신발 정보 그룹 생성
+        var shoesGroup = $('<optgroup label="Shoes"></optgroup>');
+        shoesArr.forEach(function(shoe) {
+            shoesGroup.append($('<option >', {
+                value: shoe.shoe_tag, 
+                text: shoe.shoe_name,
+                title:shoe.shoe_tag,
+            }));
+        });
+        $('#Search').append(shoesGroup);
+
+        // 사용자 정보 그룹 생성
+        var usersGroup = $('<optgroup label="Users"></optgroup>');
+        usersArr.forEach(function(user) {
+            usersGroup.append($('<option >', {
+                value: user.user_id, 
+                text: user.user_nick,
+                title: user.user_profile_img,
+              
+            }));
+        });
+        $('#Search').append(usersGroup);
+
+        // Select2 업데이트
+        $('#Search').val(null).trigger('change');
+    }).catch(function(error) {
+        // 오류 처리
+        console.error('Error:', error);
+    });
+}
+
+function formatSearch(item) {
+	var group = $(item.element).closest('optgroup').attr('label');
+	console.log("라벨"+group)
+   if(group==='Shoes'){
+	   var $option = $('<span><img src="shoe_img/' + item.title +'.png" class="user-image" style="width: 70px" /> ' + item.text + '</span>');
+   }else{
+  var $option = $('<span><img src="img/' + item.title + '" class="shoe-image" style="width: 70px" /> ' + item.text + '</span>'); }
+    
+	if(!item.title){
+		 $option = $('<span>' + item.text + '</span>');
+	}
+	
+	 $option.css('color', 'black'); // 글자색을 검정색으로 설정
+    return $option;
+}
+
+function formatSelectedSearch(selection) {
+	var group = $(selection.element).closest('optgroup').attr('label');
+	console.log("라벨"+group)
+   if(group==='Shoes'){
+	   var $option = $('<span><img src="shoe_img/' + selection.title +'.png" class="user-image" style="width: 70px" /> ' + selection.text + '</span>');
+   }else{
+  var $option = $('<span><img src="img/' + selection.title + '" class="shoe-image" style="width: 70px" /> ' + selection.text + '</span>'); }
+    
+	 $option.css('color', 'black'); // 글자색을 검정색으로 설정
+	    return $option;
+}
+
 </script>
 	<script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

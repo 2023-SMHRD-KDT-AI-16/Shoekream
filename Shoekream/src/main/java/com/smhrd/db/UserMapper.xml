@@ -39,5 +39,9 @@
 	<select id="getUser" parameterType ="String" resultType="com.smhrd.model.UserDTO">
 	select * from USER_INFO where user_id= #{user_id}
 	</select>
+	
+	<select id = "allUser" resultType = "com.smhrd.model.UserDTO">
+select * from user_info
+</select>
     
 </mapper>
