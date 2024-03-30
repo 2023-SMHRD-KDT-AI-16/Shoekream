@@ -464,6 +464,9 @@ height:auto;
 font-size:16px;
 color:gray;
 }
+
+
+
 </style>
 
 </head>
@@ -1073,6 +1076,14 @@ function formatSelectedShoeOption(selection) {
 						    <p>게시글내용${post_result.post_content}</p>
 						    <input type="text" placeholder="댓글달기..." id="postchat">
 						    <button id="openModal">전송</button>  
+						    
+						    <h1 class="postDetailbtn">멀티 모달창</h1>
+						    <div class="postDetailmodal">
+						    <div class="postDetailmodal-content">
+					        <span class="postDetailmoalclose">&times;</span>                         
+					        <p>${page} 번째 Modal</p>
+					      </div>
+					    </div>
 						  </div>
 						</div>
       `;
@@ -1116,6 +1127,10 @@ $(window).scroll(function(){
     // 페이지 로드 시 초기 포스트들을 로드
     loadMorePosts();
 
+    
+ //------------------------------------------------------------------------
+
+    
 </script>
 	<script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
