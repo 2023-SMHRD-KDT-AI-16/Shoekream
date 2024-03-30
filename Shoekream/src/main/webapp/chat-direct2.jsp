@@ -7,135 +7,229 @@
 <html lang="kor">
 <!-- Head -->
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <title>Messenger - 2.2.0</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./assets/img/favicon/favicon.ico" type="image/x-icon">
 
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no, viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700" rel="stylesheet">
 
-<title>Messenger - 2.2.0</title>
+    <!-- Template CSS -->
+    <link class="css-lt" rel="stylesheet" href="./assets/css/template.bundle.css" media="(prefers-color-scheme: light)">
+    <link class="css-dk" rel="stylesheet" href="./assets/css/template.dark.bundle.css" media="(prefers-color-scheme: dark)">
 
-<!-- Favicon -->
-<link rel="shortcut icon" href="./assets/img/favicon/favicon.ico"
-	type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- Font -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700"
-	rel="stylesheet">
+    <!-- Theme mode -->
+    <script>
+        if (localStorage.getItem('color-scheme')) {
+            let scheme = localStorage.getItem('color-scheme');
+            const LTCSS = document.querySelectorAll('link[class=css-lt]');
+            const DKCSS = document.querySelectorAll('link[class=css-dk]');
+            [...LTCSS].forEach((link) => {
+                link.media = (scheme === 'light') ? 'all' : 'not all';
+            });
+            [...DKCSS].forEach((link) => {
+                link.media = (scheme === 'dark') ? 'all' : 'not all';
+            });
+        }
 
-<!-- Template CSS -->
-<link class="css-lt" rel="stylesheet"
-	href="./assets/css/template.bundle.css"
-	media="(prefers-color-scheme: light)">
-<link class="css-dk" rel="stylesheet"
-	href="./assets/css/template.dark.bundle.css"
-	media="(prefers-color-scheme: dark)">
 
- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<!-- Theme mode -->
-<script>
-            if (localStorage.getItem('color-scheme')) {
-                let scheme = localStorage.getItem('color-scheme');
 
-                const LTCSS = document.querySelectorAll('link[class=css-lt]');
-                const DKCSS = document.querySelectorAll('link[class=css-dk]');
-
-                [...LTCSS].forEach((link) => {
-                    link.media = (scheme === 'light') ? 'all' : 'not all';
-                });
-
-                [...DKCSS].forEach((link) => {
-                    link.media = (scheme === 'dark') ? 'all' : 'not all';
-                });
-            }
-        </script>
-  <script type="text/javascript">
-
-  document.addEventListener('DOMContentLoaded', (event) => {
-	    // DOM이 완전히 로드되었을 때 실행할 코드
-	    connect();
-	    loadMessages(); // 페이지 로딩 시 저장된 메시지들을 불러와서 표시하는 함수 호출
-	});
-
-	function loadMessages() {
-	    const storedMessages = JSON.parse(localStorage.getItem('chatMessages') || '[]'); // 로컬 스토리지에서 메시지 배열을 불러옴
-	    storedMessages.forEach(msg => {
-	        appendMessage(msg.content, msg.senderId === userId ? 'message-out' : 'message'); // 메시지를 채팅창에 추가
-	    });
-	}
-	  function connect() {
-	        // 웹소켓 주소
-	        var wsUri = "ws://localhost:8081/Shoekream/echo.do";
-	        websocket = new WebSocket(wsUri);
-	        websocket.onopen = onOpen;
-	        websocket.onclose = function(evt) {
-	            console.log("세션종료", evt);
-	        };
-	        
-	        websocket.onmessage = onMessage;
-	      
-	        console.log('웹소켓 연결완료');
-	    }
-	    
-	    function onOpen() {
-	        console.log("웹소켓이 열렸습니다~");
-	    }
+    </script>
 <% UserDTO user_info = (UserDTO) session.getAttribute("user_info"); %>
-    var userId = '<%= user_info.getUserId() %>';
-    console.log(userId);
-    let websocket;
-    let chat = $('#chat'); // 메시지를 표시할 채팅창 전체 컨테이너
+    <script>
+    $(document).ready(function() {
+        // 기존에 있는 connect() 등의 호출
 
-    $(document).ready(connect);
+        // 전송 버튼에 sendMessage 함수를 클릭 이벤트로 바인딩
+        $('#sendButton').on('click', sendMessage);
 
-  
+
+            var userId = '<%= user_info.getUserId() %>';
+            var urlParams = new URLSearchParams(window.location.search);
+            var writerId = urlParams.get('writerId');
+            var writerNick = urlParams.get('writerNick');
+            var writerProfile = urlParams.get('writerProfile');
+
+            function connect() {
+                var wsUri = "ws://localhost:8081/Shoekream/echo.do";
+                window.websocket = new WebSocket(wsUri);
+                websocket.onopen = function(evt) { console.log("웹소켓이 열렸습니다~"); };
+                websocket.onclose = function(evt) { console.log("세션 종료", evt); };
+                websocket.onmessage = onMessage;
+                websocket.onerror = function(evt) { console.error("웹소켓 연결 에러: ", evt); };
+            }
+            function createInitialChatRoom() {
+                if (!writerId || !writerNick || !writerProfile) {
+                    console.log("필요한 쿼리스트링 정보가 누락되었습니다.");
+                    return; // 필요한 정보가 없으면 초기 채팅방을 만들지 않습니다.
+                }
+                // 채팅방 데이터를 만듭니다.
+                var chatRooms = [{
+                    writerId: writerId,
+                    writerNick: writerNick,
+                    writerProfile: writerProfile
+                }];
+                saveChatRoomsToLocal(chatRooms); // 로컬 스토리지에 저장합니다.
+            }
+
+            
+      /*  var chatCardHtml = `
+            <div class="card border-0">
+                <div class="card-body">
+                    <div class="row align-items-center gx-5">
+                        <div class="col-auto">
+                            <a href="#" class="avatar"> 
+                                <img class="avatar-img" src="#" alt="">
+                            </a>
+                        </div>
+                        <div class="col">
+                            <h5><a href="#">222</a></h5>
+                            <p>Last seen1111 333</p>
+                        </div>
+                        <div class="col-auto">
+                            <button onclick="openChatRoom('ss')">Open Chat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        $('.card-list').append(chatCardHtml);*/
+        
+        // 웹소켓 연결 및 나머지 초기화 로직에 writerId 등 사용
+   
+    
+   
+
     function onMessage(event) {
         console.log("메시지 수신됨: ", event.data);
         try {
             let finalData = JSON.parse(event.data);
-            saveMessage(finalData); // 메시지를 로컬 스토리지에 저장
-            let messageClass = finalData.senderId === userId ? 'message-out' : 'message';
+            saveMessage(finalData);
+            let messageClass = finalData.writerId === userId ? 'message-out' : 'message';
             appendMessage(finalData.content, messageClass);
         } catch (error) {
-            console.error("Received message is not in JSON format:", event.data);
+            console.error("Received message is not in JSON format: ", event.data);
         }
     }
-    function saveMessage(data) {
-        const storedMessages = JSON.parse(localStorage.getItem('chatMessages') || '[]'); // 기존에 저장된 메시지들을 불러옴
-        storedMessages.push(data); // 새 메시지를 배열에 추가
-        localStorage.setItem('chatMessages', JSON.stringify(storedMessages)); // 변경된 배열을 다시 로컬 스토리지에 저장
+
+    function saveChatRoomsToLocal(chatRooms) {
+        localStorage.setItem('chatRooms', JSON.stringify(chatRooms));
     }
-    // 메시지 전송 함수, 기존의 submitFunction을 이 위치에 통합
- function sendMessage(event) {
-    if (event) event.preventDefault();
-    
-    if (websocket.readyState !== WebSocket.OPEN) {
-        console.error("웹소켓이 연결되지 않았습니다.");
-        return;
-    }
-    const messageContent = $('#chatContent').val();
-    if (!messageContent) {
-        return;
-    }
+
    
-    // 현재 사용자의 ID를 포함하여 메시지 데이터 구성
-    const data = { 
-        content: messageContent,
-        senderId: userId // 현재 사용자의 고유 ID, 서버사이드에서 설정된 userId를 사용
-    };
-    saveMessage(data);
-    let jsonData = JSON.stringify(data);
+    function displayChatRooms() {
+       // createInitialChatRoom(); // 초기 채팅방 생성 (필요한 로직이 이미 포함되어 있다고 가정)
+        var chatRooms = loadChatRoomsFromLocal(); // 로컬 스토리지에서 채팅방 목록을 불러옵니다.
+
+       //$('.card-body').empty(); // 기존 목록을 비웁니다.
+        chatRooms.forEach(function(room) {
+            var chatCardHtml = `
+                <div class="card border-0 mt-5">
+                    <div class="card-body">
+                        <div class="row align-items-center gx-5">
+                            <div class="col-auto">
+                                <div class="avatar">
+                                    <img class="avatar-img" src="${room.writerProfile}" alt="">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <h5>${room.writerNick}</h5>
+                                <p></p> <!-- 이 부분은 실제 데이터에 따라 동적으로 변경될 수 있습니다. -->
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="id-member-${room.writerId}">
+                                    <label class="form-check-label" for="id-member-${room.writerId}"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="stretched-label" for="id-member-${room.writerId}"></label>
+                    </div>
+                </div>
+            `;
+            $('.card-list').append(chatCardHtml); // 생성된 카드를 .card-list 요소에 추가합니다.
+        });
+
+        // card-body 클릭 이벤트 처리
+        $('.card-list .card-body').click(function() {
+            var writerId = $(this).closest('.card-list').data('writer-id');
+            openChatRoom(writerId);
+        });
+    }
+    function loadChatRoomsFromLocal() {
+        var chatRooms = JSON.parse(localStorage.getItem('chatRooms') || '[]');
+        return chatRooms;
+    }
     
-    websocket.send(jsonData); // 웹소켓을 통해 메시지 전송
-    $('#chatContent').val(''); // 입력 필드 초기화
-    console.log("메시지 전송 성공!!");
-}
+    function openChatRoom(writerId) {
+        console.log('Open chat room for writerId:', writerId);
+    
+       window.location.href = 'chatRoom.jsp?writerId=' + encodeURIComponent(writerId);
+    }
+    
+        displayChatRooms(); // 페이지가 준비되면 대화방 목록을 표시
+   
+    
+    function addNewChatRoom(writerId, writerNick, writerProfile) {
+        var chatRooms = loadChatRoomsFromLocal();
+        chatRooms.push({
+            writerId: writerId,
+            writerNick: writerNick,
+            writerProfile: writerProfile
+        });
+        saveChatRoomsToLocal(chatRooms);
+        displayChatRooms(); // 채팅방 목록을 다시 불러와서 표시
+    }
+    function openChatRoom(writerId) {
+        // 예시: 대화방 페이지로 이동
+        window.location.href = "chatRoom.jsp?writerId=" + writerId;
+    }
 
+ 
 
-    // 메시지를 채팅창에 추가하는 함수
-function appendMessage(content, className) {
+    function saveMessage(data) {
+        const storedMessages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
+        storedMessages.push(data);
+        localStorage.setItem('chatMessages', JSON.stringify(storedMessages));
+    }
+
+    function sendMessage(event) {
+        event.preventDefault(); // 폼 제출에 의한 페이지 새로고침 방지
+
+        console.log("메시지 전송 시도");
+        if (websocket.readyState !== WebSocket.OPEN) {
+            console.error("웹소켓이 연결되지 않았습니다.");
+            return;
+        }
+
+        const messageContent = document.getElementById('chatContent').value; // 메시지 내용을 가져옵니다.
+        if (!messageContent) {
+            console.log("메시지가 비어 있습니다.");
+            return;
+        }
+
+        const data = { content: messageContent, senderId: userId }; // 메시지 데이터 구성
+        saveMessage(data); // 메시지를 로컬 스토리지에 저장
+        websocket.send(JSON.stringify(data)); // 웹소켓을 통해 메시지 전송
+        document.getElementById('chatContent').value = ''; // 입력 필드 초기화
+        console.log("메시지 전송 성공");
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var sendButton = document.getElementById('sendButton');
+        if (sendButton) {
+            sendButton.addEventListener('click', sendMessage);
+        }
+    });
+    function appendMessage(content, className) {
     console.log("appendMessage 호출됨.");
     let messageDiv = document.createElement('div');
     console.log("클래스 생성까지 성공");
@@ -194,19 +288,25 @@ function appendMessage(content, className) {
     // 채팅창의 스크롤을 최하단으로 이동시킴
     let chatBody = document.querySelector('.chat-body');
     chatBody.scrollTop = chatBody.scrollHeight;
+    
+    
 }
-</script>
-        
-</head>
 
-<body>
+});
+</script>
+
+
+</head>
+ <body>
+    <!-- Body 내용 -->
+ 
 
 	<div class="layout overflow-hidden">
 		<!-- Navigation -->
 		<nav
 			class="navigation d-flex flex-column text-center navbar navbar-light hide-scrollbar">
 			<!-- Brand -->
-			<a href="index.html" title="Messenger" class="d-none d-xl-block mb-6">
+			<a href="index.jsp" title="Messenger" class="d-none d-xl-block mb-6">
 				<svg version="1.1" width="46px" height="46px" fill="currentColor"
 					xmlns="http://www.w3.org/2000/svg"
 					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -574,7 +674,7 @@ function appendMessage(content, className) {
 														<div class="col-auto">
 															<div class="avatar ">
 
-																<img class="avatar-img" src="assets/img/avatars/6.jpg"
+																<img class="avatar-img" src="assets/img/avatars/2.jpg"
 																	alt="">
 
 
@@ -632,232 +732,7 @@ function appendMessage(content, className) {
 											</div>
 											<!-- Card -->
 											<!-- Card -->
-											<div class="card border-0 mt-5">
-												<div class="card-body">
-
-													<div class="row align-items-center gx-5">
-														<div class="col-auto">
-															<div class="avatar avatar-online">
-
-
-																<span class="avatar-text">D</span>
-
-															</div>
-														</div>
-														<div class="col">
-															<h5>Don Knight</h5>
-															<p>online</p>
-														</div>
-														<div class="col-auto">
-															<div class="form-check">
-																<input class="form-check-input" type="checkbox" value=""
-																	id="id-member-3"> <label
-																	class="form-check-label" for="id-member-3"></label>
-															</div>
-														</div>
-													</div>
-													<label class="stretched-label" for="id-member-3"></label>
-												</div>
-											</div>
-											<!-- Card -->
-
-											<div class="my-5">
-												<small class="text-uppercase text-muted">E</small>
-											</div>
-
-											<!-- Card -->
-											<div class="card border-0 mt-5">
-												<div class="card-body">
-
-													<div class="row align-items-center gx-5">
-														<div class="col-auto">
-															<div class="avatar avatar-online">
-
-																<img class="avatar-img" src="assets/img/avatars/8.jpg"
-																	alt="">
-
-
-															</div>
-														</div>
-														<div class="col">
-															<h5>Elise Dennis</h5>
-															<p>online</p>
-														</div>
-														<div class="col-auto">
-															<div class="form-check">
-																<input class="form-check-input" type="checkbox" value=""
-																	id="id-member-4"> <label
-																	class="form-check-label" for="id-member-4"></label>
-															</div>
-														</div>
-													</div>
-													<label class="stretched-label" for="id-member-4"></label>
-												</div>
-											</div>
-											<!-- Card -->
-
-											<div class="my-5">
-												<small class="text-uppercase text-muted">M</small>
-											</div>
-
-											<!-- Card -->
-											<div class="card border-0 mt-5">
-												<div class="card-body">
-
-													<div class="row align-items-center gx-5">
-														<div class="col-auto">
-															<div class="avatar ">
-
-
-																<span class="avatar-text">M</span>
-
-															</div>
-														</div>
-														<div class="col">
-															<h5>Marshall Wallaker</h5>
-															<p>last seen within a month</p>
-														</div>
-														<div class="col-auto">
-															<div class="form-check">
-																<input class="form-check-input" type="checkbox" value=""
-																	id="id-member-6"> <label
-																	class="form-check-label" for="id-member-6"></label>
-															</div>
-														</div>
-													</div>
-													<label class="stretched-label" for="id-member-6"></label>
-												</div>
-											</div>
-											<!-- Card -->
-											<!-- Card -->
-											<div class="card border-0 mt-5">
-												<div class="card-body">
-
-													<div class="row align-items-center gx-5">
-														<div class="col-auto">
-															<div class="avatar ">
-
-																<img class="avatar-img" src="assets/img/avatars/11.jpg"
-																	alt="">
-
-
-															</div>
-														</div>
-														<div class="col">
-															<h5>Mila White</h5>
-															<p>last seen a long time ago</p>
-														</div>
-														<div class="col-auto">
-															<div class="form-check">
-																<input class="form-check-input" type="checkbox" value=""
-																	id="id-member-5"> <label
-																	class="form-check-label" for="id-member-5"></label>
-															</div>
-														</div>
-													</div>
-													<label class="stretched-label" for="id-member-5"></label>
-												</div>
-											</div>
-											<!-- Card -->
-
-											<div class="my-5">
-												<small class="text-uppercase text-muted">O</small>
-											</div>
-
-											<!-- Card -->
-											<div class="card border-0 mt-5">
-												<div class="card-body">
-
-													<div class="row align-items-center gx-5">
-														<div class="col-auto">
-															<div class="avatar avatar-online">
-
-
-																<span class="avatar-text">O</span>
-
-															</div>
-														</div>
-														<div class="col">
-															<h5>Ollie Chandler</h5>
-															<p>online</p>
-														</div>
-														<div class="col-auto">
-															<div class="form-check">
-																<input class="form-check-input" type="checkbox" value=""
-																	id="id-member-7"> <label
-																	class="form-check-label" for="id-member-7"></label>
-															</div>
-														</div>
-													</div>
-													<label class="stretched-label" for="id-member-7"></label>
-												</div>
-											</div>
-											<!-- Card -->
-
-											<div class="my-5">
-												<small class="text-uppercase text-muted">W</small>
-											</div>
-
-											<!-- Card -->
-											<div class="card border-0 mt-5">
-												<div class="card-body">
-
-													<div class="row align-items-center gx-5">
-														<div class="col-auto">
-															<div class="avatar ">
-
-																<img class="avatar-img" src="assets/img/avatars/4.jpg"
-																	alt="">
-
-
-															</div>
-														</div>
-														<div class="col">
-															<h5>Warren White</h5>
-															<p>last seen recently</p>
-														</div>
-														<div class="col-auto">
-															<div class="form-check">
-																<input class="form-check-input" type="checkbox" value=""
-																	id="id-member-8"> <label
-																	class="form-check-label" for="id-member-8"></label>
-															</div>
-														</div>
-													</div>
-													<label class="stretched-label" for="id-member-8"></label>
-												</div>
-											</div>
-											<!-- Card -->
-											<!-- Card -->
-											<div class="card border-0 mt-5">
-												<div class="card-body">
-
-													<div class="row align-items-center gx-5">
-														<div class="col-auto">
-															<div class="avatar avatar-online">
-
-																<img class="avatar-img" src="assets/img/avatars/7.jpg"
-																	alt="">
-
-
-															</div>
-														</div>
-														<div class="col">
-															<h5>William Wright</h5>
-															<p>online</p>
-														</div>
-														<div class="col-auto">
-															<div class="form-check">
-																<input class="form-check-input" type="checkbox" value=""
-																	id="id-member-9"> <label
-																	class="form-check-label" for="id-member-9"></label>
-															</div>
-														</div>
-													</div>
-													<label class="stretched-label" for="id-member-9"></label>
-												</div>
-											</div>
-											<!-- Card -->
+											
 										</nav>
 									</div>
 								</div>
@@ -943,513 +818,9 @@ function appendMessage(content, className) {
 										<small class="text-uppercase text-muted">B</small>
 									</div>
 
+									
 									<!-- Card -->
-									<div class="card border-0">
-										<div class="card-body">
-
-											<div class="row align-items-center gx-5">
-												<div class="col-auto">
-													<a href="#" class="avatar "> <img class="avatar-img"
-														src="assets/img/avatars/6.jpg" alt="">
-
-
-													</a>
-												</div>
-
-												<div class="col">
-													<h5>
-														<a href="#">Bill Marrow</a>
-													</h5>
-													<p>last seen 3 days ago</p>
-												</div>
-
-												<div class="col-auto">
-													<!-- Dropdown -->
-													<div class="dropdown">
-														<a class="icon text-muted" href="#" role="button"
-															data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-more-vertical">
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="12" cy="5" r="1"></circle>
-																<circle cx="12" cy="19" r="1"></circle></svg>
-														</a>
-
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">New
-																	message</a></li>
-															<li><a class="dropdown-item" href="#">Edit
-																	contact</a></li>
-															<li>
-																<hr class="dropdown-divider">
-															</li>
-															<li><a class="dropdown-item text-danger" href="#">Block
-																	user</a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-									<!-- Card -->
-
-									<div class="my-5">
-										<small class="text-uppercase text-muted">D</small>
-									</div>
-
-									<!-- Card -->
-									<div class="card border-0">
-										<div class="card-body">
-
-											<div class="row align-items-center gx-5">
-												<div class="col-auto">
-													<a href="#" class="avatar "> <img class="avatar-img"
-														src="assets/img/avatars/5.jpg" alt="">
-
-
-													</a>
-												</div>
-
-												<div class="col">
-													<h5>
-														<a href="#">Damian Binder</a>
-													</h5>
-													<p>last seen within a week</p>
-												</div>
-
-												<div class="col-auto">
-													<!-- Dropdown -->
-													<div class="dropdown">
-														<a class="icon text-muted" href="#" role="button"
-															data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-more-vertical">
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="12" cy="5" r="1"></circle>
-																<circle cx="12" cy="19" r="1"></circle></svg>
-														</a>
-
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">New
-																	message</a></li>
-															<li><a class="dropdown-item" href="#">Edit
-																	contact</a></li>
-															<li>
-																<hr class="dropdown-divider">
-															</li>
-															<li><a class="dropdown-item text-danger" href="#">Block
-																	user</a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-									<!-- Card -->
-									<!-- Card -->
-									<div class="card border-0">
-										<div class="card-body">
-
-											<div class="row align-items-center gx-5">
-												<div class="col-auto">
-													<a href="#" class="avatar avatar-online"> <span
-														class="avatar-text">D</span>
-
-													</a>
-												</div>
-
-												<div class="col">
-													<h5>
-														<a href="#">Don Knight</a>
-													</h5>
-													<p>online</p>
-												</div>
-
-												<div class="col-auto">
-													<!-- Dropdown -->
-													<div class="dropdown">
-														<a class="icon text-muted" href="#" role="button"
-															data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-more-vertical">
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="12" cy="5" r="1"></circle>
-																<circle cx="12" cy="19" r="1"></circle></svg>
-														</a>
-
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">New
-																	message</a></li>
-															<li><a class="dropdown-item" href="#">Edit
-																	contact</a></li>
-															<li>
-																<hr class="dropdown-divider">
-															</li>
-															<li><a class="dropdown-item text-danger" href="#">Block
-																	user</a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-									<!-- Card -->
-
-									<div class="my-5">
-										<small class="text-uppercase text-muted">E</small>
-									</div>
-
-									<!-- Card -->
-									<div class="card border-0">
-										<div class="card-body">
-
-											<div class="row align-items-center gx-5">
-												<div class="col-auto">
-													<a href="#" class="avatar avatar-online"> <img
-														class="avatar-img" src="assets/img/avatars/8.jpg" alt="">
-
-
-													</a>
-												</div>
-
-												<div class="col">
-													<h5>
-														<a href="#">Elise Dennis</a>
-													</h5>
-													<p>online</p>
-												</div>
-
-												<div class="col-auto">
-													<!-- Dropdown -->
-													<div class="dropdown">
-														<a class="icon text-muted" href="#" role="button"
-															data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-more-vertical">
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="12" cy="5" r="1"></circle>
-																<circle cx="12" cy="19" r="1"></circle></svg>
-														</a>
-
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">New
-																	message</a></li>
-															<li><a class="dropdown-item" href="#">Edit
-																	contact</a></li>
-															<li>
-																<hr class="dropdown-divider">
-															</li>
-															<li><a class="dropdown-item text-danger" href="#">Block
-																	user</a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-									<!-- Card -->
-
-									<div class="my-5">
-										<small class="text-uppercase text-muted">M</small>
-									</div>
-
-									<!-- Card -->
-									<div class="card border-0">
-										<div class="card-body">
-
-											<div class="row align-items-center gx-5">
-												<div class="col-auto">
-													<a href="#" class="avatar "> <span class="avatar-text">M</span>
-
-													</a>
-												</div>
-
-												<div class="col">
-													<h5>
-														<a href="#">Marshall Wallaker</a>
-													</h5>
-													<p>last seen within a month</p>
-												</div>
-
-												<div class="col-auto">
-													<!-- Dropdown -->
-													<div class="dropdown">
-														<a class="icon text-muted" href="#" role="button"
-															data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-more-vertical">
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="12" cy="5" r="1"></circle>
-																<circle cx="12" cy="19" r="1"></circle></svg>
-														</a>
-
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">New
-																	message</a></li>
-															<li><a class="dropdown-item" href="#">Edit
-																	contact</a></li>
-															<li>
-																<hr class="dropdown-divider">
-															</li>
-															<li><a class="dropdown-item text-danger" href="#">Block
-																	user</a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-									<!-- Card -->
-									<!-- Card -->
-									<div class="card border-0">
-										<div class="card-body">
-
-											<div class="row align-items-center gx-5">
-												<div class="col-auto">
-													<a href="#" class="avatar "> <img class="avatar-img"
-														src="assets/img/avatars/11.jpg" alt="">
-
-
-													</a>
-												</div>
-
-												<div class="col">
-													<h5>
-														<a href="#">Mila White</a>
-													</h5>
-													<p>last seen a long time ago</p>
-												</div>
-
-												<div class="col-auto">
-													<!-- Dropdown -->
-													<div class="dropdown">
-														<a class="icon text-muted" href="#" role="button"
-															data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-more-vertical">
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="12" cy="5" r="1"></circle>
-																<circle cx="12" cy="19" r="1"></circle></svg>
-														</a>
-
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">New
-																	message</a></li>
-															<li><a class="dropdown-item" href="#">Edit
-																	contact</a></li>
-															<li>
-																<hr class="dropdown-divider">
-															</li>
-															<li><a class="dropdown-item text-danger" href="#">Block
-																	user</a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-									<!-- Card -->
-
-									<div class="my-5">
-										<small class="text-uppercase text-muted">O</small>
-									</div>
-
-									<!-- Card -->
-									<div class="card border-0">
-										<div class="card-body">
-
-											<div class="row align-items-center gx-5">
-												<div class="col-auto">
-													<a href="#" class="avatar avatar-online"> <span
-														class="avatar-text">O</span>
-
-													</a>
-												</div>
-
-												<div class="col">
-													<h5>
-														<a href="#">Ollie Chandler</a>
-													</h5>
-													<p>online</p>
-												</div>
-
-												<div class="col-auto">
-													<!-- Dropdown -->
-													<div class="dropdown">
-														<a class="icon text-muted" href="#" role="button"
-															data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-more-vertical">
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="12" cy="5" r="1"></circle>
-																<circle cx="12" cy="19" r="1"></circle></svg>
-														</a>
-
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">New
-																	message</a></li>
-															<li><a class="dropdown-item" href="#">Edit
-																	contact</a></li>
-															<li>
-																<hr class="dropdown-divider">
-															</li>
-															<li><a class="dropdown-item text-danger" href="#">Block
-																	user</a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-									<!-- Card -->
-
-									<div class="my-5">
-										<small class="text-uppercase text-muted">W</small>
-									</div>
-
-									<!-- Card -->
-									<div class="card border-0">
-										<div class="card-body">
-
-											<div class="row align-items-center gx-5">
-												<div class="col-auto">
-													<a href="#" class="avatar "> <img class="avatar-img"
-														src="assets/img/avatars/4.jpg" alt="">
-
-
-													</a>
-												</div>
-
-												<div class="col">
-													<h5>
-														<a href="#">Warren White</a>
-													</h5>
-													<p>last seen recently</p>
-												</div>
-
-												<div class="col-auto">
-													<!-- Dropdown -->
-													<div class="dropdown">
-														<a class="icon text-muted" href="#" role="button"
-															data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-more-vertical">
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="12" cy="5" r="1"></circle>
-																<circle cx="12" cy="19" r="1"></circle></svg>
-														</a>
-
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">New
-																	message</a></li>
-															<li><a class="dropdown-item" href="#">Edit
-																	contact</a></li>
-															<li>
-																<hr class="dropdown-divider">
-															</li>
-															<li><a class="dropdown-item text-danger" href="#">Block
-																	user</a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-									<!-- Card -->
-									<!-- Card -->
-									<div class="card border-0">
-										<div class="card-body">
-
-											<div class="row align-items-center gx-5">
-												<div class="col-auto">
-													<a href="#" class="avatar avatar-online"> <img
-														class="avatar-img" src="assets/img/avatars/7.jpg" alt="">
-
-
-													</a>
-												</div>
-
-												<div class="col">
-													<h5>
-														<a href="#">William Wright</a>
-													</h5>
-													<p>online</p>
-												</div>
-
-												<div class="col-auto">
-													<!-- Dropdown -->
-													<div class="dropdown">
-														<a class="icon text-muted" href="#" role="button"
-															data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-more-vertical">
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="12" cy="5" r="1"></circle>
-																<circle cx="12" cy="19" r="1"></circle></svg>
-														</a>
-
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#">New
-																	message</a></li>
-															<li><a class="dropdown-item" href="#">Edit
-																	contact</a></li>
-															<li>
-																<hr class="dropdown-divider">
-															</li>
-															<li><a class="dropdown-item text-danger" href="#">Block
-																	user</a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-									<!-- Card -->
+									
 								</div>
 
 							</div>
@@ -1494,79 +865,7 @@ function appendMessage(content, className) {
 
 								<!-- Chats -->
 								<div class="card-list">
-									<!-- Card -->
-									<a href="chat-group.jsp" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar avatar-online">
-														<img src="assets/img/avatars/7.jpg" alt="#"
-															class="avatar-img">
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="me-auto mb-0">William Wright</h5>
-														<span class="text-muted extra-small ms-2">12:45 PM</span>
-													</div>
-
-													<div class="d-flex align-items-center">
-														<div class="line-clamp me-auto">Hello! Yeah, I'm
-															going to meet my friend of mine at the departments stores
-															now.</div>
-
-														<div class="badge badge-circle bg-primary ms-5">
-															<span>3</span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-
-										<div class="card-footer">
-											<div class="row align-items-center gx-4">
-												<div class="col-auto">
-													<div class="avatar avatar-xs">
-														<img class="avatar-img"
-															src="assets/img/avatars/bootstrap.svg"
-															alt="Bootstrap Community">
-													</div>
-												</div>
-
-												<div class="col">
-													<h6 class="mb-0">Bootstrap Community</h6>
-												</div>
-
-												<div class="col-auto">
-													<div class="avatar-group">
-														<div class="avatar avatar-xs">
-															<img src="assets/img/avatars/12.jpg" alt="#"
-																class="avatar-img">
-														</div>
-
-														<div class="avatar avatar-xs">
-															<img src="assets/img/avatars/11.jpg" alt="#"
-																class="avatar-img">
-														</div>
-
-														<div class="avatar avatar-xs">
-															<img src="assets/img/avatars/9.jpg" alt="#"
-																class="avatar-img">
-														</div>
-
-														<div class="avatar avatar-xs">
-															<span class="avatar-text">+5</span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- .row -->
-										</div>
-										<!-- .card-footer -->
-									</a>
-									<!-- Card -->
+								
 
 									<!-- Card -->
 									<a href="chat-direct.jsp" class="card border-0 text-reset">
@@ -1581,14 +880,12 @@ function appendMessage(content, className) {
 
 												<div class="col">
 													<div class="d-flex align-items-center mb-3">
-														<h5 class="me-auto mb-0">Ollie Chandler</h5>
+														<h5 class="me-auto mb-0">ShoeKream 단톡방</h5>
 														<span class="text-muted extra-small ms-2">08:45 PM</span>
 													</div>
 
 													<div class="d-flex align-items-center">
-														<div class="line-clamp me-auto">Hello! Yeah, I'm
-															going to meet friend of mine at the departments stores
-															now.</div>
+														<div class="line-clamp me-auto">맨발이 아닌 누구나 들어오시오.</div>
 
 														<div class="badge badge-circle bg-primary ms-5">
 															<span>3</span>
@@ -1601,286 +898,8 @@ function appendMessage(content, className) {
 									</a>
 									<!-- Card -->
 
-									<!-- Card -->
-									<a href="chat-empty.jsp" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar avatar-online">
-														<img src="assets/img/avatars/8.jpg" alt="#"
-															class="avatar-img">
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="me-auto mb-0">Elise Dennis</h5>
-														<span class="text-muted extra-small ms-2">08:35 PM</span>
-													</div>
-
-													<div class="d-flex align-items-center">
-														<div class="line-clamp me-auto">
-															is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-									</a>
-									<!-- Card -->
-
-									<!-- Card -->
-									<a href="chat-direct.jsp" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar-group-trigon avatar-group-trigon-sm">
-														<div class="avatar avatar-sm">
-															<img class="avatar-img" src="assets/img/avatars/7.jpg"
-																alt="#">
-														</div>
-
-														<div class="avatar avatar-sm">
-															<img class="avatar-img" src="assets/img/avatars/9.jpg"
-																alt="#">
-														</div>
-
-														<div class="avatar avatar-sm">
-															<span class="avatar-text bg-primary">D</span>
-														</div>
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="me-auto mb-0">Don Knight</h5>
-														<span class="text-muted extra-small ms-2">08:35 PM</span>
-													</div>
-
-													<div class="d-flex align-items-center">
-														<div class="line-clamp me-auto">I'm going to meet my
-															friend of mine at the departments stores as soon as
-															possible.</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-									</a>
-									<!-- Card -->
-
-									<!-- Card -->
-									<a href="chat-direct.jsp" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar">
-														<img src="assets/img/avatars/4.jpg" alt="#"
-															class="avatar-img">
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="me-auto mb-0">Warren White</h5>
-														<span class="text-muted extra-small ms-2">06:20 PM</span>
-													</div>
-
-													<div class="d-flex align-items-center">
-														<div class="line-clamp me-auto">Hello! Yeah, I'm
-															going to meet my friend of mine at the departments stores
-															as soon as possible.</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-									</a>
-									<!-- Card -->
-
-									<!-- Card -->
-									<a href="chat-direct.jsp" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar">
-														<img src="assets/img/avatars/11.jpg" alt="#"
-															class="avatar-img">
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="me-auto mb-0">Mila White</h5>
-														<span class="text-muted extra-small ms-2">04:40 PM</span>
-													</div>
-
-													<div class="d-flex align-items-center">
-														<div class="line-clamp me-auto">Hello! Yeah, I'm
-															going to meet my friend of mine at the departments stores
-															as soon as possible.</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-									</a>
-									<!-- Card -->
-
-									<!-- Card -->
-									<a href="chat-direct.jsp" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar avatar-online">
-														<img src="assets/img/avatars/5.jpg" alt="#"
-															class="avatar-img">
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="me-auto mb-0">Damian Binder</h5>
-														<span class="text-muted extra-small ms-2">02:45 PM</span>
-													</div>
-
-													<div class="d-flex align-items-center">
-														<div class="line-clamp me-auto">Hello! Yeah, I'm
-															going to meet my friend of mine at the departments stores
-															as soon as possible.</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-									</a>
-									<!-- Card -->
-
-									<!-- Card -->
-									<a href="chat-direct.jsp" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar avatar-online">
-														<span class="avatar-text">B</span>
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="me-auto mb-0">Bill Marrow</h5>
-														<span class="text-muted extra-small ms-2">12:20 PM</span>
-													</div>
-
-													<div class="d-flex align-items-center">
-														<div class="line-clamp me-auto">Hello! Yeah, I'm
-															going to meet my friend of mine at the departments stores
-															as soon as possible.</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-									</a>
-									<!-- Card -->
-
-									<!-- Card -->
-									<a href="#" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar avatar-online">
-														<span class="avatar-text">M</span>
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="me-auto mb-0">Marshall Wallaker</h5>
-														<span class="text-muted extra-small ms-2">12:18 PM</span>
-													</div>
-
-													<div class="d-flex align-items-center">
-														<div class="line-clamp me-auto">Hello! Yeah, I'm
-															going to meet my friend of mine at the departments stores
-															as soon as possible.</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-									</a>
-									<!-- Card -->
-
-									<!-- Card -->
-									<a href="chat-direct.jsp" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar">
-														<svg class="avatar-img placeholder-img" width="100%"
-															height="100%" xmlns="http://www.w3.org/2000/svg"
-															role="img" aria-label="Placeholder"
-															preserveAspectRatio="xMidYMid slice" focusable="false">
-                                                                <title>Placeholder</title>
-                                                                <rect
-																width="100%" height="100%" fill="#868e96"></rect>
-                                                            </svg>
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="placeholder-glow w-100 mb-0">
-															<span class="placeholder col-5"></span>
-														</h5>
-													</div>
-
-													<div class="placeholder-glow">
-														<span class="placeholder col-12"></span> <span
-															class="placeholder col-8"></span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-									</a>
-									<!-- Card -->
-
-									<!-- Card -->
-									<a href="chat-direct.jsp" class="card border-0 text-reset">
-										<div class="card-body">
-											<div class="row gx-5">
-												<div class="col-auto">
-													<div class="avatar">
-														<svg class="avatar-img placeholder-img" width="100%"
-															height="100%" xmlns="http://www.w3.org/2000/svg"
-															role="img" aria-label="Placeholder"
-															preserveAspectRatio="xMidYMid slice" focusable="false">
-                                                                <title>Placeholder</title>
-                                                                <rect
-																width="100%" height="100%" fill="#868e96"></rect>
-                                                            </svg>
-													</div>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-3">
-														<h5 class="placeholder-glow  w-100  mb-0">
-															<span class="placeholder col-5"></span>
-														</h5>
-													</div>
-
-													<div class="placeholder-glow">
-														<span class="placeholder col-12"></span> <span
-															class="placeholder col-8"></span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- .card-body -->
-									</a>
+									
+									
 									<!-- Card -->
 								</div>
 								<!-- Chats -->
@@ -1935,75 +954,7 @@ function appendMessage(content, className) {
 									<!-- Title -->
 
 									<!-- Card -->
-									<div class="card border-0 mb-5">
-										<div class="card-body">
-
-											<div class="row gx-5">
-												<div class="col-auto">
-													<!-- Avatar -->
-													<a href="#" class="avatar"> <img class="avatar-img"
-														src="assets/img/avatars/11.jpg" alt="">
-
-														<div
-															class="badge badge-circle bg-primary border-outline position-absolute bottom-0 end-0">
-															<svg xmlns="http://www.w3.org/2000/svg" width="24"
-																height="24" viewBox="0 0 24 24" fill="none"
-																stroke="currentColor" stroke-width="2"
-																stroke-linecap="round" stroke-linejoin="round"
-																class="feather feather-user">
-																<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-																<circle cx="12" cy="7" r="4"></circle></svg>
-														</div>
-													</a>
-												</div>
-
-												<div class="col">
-													<div class="d-flex align-items-center mb-2">
-														<h5 class="me-auto mb-0">
-															<a href="#">Mila White</a>
-														</h5>
-														<span class="extra-small text-muted ms-2">08:45 PM</span>
-													</div>
-
-													<div class="d-flex">
-														<div class="me-auto">Send you a friend request.</div>
-
-														<div class="dropdown ms-5">
-															<a class="icon text-muted" href="#" role="button"
-																data-bs-toggle="dropdown" aria-expanded="false"> <svg
-																	xmlns="http://www.w3.org/2000/svg" width="24"
-																	height="24" viewBox="0 0 24 24" fill="none"
-																	stroke="currentColor" stroke-width="2"
-																	stroke-linecap="round" stroke-linejoin="round"
-																	class="feather feather-more-horizontal">
-																	<circle cx="12" cy="12" r="1"></circle>
-																	<circle cx="19" cy="12" r="1"></circle>
-																	<circle cx="5" cy="12" r="1"></circle></svg>
-															</a>
-															<ul class="dropdown-menu">
-																<li><a class="dropdown-item" href="#">Show less
-																		often</a></li>
-																<li><a class="dropdown-item" href="#">Hide</a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="card-footer">
-											<div class="row gx-4">
-												<div class="col">
-													<a href="#" class="btn btn-sm btn-soft-primary w-100">Hide</a>
-												</div>
-												<div class="col">
-													<a href="#" class="btn btn-sm btn-primary w-100">Confirm</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- Card -->
-
+									
 									<!-- Card -->
 									<div class="card border-0 mb-5">
 										<div class="card-body">
@@ -3150,7 +2101,7 @@ function appendMessage(content, className) {
 											</div>
 
 											<div class="col overflow-hidden">
-												<h5 class="text-truncate">getNickname 자리</h5>
+												<h5 class="text-truncate">ShoKream 단톡방</h5>
 												<p class="text-truncate">
 													is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span>
 												</p>
@@ -3217,31 +2168,17 @@ function appendMessage(content, className) {
 					<!-- Chat: Header -->
 
 					<!-- Chat: Content -->
-					<div class="chat-body hide-scrollbar flex-1 h-100" >
-						<div class="chat-body-inner" >
+					<div class="chat-body hide-scrollbar flex-1 h-100">
+						<div class="chat-body-inner"  >
 							<div class="py-6 py-lg-12" id="chat">
 
-							
-								<!-- Message -->
-								<div class="message">
-									<a href="#" data-bs-toggle="modal"
-										data-bs-target="#modal-user-profile"
-										class="avatar avatar-responsive"> <img class="avatar-img"
-										src="assets/img/avatars/2.jpg" alt="">
-									</a>
+							   <!-- Divider -->
+                                    <div class="message-divider">
+                                        <small class="text-muted"></small>
+                                    </div>
 
-									<div class="message-inner">
-										<div class="message-body">
-											<div class="message-content">
-												<div class="message-text">
-													<p>
-														Chandler is typing<span class='typing-dots'><span>.</span><span>.</span><span>.</span></span>
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+                              
+							
 
 							</div>
 						</div>
@@ -3260,8 +2197,7 @@ function appendMessage(content, className) {
 						<form class="chat-form rounded-pill bg-dark" data-emoji-form="">
 							<div class="row align-items-center gx-0">
 								<div class="col-auto">
-									<a href="#"
-										class="btn btn-icon btn-link text-body rounded-circle"
+									<a href="#"	class="btn btn-icon btn-link text-body rounded-circle"
 										id="dz-btn"> <svg xmlns="http://www.w3.org/2000/svg"
 											width="24" height="24" viewBox="0 0 24 24" fill="none"
 											stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -4725,5 +3661,10 @@ function appendMessage(content, className) {
 	<!-- Scripts -->
 	<script src="./assets/js/vendor.js"></script>
 	<script src="./assets/js/template.js"></script>
+	<script>
+
+	 console.log("test")
+
+	</script>
 </body>
 </html>
