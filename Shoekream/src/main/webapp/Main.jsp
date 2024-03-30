@@ -938,7 +938,7 @@ $(document).ready(function() {
     $('#shoesOptions').select2({
         maximumSelectionLength: 3,
         templateResult: formatShoeOption, // Call the formatShoeOption function to customize option rendering
-        templateSelection: formatSelection // Call the formatSelection function to customize selected option rendering
+        templateSelection: formatSelectedShoeOption // Call the formatSelectedShoeOption function to customize selected option rendering
     });
     
     // Call filterShoes function initially
@@ -973,17 +973,18 @@ function formatShoeOption(shoe) {
         return shoe.text; // Option without an image (placeholder)
     }
 
-    var $option = $('<span><img src="' + shoe.title + '" class="shoe-image" /> ' + shoe.text + '</span>');
+    var $option = $('<span><img src="shoe_img/' + shoe.id + '.png" class="shoe-image" style="width: 70px" /> ' + shoe.text + '</span>');
+  
     return $option;
 }
 
-function formatSelection(shoe) {
-    if (!shoe.id) {
-        return shoe.text; // Option without an image (placeholder)
+function formatSelectedShoeOption(selection) {
+    if (!selection.id) {
+        return selection.text; // Placeholder option
     }
 
-    var $option = $('<span><img src="' + shoe.title + '" class="shoe-image" /> ' + shoe.text + '</span>');
-    return $option;
+    var $selection = $('<span><img src="shoe_img/' + selection.id + '.png" class="shoe-image" style="width: 70px" /> ' + selection.text + '</span>');
+    return $selection;
 }
 //--------------------------------------------------------
     let page = 0;
