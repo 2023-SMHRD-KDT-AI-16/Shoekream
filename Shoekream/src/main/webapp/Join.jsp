@@ -21,10 +21,24 @@
                     <br>
                     <h3>회원가입</h3>
 
+<style>
+    #checkbutton {
+        background-color: transparent; /* 배경을 투명하게 설정 */
+        cursor: pointer; /* 호버 시 포인터 변경 */
+        border-color : white;
+        color : white;
+		border-radius: 5px;
+		   transition: all 0.3s ease;
+    }
 
+    #checkbutton:hover {
+       margin: 2px;
+       background-color: green;
+    }
+</style>
                     <div class="inputbox"  >  
                         <input type="text"  name="user_id" id="user_id" placeholder="영어,숫자 조합으로 6~12자" required>
-                        <button type="button" onclick="CheckID()">아이디 중복확인</button>
+                        <button type="button" id="checkbutton" onclick="CheckID()">아이디 중복확인</button>
                         <span id="idConfirm"></span>
                         <label for="" >아이디* </label>    
                       
@@ -67,6 +81,28 @@
                         <label for="">아이디가 있으신가요? <a href="Login.jsp">로그인 하기</a></label>
                     </div>
                     <div > 
+                    	<style>
+                    	#join {
+	width: 100%;
+	height: 40px;
+	border-radius: 20px;
+	font-size: 1em;
+	font-weight: 600;
+	background-color: #ffffff;
+	/* 기본 배경색 */
+	/* 테두리 스타일 */
+	padding: 10px 20px;
+	/* 안쪽 여백 */
+	transition: background-color 0.13 ease;
+	/* 배경색 변화를 부드럽게 만듦 */
+}
+
+#join:hover {
+	background-color: #00ff00;
+	margin : 2px;
+	/* 호버 시 배경색 변경 */
+}
+                    	</style>
                         <button type="submit" id="join">회원가입요청</button>
                     </div>
                 </form>
