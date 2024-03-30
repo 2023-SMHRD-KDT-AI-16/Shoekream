@@ -472,14 +472,18 @@ img {
 	
 }
 
-
+/*게시글 모달*/
+.modal2{
+max-width:1200px !important;
+height:800px;
+}
 </style>
 
 </head>
 <body>
 	<%
 	if(request.getParameter("post_result")!=null){
-	if(request.getParameter("post_result").equals("success")){
+	if(request.getParameter("post_result").equals("1")){
 		PrintWriter out2 = response.getWriter();
 		String script = "<script>alert('게시글이 등록되었습니다');</script>";
 		out.println(script);
@@ -536,9 +540,7 @@ img {
 			<input type="checkbox" name="accordion" id="answer01"> <label
 				for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a href="Main.jsp">홈</a><em></em></label> <input
 				type="checkbox" name="accordion" id="answer02"> <label
-				for="answer02"><span id="emo_post"><a
-				id="modalOpenButton">&#9997;</a></span><a
-				id="modalOpenButton"> 게시글작성 </a><em></em></label> <input type="checkbox"
+				for="answer02" id="modalOpenButton"><span id="emo_post">&#9997;</span>게시글작성 <em></em></label> <input type="checkbox"
 				name="accordion" id="answer03"> <label for="answer03"><span
 				id="emo"><a href="chat.jsp">&#128172;</a></span>
 					<a href="chat.jsp">채팅방 가기</a>
@@ -878,30 +880,26 @@ function toggleLikeY(index) {
 //----------------------------------------------------------------
 //댓글 달기
 
-function writeComment(i){
+function writeComment(i,postIdx){
 	var inputComment = $('[name="comment"]').eq(i).val();
-	var postIdx = $('[name="postIdx"]').eq(i).val();
 	
-	$.ajax({
-		//1.어디로 요청할 것인지
-		url:'WriteCommentService',
-		//2.요청할 데이터 {key:value} --> request객체에 담김
-		data:{"postIdx": postIdx, "inputComment": inputComment},
-		//3.요청방식
-		type:'get',
-		//요청에 성공했을때 무엇을 할 것인지
-		success: function(result){
-			console.log("통신 성공")
-				
-			
-		},
-		//요청에 실패했을때
-		error:function(){
-		console.log("통신 실패")
-		}
-		
-		
-	});
+	  if(inputComment.trim() !== '') {
+	        $.ajax({
+	            url: 'WriteCommentService',
+	            data: {"postIdx": postIdx, "inputComment": inputComment},
+	            type: 'get',
+	            success: function(result){
+	                console.log("댓글 저장 성공");
+	                // 댓글 저장 후 입력 필드 초기화
+	                $('[name="comment"]').val('');
+	            },
+	            error: function(){
+	                console.log("댓글 저장 실패");
+	            }
+	        });
+	    } else {
+	        alert("댓글을 입력해주세요.");
+	    }
 	
 }
 
@@ -1085,10 +1083,10 @@ function formatSelectedShoeOption(selection) {
 						    ${post_result.cmtcontent?`<span class="comments">${post_result.cmtcontent}</span>`:''}
 						    <br>
 						    <p>게시글내용${post_result.post_content}</p>
-						    <input type="text" placeholder="댓글달기..." id="postchat">
-						  
+						    <input type="text" placeholder="댓글달기..." id="postchat" name="comment">
+						    <button onclick="writeComment(${page},${post_result.post_idx})">댓글저장</button>  
 						      <div id="ex${page}" class="modal2" style="display: none;">
-						      <p>${page}모달 텍스트</p>  <iframe src="PostDetail.jsp?postIdx=${post_result.post_idx}" frameborder="0" style="width: 100%; height: 400px;"></iframe>
+						   <iframe src="PostDetail.jsp?postIdx=${post_result.post_idx}" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
 
 						    </div>
 						    <button><a href="javascript:show(${page})">모달창 열기~</a></button>

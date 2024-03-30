@@ -41,7 +41,11 @@ public class WriteCommentService extends HttpServlet {
 		UserDTO user_info = (UserDTO)session.getAttribute("user_info");
 		dto.setUser_id(user_info.getUserId());
 		int result = dao.comment(dto);
-		System.out.println(result);
+		if(result>0) {
+			System.out.println("댓글 저장 성공");
+		}else {
+			System.out.println("댓글 저장 실패");
+		}
 		
 		
 	}
