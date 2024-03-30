@@ -5,10 +5,10 @@
 <html>
 
 <head>
- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/Join.css">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./CSS/Login.css">
+<title>Document</title>
 </head>
 
 <body>
@@ -21,117 +21,60 @@
 			+ "&redirect_uri=" + redirectURI + "&state=" + state;
 	session.setAttribute("state", state);
 	%>
- 	
- <section>
-        <div class="form-box">
-            <div class="form-value">
-                <form action="LoginService">
-                    <h2>SHOEKREAM</h2>
-                    <div class="inputbox" >
-                       
-                        <input type="text" name="id" required >
-                        <label for="">아이디</label>
-                    </div>
-                    <div class="inputbox">
-                  
-                        <input type="password" name="pw" required>
-                        <label for="">비밀번호</label>
-                    </div>
-                    <span class="error" >
-                        
-                    </span>
-                    <div class="forget">
-                        <label for=""><input type="checkbox" >아이디 기억하기    <a href="#">비밀번호 찾기</a></label>
-                    </div>
-                    <button type="submit" id="login">로그인</button> 
-                </form>
-                     <br>
-                     <div class="naver" >
-                      <a href="<%=apiURL%>"><img height="30"
-								src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
-                    </div>
-                     <div class="join_pass">
-                    <br>
-                    <label for="">아이디가 없으신가요?    <a href="Join.jsp">  회원가입 하러가기</a></label>
-                </div>
-            </div>
-        </div>
-    </section>
+
+	<section>
+		<div class="form-box">
+			<div class="form-value">
+				<form action="LoginService">
+					<h2>SHOEKREAM</h2>
+					<div class="inputbox">
+
+						<input type="text" name="id" required> <label for="">아이디</label>
+					</div>
+					<div class="inputbox">
+
+						<input type="password" name="pw" required> <label for="">비밀번호</label>
+					</div>
+					<span class="error"> </span>
+					<div class="forget">
+						<label for=""><input type="checkbox">아이디 기억하기 <a
+							href="#">비밀번호 찾기</a></label>
+					</div>
+					<button type="submit" id="login"
+						style="width: 303.63636px; height: 43.636359999999996px; 
+						border: 2px solid rgba(255,255,255,0.5);
+						border-radius: 5px; background-color:#ffffff00; color:white;
+						font-size: medium;
+						">로그인</button>
+				</form>
+				<br>
+				<div class="naver">
+					<a href="<%=apiURL%>"><img height="40" width="300"
+						object-fit="contain"
+						;
+								src="https://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
+				</div>
+				<div class="join_pass">
+					<br> <label for="" >아이디가 없으신가요? <a href="Join.jsp">
+							회원가입 하러가기</a></label>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 	<!-- 로그인 실패시 오류 메세지 출력 -->
- 	<%
-        String errorMessage = (String) request.getAttribute("errorMessage");
-        if(errorMessage != null) {
-    %>
-        <script>alert('<%= errorMessage %>');</script>
-    <%
-        }
-    %>
- <input type="checkbox" id="menuicon">
-  <header>
-    <div>
-      <ul class="navi">
-           <!-- 메뉴아이콘 -->
-        <label for="menuicon" class="menubtn">
-        <span></span>
-        <span></span>
-        <span></span>
-        </label>
-        <li class="logo"><a>SHOEKREAM</a> </li>
-      </ul>
-     
-    </div>
-  </header>
+	<%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>alert('<%=errorMessage%>');</script>
+	<%
+	}
+	%>
 
-  <div class="container">
-    <div class="content" >
-      <span class="area_desc"></span> 
-      <!-- 위에 괄호 안이 content영역 -->
-      <div id="instagram-posts">
-        <!-- 여기에 포스트가 추가됩니다 -->
-      </div>
-    </div>
-    <div class="sidebar">
-      <span class="area_desc" >SIDEBAR영역</span>
 
-        <input type="checkbox" name="accordion" id="answer00">
-        <label for="answer00"> <input type="text" placeholder="검색"><em></em></label>      
-        <input type="checkbox" name="accordion" id="answer01">
-        <label for="answer01">홈<em></em></label>
-        <div><p>여기에 내용</p></div>
-        <input type="checkbox" name="accordion" id="answer02">
-        <label for="answer02">게시글작성<em></em></label>
-         <div><p>여기에 내용</p></div>
-        <input type="checkbox" name="accordion" id="answer03">
-        <label for="answer03">채팅<em></em></label>
-          <div><p>여기에 내용</p></div>
-        <input type="checkbox" name="accordion" id="answer04">
-        <label for="answer04">알림<em></em></label>
-          <div><p>여기에 내용</p></div>
-          <input type="checkbox" name="accordion" id="answer05">
-          <label for="answer05">프로필<em></em></label>
-            <div><p>여기에 내용</p></div>
-      </div>
-      <div class="post">
-        
-      </div>
-      <div id="profile_wrap">
-       <div class="profile_box1">
-          <div class="photo"><img src="/MAIN/img/299400862_433066862176075_265719782033185215_n.jpg" alt="기본프로필"></div>
-          <div class="right">
-            <h1>profile name</h1>
-            <!-- 프로필 네임 안에 user_name? user_nickname? -->
-            <ul>
-            <h5><span>게시글 1</span>  <span>팔로워 150</span>  <span>팔로우 13</span></h5>
-            <!-- 숫자사이에  -->
-            </ul>
-          </div>  
-        </div>
-      </div>
-  </div>
-
-  <script>
+	<script>
     let page = 1;
 
     function loadMorePosts() {

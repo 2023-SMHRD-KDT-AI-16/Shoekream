@@ -127,10 +127,21 @@ top: -5px;
     text-align: center;
      
 }
+.naver img {
+        width: 300px;
+        height: 40px;
+        object-fit: contain; /* 이미지를 비율을 유지하면서 컨테이너에 맞게 조정합니다. */
+    }
 /* .error{
     display: block;
     height: 50px;
     color: red;
     text-align: left;
 } */
-
+ #login:hover {
+	    z-index: 30;
+        background-color: rgb(255, 128, 128); /* 마우스 호버 시 배경색 변경 */
+        margin: 2px;
+        transition: .35s;
+        cursor: pointer; /* 호버 시 포인터 변경 */
+    }
