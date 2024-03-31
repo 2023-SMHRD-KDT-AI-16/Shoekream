@@ -124,7 +124,11 @@ a {
 	overflow: hidden;
 	margin-left: 20px;
 }
-
+#profile{
+	width:150px;
+	height:150px;
+	
+}
 #profile_wrap .profile_box1 .photo img {
 	border: solid 3px;
 	border-radius: 50%;
@@ -421,7 +425,7 @@ follow_0 {
 }
 /*이모티콘 마진 적용*/
 #emo {
-	margin-right: 10px;
+	margin-right: 5px;
 }
 
 #emo_post {
@@ -470,6 +474,8 @@ color:gray;
 /* 신발 이미지 */
 img {
 	cursor: pointer;
+	wedth:70px;
+	height:70px;
 	
 }
 
@@ -488,7 +494,33 @@ font-size:5px;
 color: black;
 }
 
+#modalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명한 검은색으로 설정 */
+    z-index: 999; /* 다른 요소들보다 위에 나타나도록 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+#modalContent {
+    background-color: #fff; /* 모달 내용의 배경색을 흰색으로 설정 */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#modalCloseButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
 </style>
 
 </head>
@@ -520,7 +552,7 @@ color: black;
 				</label>
 				<li class="logo"><a>SHOEKREAM</a></li>
 				<!-- 슈크림 메인 로고  -->
-				<select id="Search" name="selectedSearch" multiple="multiple" data-placeholder="닉네임 또는 신발 이름을 검색하세요"> </select>
+				<select id="Search" name="selectedSearch" multiple="multiple" data-placeholder="&#128269; 닉네임 또는 신발 이름을 검색하세요"> </select>
 			</ul>
 
 				
@@ -545,13 +577,8 @@ color: black;
 
 		<div class="sidebar">
 			<span class="area_desc"></span> <input type="checkbox"
-				name="accordion" id="answer00"> <label for="answer00"><span
-				id="emo">&#128269;</span><input type="text" placeholder="검색"><em></em></label>
-				<div>
-				<p>여기에 내용</p><br>
-				<p>여기에 내용</p>
-				
-			</div>
+				name="accordion" id="answer00"> 
+		
 			
 			<input type="checkbox" name="accordion" id="answer01"> <label
 				for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a href="Main.jsp">홈</a><em></em></label> <input
@@ -567,8 +594,7 @@ color: black;
 			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
 			<em></em></label>
 																
-			<input type="checkbox" name="accordion" id="answer05"> <label
-				for="answer05"><span id="emo">&#128276;</span>알림<em></em></label>
+			
 
 			<div>
 				<p>여기에 내용</p>
@@ -632,7 +658,7 @@ function getSiblings(element) {
 		<div id="profile_wrap">
 			<div class="profile_box1">
 				<div class="photo">
-					<img src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지">
+					<img id="profile" src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지">
 				</div>
 				<div class="right">
 					<h1><%=user_info.getUserNick()%></h1>
@@ -1088,11 +1114,24 @@ function formatSelectedShoeOption(selection) {
 						          <path d="M12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412l7.332 7.332c.17.299.498.492.875.492a.99.99 0 0 0 .792-.409l7.415-7.415c2.354-2.354 2.354-6.049-.002-8.416a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595zm6.791 1.61c1.563 1.571 1.564 4.025.002 5.588L12 18.586l-6.793-6.793c-1.562-1.563-1.561-4.017-.002-5.584.76-.756 1.754-1.172 2.799-1.172s2.035.416 2.789 1.17l.5.5a.999.999 0 0 0 1.414 0l.5-.5c1.512-1.509 4.074-1.505 5.584-.002z"></path>
 						        </svg>
 						      </box-icon>
+						      <a href="javascript:show(${page})">
 						      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 3);transform: ;msFilter:;">
 						        <path d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.516 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8zm0 14h-.333L9 18v-2.417l-.641-.247C5.67 14.301 4 12.256 4 10c0-3.309 3.589-6 8-6s8 2.691 8 6-3.589 6-8 6z"></path>
 						      </svg>
+						      </a>
 						    </div>
-						    
+						    <style>
+						    /* SVG 이미지에 호버 효과 적용 */
+						    svg:hover {
+						        opacity: 0.7; /* 호버 시 투명도 변경 */
+						   
+						    }
+
+						</style>
+
+
+
+
 						    <span class="likes">${post_result.countlike}</span>
 						    <br>
 						    ${post_result.cmtcontent?`<span class="comments">${post_result.cmtcontent}</span>`:''}
@@ -1104,7 +1143,7 @@ function formatSelectedShoeOption(selection) {
 						   <iframe src="PostDetail.jsp?postIdx=${post_result.post_idx}" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
 
 						    </div>
-						    <button><a href="javascript:show(${page})">모달창 열기~</a></button>
+						 
 						  
 						    
 						 
@@ -1286,7 +1325,11 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-
+<script>
+document.getElementById('heart').addEventListener('click', function() {
+    this.style.fill = 'red';
+});
+</script>
 	<!--End of Tawk.to Script-->
 
 
