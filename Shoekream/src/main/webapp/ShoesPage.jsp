@@ -79,7 +79,7 @@ height:800px;
 				 <div id="ex<%=i %>" class="modal2" style="display: none;">
 	<iframe src="PostDetail.jsp?postIdx=<%=p_list.get(i).getPostIdx() %>" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
 				</div>
-					<a href="#"><img
+					<a href="javascript:show(<%=i %>)"><img
 						src="post_img/<%=p_list.get(i).getPostImg()%>" alt="사진"></a>
 				</div>
 				<%
@@ -131,6 +131,11 @@ height:800px;
 			</div>
 		</div>
 </body>
+< <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 		<script>
 //모든 메뉴 아이템 요소를 가져옵니다.
 const menuItems = document.querySelectorAll('.sidebar input[type="checkbox"]');
@@ -160,7 +165,19 @@ function getSiblings(element) {
     }
     return siblings;
 }
+
+//------------------------------------------------------------------------
+//모달 여러개...
+ function show(num) {
+	   console.log("선택")
+     $("#ex"+num).modal({
+       fadeDuration: 100,
+       fadeDelay: 1,
+     });
+   }	
 </script>
+
+
 	<script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
