@@ -31,16 +31,20 @@
 			</ul>
 		</div>
 	</header>
+					
+					<form id="profileForm" action="WriterService" method="post"
+				enctype="multipart/form-data">
 	<div class="inputbox">
 		<div class="container">
 			<div id="profile_wrap" style="width: 1000px; height: auto;">
 				<div class="profile_box1" style="width: 1000px; height: auto; margin-top: 20px;">
 					<div class="photo"
 						style="width: 300px; height: 300px; border-radius: 50%; border: 2px soild">
-						<img src="" alt="프로필사진"
+						<img src="img/<%=user_info.getUserProfileImg() %>" alt="프로필사진"
 							style="width: 300px; height: 300px; border-radius: 50%;">
 
 					</div>
+					
 					<button id="btn1"  style="
   border: none; /* 테두리 제거 */
     width: 212px;
@@ -54,20 +58,26 @@
 					
 							<div class="inputbox">
 
-								<input type="text" name="user_nick" placeholder="예) 슈크림빵"
-									required> <label for="">변경할 닉네임*</label>
+								<input type="text" name="user_nick" value=<%=user_info.getUserName() %>
+									required ><label for="">변경할 닉네임*</label>
 							
 						</div>
 							<div class="inputbox">
-
-								<input type="text" name="post" id="post"
+	
+	 						<%if(user_info.getUserInfo()==null){%>
+	 								<input type="text" name="post" id="post" 
 									oninput="pwCheck()" placeholder="한줄소개를 작성해보세요" required>
+	 						<%}else{%>	
+	 							<input type="text" name="post" id="post" 
+									oninput="pwCheck()" value=<%=user_info.getUserInfo() %> required>
+							<%}%>
+							
 								<label for="">소개글*</label>
 							</div>
 				
-
+					<form>
 					<div class="inputbox">
-
+						
 						<input type="password" name="user_pw" id="user_pw"
 							oninput="pwCheck()" placeholder="영어,숫자 조합으로 8~16자" required>
 						<label for="">비밀번호*</label>
@@ -83,18 +93,18 @@
 					<div class="inputbox">
 
 						<input type="" name="user_email"
-							placeholder="예) shoekream12@naver.com" required> <label
+							value=<%=user_info.getUserEmail() %> required> <label
 							for="">이메일*</label>
 					</div>
 
 					<div class="inputbox">
 
 						<input type="text" name="user_phone"
-							placeholder="예) 010-1234-1234" required> <label for="">휴대폰번호*</label>
+							value=<%=user_info.getUserPhone() %> required> <label for="">휴대폰번호*</label>
 					</div>
 					<div class="inputbox">
 
-						<input type="text" name="user_name" placeholder="예) 홍길동" required>
+						<input type="text" name="user_name" value=<%=user_info.getUserName() %> required>
 						<label for="">이름*</label>
 					</div>
 					<button type="submit" id="join" style="
@@ -105,7 +115,9 @@
     border-radius: 5px;
         cursor: pointer;
 					">프로필 수정하기</button>
+					</form>
 				</div>
+				
 			</div>	
 				<br>
 
@@ -152,7 +164,8 @@
 		</div>
 	</div>
 </body>
-<script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>	
 //모든 메뉴 아이템 요소를 가져옵니다.
 const menuItems = document.querySelectorAll('.sidebar input[type="checkbox"]');
 
@@ -181,6 +194,18 @@ function getSiblings(element) {
     }
     return siblings;
 }
+
+//----------------------------------------------------------------
+//비밀번호 재확인
+     function pwCheck(){
+         if($('#user_pw').val()==$('#user_pw_check').val()){
+            $('#pwConfirm').text("비밀번호가 일치합니다").css('color','green')
+         }else{
+            $('#pwConfirm').text('비밀번호가 일치하지 않습니다.').css('color','red')         
+         }
+      }
+
+
 </script>
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

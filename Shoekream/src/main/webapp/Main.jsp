@@ -582,6 +582,7 @@ color: black;
 				</p>
 			</div>
 		</div>
+		  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script>
 //모든 메뉴 아이템 요소를 가져옵니다.
 const menuItems = document.querySelectorAll('.sidebar input[type="checkbox"]');
