@@ -82,6 +82,12 @@
     	<description></description>
     	<servlet-class>com.smhrd.controller.SearchService</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>ShoespageService</servlet-name>
+    	<display-name>ShoespageService</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.ShoespageService</servlet-class>
+    </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -133,5 +139,9 @@
    <servlet-mapping>
    	<servlet-name>SearchService</servlet-name>
    	<url-pattern>/SearchService</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>ShoespageService</servlet-name>
+   	<url-pattern>/ShoespageService</url-pattern>
    </servlet-mapping>
 </web-app>

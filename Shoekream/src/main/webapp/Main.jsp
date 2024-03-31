@@ -518,7 +518,7 @@ color: black;
 				</label>
 				<li class="logo"><a>SHOEKREAM</a></li>
 				<!-- 슈크림 메인 로고  -->
-				
+				<select id="Search" name="selectedSearch" multiple="multiple"> </select>
 			</ul>
 
 				
@@ -527,7 +527,7 @@ color: black;
 	</header>
 	
 
-<select id="Search" name="selectedSearch" multiple="multiple"> </select>
+
 	<!-- ----------------------------------------------------------------------- -->
 	<!-- 신발페이지 연결 테스트  -->
 	<form action="ShoesPage.jsp">
@@ -1164,13 +1164,35 @@ $(window).scroll(function(){
  //전체 검색
 
 $(document).ready(function() {
+    // Select2 초기화
     $('#Search').select2({
-    	   maximumSelectionLength: 1,
+        maximumSelectionLength: 1,
         templateResult: formatSearch, // Customizes option rendering
         templateSelection: formatSelectedSearch // Customizes selected option rendering
     });
-    
-    // Call filterSearch function initially to populate options
+
+    // Select2 항목 선택 이벤트 핸들러 추가
+    $('#Search').on('select2:select', function (e) {
+        var data = e.params.data;
+        console.log(data)
+
+        // 선택된 항목의 그룹을 확인
+        var group = $(data.element).closest('optgroup').attr('label');
+
+        // 선택된 항목에 따라 서블릿 URL 구성
+        var servletURL = '';
+        if(group === 'Shoes') {
+           servletURL = 'ShoespageService?shoeId=' + data.id;
+        } else if(group === 'Users') {
+          servletURL = 'MypageService?post_userid=' + data.id;
+        }
+
+        // 서블릿 URL이 설정되었으면, 해당 URL로 페이지 이동
+        if(servletURL !== '') {
+            window.location.href = servletURL;
+        }
+    });
+
     filterSearch();
 });
 
@@ -1198,7 +1220,7 @@ function filterSearch() {
         // 신발 정보 그룹 생성
         var shoesGroup = $('<optgroup label="Shoes"></optgroup>');
         shoesArr.forEach(function(shoe) {
-            shoesGroup.append($('<option >', {
+            shoesGroup.append($('<option>', {
                 value: shoe.shoe_tag, 
                 text: shoe.shoe_name,
                 title:shoe.shoe_tag,
