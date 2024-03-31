@@ -1049,6 +1049,7 @@ function formatSelectedShoeOption(selection) {
 }
 //--------------------------------------------------------
 //포스트(게시글 무한스크롤)
+var currentUserId = '<%=user_info.getUserId()%>';
     let page = 0;
 	var loading = 'false';
 	console.log("Test2")
@@ -1070,18 +1071,20 @@ function formatSelectedShoeOption(selection) {
 					var post_result =JSON.parse(result)		
 					console.log("result"+result)
 					
-					//follow여부에 따라 follow버튼 바꾸기
-					var isfollow = post_result.isfollow
-					var togglefollow = null
-					console.log(isfollow)
-					if(!isfollow){
-						isfollow="팔로우"
-						console.log(post_result.post_user_id)
-							togglefollow = `togglefollowN(${page}, '${post_result.post_user_id}')`;
-					}else{
-						isfollow="팔로잉"
-						togglefollow=`togglefollowY(${page},'${post_result.post_user_id}')`
-					}
+					
+					var post_result = JSON.parse(result);
+console.log("result" + result);
+
+// 팔로우 버튼 HTML 생성 로직
+var followButtonHTML = '';
+if(post_result.post_user_id !== currentUserId) {
+    var isfollow = post_result.isfollow ? "팔로잉" : "팔로우";
+    var togglefollow = post_result.isfollow ? `togglefollowY(${page}, '${post_result.post_user_id}')` : `togglefollowN(${page}, '${post_result.post_user_id}')`;
+    followButtonHTML = `<button id="follow_${page}" onclick="${togglefollow}" style="">${isfollow}</button>`;
+} else {
+    // 현재 사용자가 게시물 작성자와 같은 경우, 팔로우 버튼을 숨김
+    followButtonHTML = `<button id="follow_${page}" style="display: none;">${isfollow}</button>`;
+}
 					
 					//좋아요 여부에 따라 좋아요 버튼 바꾸기
 					console.log("좋아요"+post_result.isLike)
@@ -1101,14 +1104,16 @@ function formatSelectedShoeOption(selection) {
 						    <a href="MypageService?post_userid=${post_result.post_user_id}"><img src="img/${post_result.post_profileimg}" alt="프로필 사진"></a>
 						    <div class="profile-info">
 						      <h2 class="head">${post_result.post_nick} 
-						        <button id="follow_${page}" onclick="${togglefollow}">${isfollow}</button> 
+						      ${followButtonHTML} 
 						      </h2>
 						      <p>${post_result.posted_at}</p>
 						    </div>
 						    <div></div>
 						  </div>
 						  <div class="post-content">
+						  <a href="javascript:show(${page})">
 						    <img src="post_img/${post_result.post_img}" alt="게시물 이미지">
+						    </a>
 						  </div>
 						  ${post_result.shoe_tag1 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag1}"><img src="shoe_img/${post_result.shoe_tag1}.png"/> <p>${post_result.tag1_name}</p></a>` : ''}
 					        ${post_result.shoe_tag2 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img src="shoe_img/${post_result.shoe_tag2}.png"/> <p>${post_result.tag2_name}</p></a>` : ''}
@@ -1145,17 +1150,15 @@ function formatSelectedShoeOption(selection) {
 						   <iframe src="PostDetail.jsp?postIdx=${post_result.post_idx}" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
 
 						    </div>
-						 
-						  
-						    
-						 
       `;
-	 			
+
       
 					 // 새로운 포스트를 추가합니다.
       container.innerHTML += postData+'<br>';
       //console.log(postData)	
 
+      
+      
       page++;
       loading = 'false'
       ;}
