@@ -449,9 +449,10 @@ follow_0 {
 	margin-right: 15px;
 }
 
+/*신발 검색 옵션*/
 
 #shoesOptions{
-width:300px;
+width:800px;
 height:auto;
 display: block;
 font-size:5px;
@@ -459,7 +460,7 @@ font-size:5px;
 
 
 .select2-results__option{
-width:300px;
+width:800px;
 height:auto;
 font-size:16px;
 color:gray;
@@ -478,8 +479,9 @@ max-width:1200px !important;
 height:800px;
 }
 
+/*전체 검색*/
 #Search{
-width:400px;
+width:850px;
 height:auto;
 display: block;
 font-size:5px;
@@ -518,7 +520,7 @@ color: black;
 				</label>
 				<li class="logo"><a>SHOEKREAM</a></li>
 				<!-- 슈크림 메인 로고  -->
-				<select id="Search" name="selectedSearch" multiple="multiple"> </select>
+				<select id="Search" name="selectedSearch" multiple="multiple" data-placeholder="닉네임 또는 신발 이름을 검색하세요"> </select>
 			</ul>
 
 				
@@ -527,12 +529,6 @@ color: black;
 	</header>
 	
 
-
-	<!-- ----------------------------------------------------------------------- -->
-	<!-- 신발페이지 연결 테스트  -->
-	<form action="ShoesPage.jsp">
-	<button >신발상세페이지</button>
-		</form>
 	<!-- ----------------------------------- -->	
 	<div class="container">
 		<div class="content" style="height: auto; margin-right: 520px">
@@ -1012,7 +1008,7 @@ function formatShoeOption(shoe) {
     }
 
     var $option = $('<span><img src="shoe_img/' + shoe.id + '.png" class="shoe-image" style="width: 70px" /> ' + shoe.text + '</span>');
-  
+    $option.css('color', 'black');
     return $option;
 }
 
@@ -1022,6 +1018,7 @@ function formatSelectedShoeOption(selection) {
     }
 
     var $selection = $('<span><img src="shoe_img/' + selection.id + '.png" class="shoe-image" style="width: 70px" /> ' + selection.text + '</span>');
+    $selection.css('color', 'black');
     return $selection;
 }
 //--------------------------------------------------------
@@ -1254,7 +1251,7 @@ function formatSearch(item) {
    if(group==='Shoes'){
 	   var $option = $('<span><img src="shoe_img/' + item.title +'.png" class="user-image" style="width: 70px" /> ' + item.text + '</span>');
    }else{
-  var $option = $('<span><img src="img/' + item.title + '" class="shoe-image" style="width: 70px" /> ' + item.text + '</span>'); }
+  var $option = $('<span><img src="img/' + item.title + '" class="shoe-image" style="width: 60px" /> ' + item.text + '</span>'); }
     
 	if(!item.title){
 		 $option = $('<span>' + item.text + '</span>');
@@ -1268,12 +1265,12 @@ function formatSelectedSearch(selection) {
 	var group = $(selection.element).closest('optgroup').attr('label');
 	console.log("라벨"+group)
    if(group==='Shoes'){
-	   var $option = $('<span><img src="shoe_img/' + selection.title +'.png" class="user-image" style="width: 70px" /> ' + selection.text + '</span>');
+	   var $option = $('<span><img src="shoe_img/' + selection.title +'.png" class="shoe-image" style="width: 70px" /> ' + selection.text + '</span>');
    }else{
-  var $option = $('<span><img src="img/' + selection.title + '" class="shoe-image" style="width: 70px" /> ' + selection.text + '</span>'); }
+  var $option = $('<span><img src="img/' + selection.title + '" class="user-image" style="width: 60px" /> ' + selection.text + '</span>'); }
     
-	 $option.css('color', 'black'); // 글자색을 검정색으로 설정
-	    return $option;
+	 $option.css('color', 'black'); // 글자색을 검정색으로 설정 
+	 return $option;
 }
 
 </script>
