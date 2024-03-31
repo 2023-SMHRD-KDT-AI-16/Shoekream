@@ -100,6 +100,18 @@
     	<description></description>
     	<servlet-class>com.smhrd.controller.UpdateService</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>LikeService2</servlet-name>
+    	<display-name>LikeService2</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.LikeService2</servlet-class>
+    </servlet>
+    <servlet>
+    	<servlet-name>LikeService</servlet-name>
+    	<display-name>LikeService</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.LikeService</servlet-class>
+    </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -163,5 +175,13 @@
    <servlet-mapping>
    	<servlet-name>UpdateService</servlet-name>
    	<url-pattern>/UpdateService</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>LikeService2</servlet-name>
+   	<url-pattern>/LikeService2</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+   	<servlet-name>LikeService</servlet-name>
+   	<url-pattern>/LikeService</url-pattern>
    </servlet-mapping>
 </web-app>

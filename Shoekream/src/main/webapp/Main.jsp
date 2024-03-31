@@ -831,20 +831,20 @@ function togglefollowY(page,post_user_id) {
 
 //------------------------------------------------------------
 //좋아요 누른 게시글일때
-function toggleLikeN(index) {
+function toggleLikeN(index,post_idx) {
     var likeButton = document.getElementById('like_' + index);
     likeButton.classList.toggle('active');
     
-    var likeCountElement = likeButton.parentElement.nextElementSibling;
+    var likeCountElement =document.getElementsByClassName('likes')[index]
     var likeCount = parseInt(likeCountElement.textContent);
-    var post_idx = $('[name="postIdx"]').eq(index).val();
+
     
     if (likeButton.classList.contains('active')) {
         // 좋아요를 눌렀을 때
         likeCount += 1;
-        likeButton.textContent='❤️';
+        likeButton.src='img/빨간색하트.png';
         $.ajax({
-            url: "LIkeService",
+            url: "LikeService",
             data: { "post_idx": post_idx, "like": "y" },
             type: 'get',
             success: function (result) {
@@ -857,9 +857,9 @@ function toggleLikeN(index) {
     } else {
         // 좋아요 취소 했을 때
         likeCount -= 1;
-        likeButton.textContent='🤍';
+        likeButton.src='img/흰색하트.png';
         $.ajax({
-            url: "LIkeService",
+            url: "LikeService",
             data: { "post_idx": post_idx, "like": "n" },
             type: 'get',
             success: function (result) {
@@ -874,20 +874,19 @@ function toggleLikeN(index) {
     likeCountElement.textContent = likeCount;
 }
 //좋아요 안누른 게시글 일때
-function toggleLikeY(index) {
+function toggleLikeY(index,post_idx) {
     var likeButton = document.getElementById('like_' + index);
     likeButton.classList.toggle('active');
     
-    var likeCountElement = likeButton.parentElement.nextElementSibling;
+    var likeCountElement =document.getElementsByClassName('likes')[index]
     var likeCount = parseInt(likeCountElement.textContent);
-    var post_idx = $('[name="postIdx"]').eq(index).val();
     
     if (likeButton.classList.contains('active')) {
          // 좋아요 취소 했을 때
         likeCount -= 1;
-        likeButton.textContent='🤍';
+        likeButton.src='img/흰색하트.png';
         $.ajax({
-            url: "LIkeService",
+            url: "LikeService",
             data: { "post_idx": post_idx, "like": "n" },
             type: 'get',
             success: function (result) {
@@ -900,9 +899,9 @@ function toggleLikeY(index) {
     } else {
     	 // 좋아요를 눌렀을 때
         likeCount += 1;
-        likeButton.textContent='❤️';
+        likeButton.src='img/빨간색하트.png';
         $.ajax({
-            url: "LIkeService",
+            url: "LikeService",
             data: { "post_idx": post_idx, "like": "y" },
             type: 'get',
             success: function (result) {
@@ -1084,6 +1083,17 @@ function formatSelectedShoeOption(selection) {
 						togglefollow=`togglefollowY(${page},'${post_result.post_user_id}')`
 					}
 					
+					//좋아요 여부에 따라 좋아요 버튼 바꾸기
+					console.log("좋아요"+post_result.isLike)
+					var isLike = post_result.isLike
+					var toggleLike = null
+					if(post_result.isLike==true){
+						isLike="빨간색하트"
+						toggleLike=`toggleLikeY(${page}, '${post_result.post_idx}')`
+					}else{
+						isLike="흰색하트"
+						toggleLike=`toggleLikeN(${page}, '${post_result.post_idx}')`
+					}
 					 
 					const postData= `
 						<div class="instagram-post">
@@ -1104,20 +1114,17 @@ function formatSelectedShoeOption(selection) {
 					        ${post_result.shoe_tag2 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img src="shoe_img/${post_result.shoe_tag2}.png"/> <p>${post_result.tag2_name}</p></a>` : ''}
 					        ${post_result.shoe_tag3 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag3}"><img src="shoe_img/${post_result.shoe_tag3}.png"/> <p>${post_result.tag3_name}</p></a>` : ''}
 						  <div class="post-footer">
-						    <div class="emoji-icons">
+						    <div class="emoji-icons" >
 						      <box-icon name='heart' class="h">
-						        <a>🤍❤️</a>
+						      <img src='img/${isLike}.png' id="like_${page}" onclick="${toggleLike}" class="heart_comment" style="height:40px;weight:40px">
 						      </box-icon>
 						      <a href="javascript:show(${page})">
-						      <img src='img/1f5e8.png/>'
-						      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 3);transform: ;msFilter:;">
-						        <path d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.516 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8zm0 14h-.333L9 18v-2.417l-.641-.247C5.67 14.301 4 12.256 4 10c0-3.309 3.589-6 8-6s8 2.691 8 6-3.589 6-8 6z"></path>
-						      </svg>
+						      <img src='img/말풍선.png' class="heart_comment" style="height:40px;weight:40px">
 						      </a>
 						    </div>
 						    <style>
 						    /* SVG 이미지에 호버 효과 적용 */
-						    svg:hover {
+						    .heart_comment:hover {
 						        opacity: 0.7; /* 호버 시 투명도 변경 */
 						   
 						    }
