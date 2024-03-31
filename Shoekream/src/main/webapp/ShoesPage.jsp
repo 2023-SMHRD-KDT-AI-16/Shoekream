@@ -1,3 +1,6 @@
+<%@page import="com.smhrd.model.ShoesDTO"%>
+<%@page import="com.smhrd.model.BoardDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.smhrd.model.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -22,6 +25,8 @@
 	<%
 	//세션에 저장된 로그인한 유저의 정보 불러오기 
 	UserDTO user_info = (UserDTO) session.getAttribute("user_info");
+	ShoesDTO shoes_info=(ShoesDTO)request.getAttribute("shoes_info");
+	ArrayList<BoardDTO> p_list =(ArrayList<BoardDTO>)request.getAttribute("p_list");
 	%>    
 	<input type="checkbox" id="menuicon">
     <header>
@@ -40,15 +45,17 @@
     <div class="container">
         <div id="profile_wrap">
             <div class="profile_box1">
-                <div class="photo"><img src="" alt="신발사진" style="width: 640px;">
+                <div class="photo"><img src="shoe_img/<%=shoes_info.getShoe_tag() %>.png" alt="신발사진" style="width: 650px;">
                 </div>
                 <div class="right">
                     <h1>shoesname</h1>
+                    <p><%=shoes_info.getShoe_name() %></p>
                     <br>
 
                     <!-- 프로필 네임 안에 user_name? user_nickname? -->
                     <ul>
-                        <h5><span>brand</span><br> <span>price</span><br> </h5> 
+                        <h5><span>brand <%=shoes_info.getShoe_maker() %></span><br> 
+                        <span>price <%=shoes_info.getShoe_price() %></span><br> </h5> 
                     </ul>
                 </div>
             </div>
@@ -56,14 +63,16 @@
         <div class="content">
             <div class="grid-container">
                 <!-- 신발 상세페이지 게시물  -->
-                <div class="my_post1"><img src="" alt="사진" 
-                ></div>
-                <div class="my_post2"><img src="" alt="사진"></div>
-                <div class="my_post3"><img src="" alt="사진"></div>
-                <div class="my_post4"><img src="" alt="사진"></div>
-                <div class="my_post5"><img src="" alt="사진"></div>
-                <div class="my_post6"><img src="" alt="사진"></div>
-
+            <%
+				for (int i = 0; i < p_list.size(); i++) {
+				%>
+				<div class="my_post<%=i%>">
+					<a href="#"><img
+						src="post_img/<%=p_list.get(i).getPostImg()%>" alt="사진"></a>
+				</div>
+				<%
+				}
+				%>
             </div>
         </div>
         <!-- 여기에 script 사용해서 게시물 여부에 따라 출력할지 지정  -->

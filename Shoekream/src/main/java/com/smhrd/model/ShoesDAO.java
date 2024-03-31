@@ -26,4 +26,13 @@ public class ShoesDAO {
 		sqlSession.close();
 		return shoeName;
 	}
+	
+	
+	//신발 인덱스로 모든 정보 불러오는 메서드 
+	public ShoesDTO shoes_info(String shoe_tag) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		ShoesDTO shoes_info=sqlSession.selectOne("shoes_info",shoe_tag);
+		sqlSession.close();
+		return shoes_info;
+	}
 }
