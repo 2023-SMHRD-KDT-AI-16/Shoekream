@@ -17,7 +17,16 @@
         .hidden {
             display: none;
         }
+        
+        
+       	/*게시글 모달*/
+.modal2{
+max-width:1200px !important;
+height:800px;
+}
     </style>
+    
+    
 </head>
 
 <body>
@@ -67,6 +76,9 @@
 				for (int i = 0; i < p_list.size(); i++) {
 				%>
 				<div class="my_post<%=i%>">
+				 <div id="ex<%=i %>" class="modal2" style="display: none;">
+	<iframe src="PostDetail.jsp?postIdx=<%=p_list.get(i).getPostIdx() %>" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
+				</div>
 					<a href="#"><img
 						src="post_img/<%=p_list.get(i).getPostImg()%>" alt="사진"></a>
 				</div>

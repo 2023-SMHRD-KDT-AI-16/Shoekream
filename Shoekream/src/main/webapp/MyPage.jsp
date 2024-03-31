@@ -47,6 +47,14 @@
       display: none;
     }
 
+
+
+/*게시글 모달*/
+.modal2{
+max-width:1200px !important;
+height:800px;
+}
+
 </style>
 
 
@@ -116,8 +124,12 @@
 				for (int i = 0; i < post_list.size(); i++) {
 				%>
 				<div class="my_post<%=i%>">
-					<a href="#"><img
+				  <div id="ex<%=i %>" class="modal2" style="display: none;">
+	<iframe src="PostDetail.jsp?postIdx=<%=post_list.get(i).getPostIdx() %>" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
+				</div>
+					<a href="javascript:show(<%=i %>)"><img
 						src="post_img/<%=post_list.get(i).getPostImg()%>" alt="사진"></a>
+				
 				</div>
 				<%
 				}
@@ -218,10 +230,11 @@
 	</div>
 	
 	
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+< <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
 <script>
 	const modalOpenButton = document.getElementById('modalOpenButton');
 	const modalCloseButton = document.getElementById('modalCloseButton');
@@ -273,6 +286,10 @@
 	
 	//----------------------------------------------------------
 	//신발 정보 검색
+	
+	  $(document).ready(function() {
+        $("body select").msDropDown();
+    });
 	    $(document).ready(function() {
 	        $('#shoesOptions').select2({
 	            maximumSelectionLength: 3
@@ -304,7 +321,15 @@
 	    
 	    filterShoes()
 	
-	
+//------------------------------------------------------------------------
+   //모달 여러개...
+    function show(num) {
+	   console.log("선택")
+        $("#ex"+num).modal({
+          fadeDuration: 100,
+          fadeDelay: 1,
+        });
+      }	
 	
 	</script>
 	
