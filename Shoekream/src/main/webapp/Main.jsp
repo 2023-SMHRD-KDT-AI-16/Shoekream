@@ -583,7 +583,7 @@ color: black;
 			<input type="checkbox" name="accordion" id="answer01"> <label
 				for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a href="Main.jsp">홈</a><em></em></label> <input
 				type="checkbox" name="accordion" id="answer02"> <label
-				for="answer02" id="modalOpenButton"><span id="emo_post">&#9997;</span>게시글작성 <em></em></label> <input type="checkbox"
+				for="answer02"><span id="emo_post"> <a href="javascript:writePost()">&#9997;</a></span><a href="javascript:writePost()">게시글작성</a> <em></em></label> <input type="checkbox"
 				name="accordion" id="answer03"> <label for="answer03"><span
 				id="emo"><a href="chat.jsp">&#128172;</a></span>
 					<a href="chat.jsp">채팅방 가기</a>
@@ -689,56 +689,8 @@ function getSiblings(element) {
 
 
 
-	<div id="modalContainer" class="hidden">
-		<div id="modalContent">
-
-			<!-- <form id="uploadForm" action="WriterService" method="post"
-				enctype="multipart/form-data"> -->
-				<form id="uploadForm" action="WriterService" method="post" enctype="multipart/form-data"
-				>
-
-				<!-- 게시글 파일 선택 -->
-				<div id="fileSelectionScreen">
-					<input type="file" id="fileInput" name="filename">
-					<button type="button" id="nextButton">다음</button>
-				</div>
-
-				<!-- 게시글 파일 미리보기, 본문 작성  -->
-				<div id="photoPreviewScreen" style="display: none;">
-					<table>
-						<tr>
-							<td rowspan="3"><div id="preview"></div></td>
-							<td><img src=<%=user_info.getUserProfileImg()%> alt=""
-								style="max-width: 50px; max-height: 50px;" /></td>
-							<td><%=user_info.getUserNick()%></td>
-						</tr>
-						<tr>
-							<td colspan="2"><textarea name="content" rows="10"
-									style="resize: none;" required></textarea></td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<!-- 신발태그 검색 --> 
-								<%
- ShoesDAO sdao = new ShoesDAO();
- ArrayList<ShoesDTO> s_list = sdao.showShoes();
- %> 
-								<br> 
-								<!-- <select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="Search for shoes">
-								</select> -->
-								<select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="Search for shoes">
-								</select>
-							</td>
-						</tr>
-					</table>
-					<button type="button" id="prevButton">이전</button>
-					<button type="submit">게시글 작성 완료2</button>
-			</form>
-
-
-		</div>
-		<button id="modalCloseButton">닫기</button>
-	</div>
+ <div id="writePost" class="modal2" style="display: none;">
+	<iframe src="WritePost.jsp" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
 	</div>
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -944,109 +896,15 @@ function writeComment(i,postIdx){
 
 
 //-----------------------------------------------------------------------------
-//게시글 작성 모달창, 게시글 출력
-	const modalOpenButton = document.getElementById('modalOpenButton');
-	const modalCloseButton = document.getElementById('modalCloseButton');
-	const modal = document.getElementById('modalContainer');
-	const fileInput = document.getElementById('fileInput');
-	const nextButton = document.getElementById('nextButton');
-	const prevButton = document.getElementById('prevButton');
-	const preview = document.getElementById('preview');
-	const fileSelectionScreen = document.getElementById('fileSelectionScreen');
-	const photoPreviewScreen = document.getElementById('photoPreviewScreen');
+//게시글 작성 모달
+    function writePost() {
+	   console.log("게시글 작성")
+        $("#writePost").modal({
+          fadeDuration: 100,
+          fadeDelay: 1,
+        });
+      }
 
-	modalOpenButton.addEventListener('click', () => {
-	  modal.classList.remove('hidden');
-	  fileSelectionScreen.style.display = 'block'; // Show file selection screen
-	  photoPreviewScreen.style.display = 'none'; // Hide photo preview screen
-	});
-
-	modalCloseButton.addEventListener('click', () => {
-	  modal.classList.add('hidden');
-	});
-
-	nextButton.addEventListener('click', () => {
-	  // Check if a file is selected
-	  if (fileInput.files.length > 0) {
-	    // Display the selected image
-	    const file = fileInput.files[0];
-	    const reader = new FileReader();
-	    reader.onload = function(event) {
-	      const img = document.createElement('img');
-	      img.src = event.target.result;
-	      img.style.maxWidth = '100%'; // Adjust as needed
-	      preview.innerHTML = ''; // Clear previous preview
-	      preview.appendChild(img);
-	    };
-	    reader.readAsDataURL(file);
-	    fileSelectionScreen.style.display = 'none'; // Hide file selection screen
-	    photoPreviewScreen.style.display = 'block'; // Show photo preview screen
-	  } else {
-	    alert('파일을 선택하세요.');
-	  }
-	});
-	
-	prevButton.addEventListener('click', () => {
-	  // Show file selection screen and hide photo preview screen
-	  fileSelectionScreen.style.display = 'block';
-	  photoPreviewScreen.style.display = 'none';
-	});
-	
-//----------------------------------------------------------
-//신발 정보 검색
-$(document).ready(function() {
-    $('#shoesOptions').select2({
-        maximumSelectionLength: 3,
-        templateResult: formatShoeOption, // Call the formatShoeOption function to customize option rendering
-        templateSelection: formatSelectedShoeOption // Call the formatSelectedShoeOption function to customize selected option rendering
-    });
-    
-    // Call filterShoes function initially
-    filterShoes();
-});
-
-function filterShoes() {
-    $.ajax({
-        url: "ShowShoes",
-        type: "get",
-        success: function(result) {
-            console.log(result);
-            var arr = result;
-
-            $('#shoesOptions').empty();
-            arr.forEach(function(shoes) {
-                $('#shoesOptions').append($('<option>', {
-                    value: shoes.shoe_tag, 
-                    text: shoes.shoe_name,
-                    title: shoes.shoe_img
-                }));
-            });
-            
-            // Refresh Select2 to reflect the updated options
-            $('#shoesOptions').trigger('change');
-        }
-    });
-}
-
-function formatShoeOption(shoe) {
-    if (!shoe.id) {
-        return shoe.text; // Option without an image (placeholder)
-    }
-
-    var $option = $('<span><img src="shoe_img/' + shoe.id + '.png" class="shoe-image" style="width: 70px" /> ' + shoe.text + '</span>');
-    $option.css('color', 'black');
-    return $option;
-}
-
-function formatSelectedShoeOption(selection) {
-    if (!selection.id) {
-        return selection.text; // Placeholder option
-    }
-
-    var $selection = $('<span><img src="shoe_img/' + selection.id + '.png" class="shoe-image" style="width: 70px" /> ' + selection.text + '</span>');
-    $selection.css('color', 'black');
-    return $selection;
-}
 //--------------------------------------------------------
 //포스트(게시글 무한스크롤)
 var currentUserId = '<%=user_info.getUserId()%>';
