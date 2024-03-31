@@ -1092,10 +1092,6 @@ function formatSelectedShoeOption(selection) {
 						    <div class="profile-info">
 						      <h2 class="head">${post_result.post_nick} 
 						        <button id="follow_${page}" onclick="${togglefollow}">${isfollow}</button> 
-						        <span class="icon">❤️</span> 
-						        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1); margin-left: 500px; transform: ;msFilter:;">
-						          <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-						        </svg>
 						      </h2>
 						      <p>${post_result.posted_at}</p>
 						    </div>
@@ -1104,9 +1100,9 @@ function formatSelectedShoeOption(selection) {
 						  <div class="post-content">
 						    <img src="post_img/${post_result.post_img}" alt="게시물 이미지">
 						  </div>
-						  ${post_result.shoe_tag1 ? `<img src="shoe_img/${post_result.shoe_tag1}.png"/> <p>${post_result.tag1_name}</p>` : ''}
-					        ${post_result.shoe_tag2 ? `<img src="shoe_img/${post_result.shoe_tag2}.png"/> <p>${post_result.tag2_name}</p>` : ''}
-					        ${post_result.shoe_tag3 ? `<img src="shoe_img/${post_result.shoe_tag3}.png"/> <p>${post_result.tag3_name}</p>` : ''}
+						  ${post_result.shoe_tag1 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag1}"><img src="shoe_img/${post_result.shoe_tag1}.png"/> <p>${post_result.tag1_name}</p></a>` : ''}
+					        ${post_result.shoe_tag2 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img src="shoe_img/${post_result.shoe_tag2}.png"/> <p>${post_result.tag2_name}</p></a>` : ''}
+					        ${post_result.shoe_tag3 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag3}"><img src="shoe_img/${post_result.shoe_tag3}.png"/> <p>${post_result.tag3_name}</p></a>` : ''}
 						  <div class="post-footer">
 						    <div class="emoji-icons">
 						      <box-icon name='heart' class="h">
