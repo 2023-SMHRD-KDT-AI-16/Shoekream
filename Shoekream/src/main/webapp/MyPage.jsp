@@ -333,7 +333,10 @@ height:800px;
           fadeDelay: 1,
         });
       }	
-	
+//---------------------------------------------------------------
+<%if(request.getParameter("update")!=null){%>
+alert("프로필을 수정했습니다")
+<%}%>
 	</script>
 	
 

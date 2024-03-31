@@ -66,10 +66,10 @@
 	
 	 						<%if(user_info.getUserInfo()==null){%>
 	 								<input type="text" name="post" id="post" 
-									oninput="pwCheck()" placeholder="한줄소개를 작성해보세요" required>
+									 placeholder="한줄소개를 작성해보세요" required>
 	 						<%}else{%>	
 	 							<input type="text" name="post" id="post" 
-									oninput="pwCheck()" value=<%=user_info.getUserInfo() %> required>
+									 value=<%=user_info.getUserInfo() %> required>
 							<%}%>
 							
 								<label for="">소개글*</label>

@@ -43,5 +43,18 @@
 	<select id = "allUser" resultType = "com.smhrd.model.UserDTO">
 select * from user_info
 </select>
+
+<update id="updateuser" parameterType="com.smhrd.model.UserDTO">
+  UPDATE user_info
+        SET
+            user_profile_img = #{user_profile_img},
+            user_nick = #{user_nick},
+            user_pw = #{user_pw},
+            user_email = #{user_email},
+            user_info = #{user_info},
+            user_name = #{user_name},
+            user_phone = #{user_phone}
+        WHERE user_id = #{user_id}
+</update>
     
 </mapper>

@@ -122,12 +122,26 @@ SqlSession sqlSession = sqlSessionFactory.openSession(true);
 			}
 			return result;	
 		}
-
+		//모든 유저 정보
 		public ArrayList<UserDTO> allUser() {
 			SqlSession sqlSession = sqlSessionFactory.openSession(true);
 			ArrayList<UserDTO> u_list= (ArrayList) sqlSession.selectList("allUser");
 			sqlSession.close();
 			return u_list;
+		}
+
+		//회원정보 수정
+		public int updateuser(UserDTO dto) {
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+			int result = 0;
+			try {
+				result=sqlSession.update("updateuser",dto);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				sqlSession.close();
+			}
+			return result;
 		}
 		
 	
