@@ -32,7 +32,7 @@
 		</div>
 	</header>
 					
-					<form id="profileForm" action="WriterService" method="post"
+					<form id="profileForm" action="UpdateService" method="post"
 				enctype="multipart/form-data">
 	<div class="inputbox">
 		<div class="container">
@@ -107,6 +107,7 @@
 						<input type="text" name="user_name" value=<%=user_info.getUserName() %> required>
 						<label for="">이름*</label>
 					</div>
+					<input type="file" id="profileImageUpload" name="profileImage" style="display: none;" accept="image/*" />
 					<button type="submit" id="join" style="
    border: none; /* 테두리 제거 */
     width: 212px;
@@ -205,7 +206,23 @@ function getSiblings(element) {
          }
       }
 
+//---------------------------------------------------------------------------
+//프로필 이미지 사진 변경, 미리보기
+// 버튼 클릭 이벤트 리스너 추가
+document.getElementById('btn1').addEventListener('click', function() {
+    document.getElementById('profileImageUpload').click(); // 숨겨진 input 클릭 트리거
+});
 
+// 파일 선택 시 미리보기 기능
+document.getElementById('profileImageUpload').addEventListener('change', function(event) {
+    var reader = new FileReader(); // 파일을 읽기 위한 FileReader 객체 생성
+    reader.onload = function(e) {
+        // FileReader가 파일을 읽었을 때 실행될 콜백
+        var previewImage = document.querySelector('.photo img'); // 미리보기 이미지 태그 선택
+        previewImage.src = e.target.result; // 이미지 태그의 src 속성을 읽은 파일의 내용으로 설정
+    };
+    reader.readAsDataURL(event.target.files[0]); // 선택한 파일을 Data URL 형태로 읽음
+});
 </script>
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
