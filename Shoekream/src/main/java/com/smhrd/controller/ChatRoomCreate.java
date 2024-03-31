@@ -42,7 +42,7 @@ public class ChatRoomCreate extends HttpServlet {
 
        // redirectURL 생성 시, 모든 파라미터 값에 대해 URLEncoder.encode를 호출하여 URL 인코딩을 수행합니다.
        // 이렇게 하면, URL에 포함될 수 없는 문자들이 안전하게 인코딩되어 문제를 방지할 수 있습니다.
-       String redirectURL = contextPath + "/chat-direct2(ORIGRIN).jsp?writerId=" + URLEncoder.encode(writerId, StandardCharsets.UTF_8.toString()) +
+       String redirectURL = contextPath + "/chat-direct2.jsp?writerId=" + URLEncoder.encode(writerId, StandardCharsets.UTF_8.toString()) +
               "&writerProfile=" + URLEncoder.encode(writerProfile, StandardCharsets.UTF_8.toString()) +
               "&writerNick=" + URLEncoder.encode(writerNick, StandardCharsets.UTF_8.toString());
 

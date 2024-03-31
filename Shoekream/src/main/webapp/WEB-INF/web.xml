@@ -88,6 +88,12 @@
     	<description></description>
     	<servlet-class>com.smhrd.controller.ShoespageService</servlet-class>
     </servlet>
+    <servlet>
+    	<servlet-name>ChatRoomCreate</servlet-name>
+    	<display-name>ChatRoomCreate</display-name>
+    	<description></description>
+    	<servlet-class>com.smhrd.controller.ChatRoomCreate</servlet-class>
+    </servlet>
   <servlet-mapping>
   	<servlet-name>LoginService</servlet-name>
   	<url-pattern>/LoginService</url-pattern>
@@ -144,4 +150,8 @@
    	<servlet-name>ShoespageService</servlet-name>
    	<url-pattern>/ShoespageService</url-pattern>
    </servlet-mapping>
+   <servlet-mapping>
+  	<servlet-name>ChatRoomCreate</servlet-name>
+  	<url-pattern>/ChatRoomCreate</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -69,7 +69,9 @@
 	int countfollow = (int) request.getAttribute("countfollow");
 	int countfollower = (int) request.getAttribute("countfollower");
 	%>
-
+	<button><a href="ChatRoomCreate?my_id=<%=my_id%>">채팅하기</a></button>
+    <input type="checkbox" id="menuicon">
+    
 	<input type="checkbox" id="menuicon">
 	<header>
 		<div>
