@@ -15,98 +15,144 @@
 </style>
 </head>
 <body>
-<%
+	<%
 	//세션에 저장된 로그인한 유저의 정보 불러오기 
 	UserDTO user_info = (UserDTO) session.getAttribute("user_info");
-	%>    
+	%>
 	<input type="checkbox" id="menuicon">
-    <header>
-        <div>
-            <ul class="navi">
-                <!-- 메뉴아이콘 -->
-                <label for="menuicon" class="menubtn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </label>
-                <li class="logo"><a>SHOEKREAM</a> </li>
-            </ul>
-        </div>
-    </header>
-    <div class="container">
-        <div id="profile_wrap">
-            <div class="profile_box1">
-                <div class="photo"><img src="" alt="신발사진" style="width: 640px;">
-                </div>
-                <div class="right">
-                    <h1>shoesname</h1>
-                    <br>
+	<header>
+		<div>
+			<ul class="navi">
+				<!-- 메뉴아이콘 -->
+				<label for="menuicon" class="menubtn"> <span></span> <span></span>
+					<span></span>
+				</label>
+				<li class="logo"><a>SHOEKREAM</a></li>
+			</ul>
+		</div>
+	</header>
+	<div class="inputbox">
+		<div class="container">
+			<div id="profile_wrap" style="width: 1000px; height: auto;">
+				<div class="profile_box1" style="width: 1000px; height: auto; margin-top: 20px;">
+					<div class="photo"
+						style="width: 300px; height: 300px; border-radius: 50%; border: 2px soild">
+						<img src="" alt="프로필사진"
+							style="width: 300px; height: 300px; border-radius: 50%;">
 
-                    <!-- 프로필 네임 안에 user_name? user_nickname? -->
-                    <ul>
-                        <h5><span>brand</span><br> <span>price</span><br> </h5> 
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="content">
-            <div class="grid-container">
-                <!-- 신발 상세페이지 게시물  -->
-                <div class="my_post1"><img src="" alt="사진" 
-                ></div>
-                <div class="my_post2"><img src="" alt="사진"></div>
-                <div class="my_post3"><img src="" alt="사진"></div>
-                <div class="my_post4"><img src="" alt="사진"></div>
-                <div class="my_post5"><img src="" alt="사진"></div>
-                <div class="my_post6"><img src="" alt="사진"></div>
+					</div>
+					<button id="btn1"  style="
+  border: none; /* 테두리 제거 */
+    width: 212px;
+    height: 32px;
+    margin-top: 10px;
+    border-radius: 5px;
+        cursor: pointer;
+          transition: background-color 0.3s ease; /* 배경색 변화에 대한 부드러운 전환 설정 */
+					">사진추가</button>
+					<div class="right">
+					
+							<div class="inputbox">
 
-            </div>
-        </div>
-        <!-- 여기에 script 사용해서 게시물 여부에 따라 출력할지 지정  -->
-    </div>
-    
-		<div class="sidebar">
-			<span class="area_desc"></span> <input type="checkbox"
-				name="accordion" id="answer00"> <label for="answer00"><span
-				id="emo">&#128269;</span><input type="text" placeholder="검색"><em></em></label>
+								<input type="text" name="user_nick" placeholder="예) 슈크림빵"
+									required> <label for="">변경할 닉네임*</label>
+							
+						</div>
+							<div class="inputbox">
 
-			<input type="checkbox" name="accordion" id="answer01"> <label
-				for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a href="Main.jsp">홈</a><em></em></label> <input
-				type="checkbox" name="accordion" id="answer02"> <label
-				for="answer02"><span id="emo_post"><a
-				id="modalOpenButton">&#9997;</a></span><a
-				id="modalOpenButton"> 게시글작성 </a><em></em></label> <input type="checkbox"
-				name="accordion" id="answer03"> <label for="answer03"><span
-				id="emo"><a href="chat.jsp">&#128172;</a></span>
-					<a href="chat.jsp">채팅방 가기</a>
-				 <em></em></label> 
-				<input type="checkbox" name="accordion" id="answer04">
-			<label for="answer04">
-			<span id="emo"><a href="MypageService?post_userid=<%= user_info.getUserId()%>">&#128100;</a></span>
-			<a href="MypageService?post_userid=<%= user_info.getUserId()%>">프로필</a>
-			<em></em></label>
-														
-																
-			<input type="checkbox" name="accordion" id="answer05"> <label
-				for="answer05"><span id="emo">&#128276;</span>알림<em></em></label>
+								<input type="text" name="post" id="post"
+									oninput="pwCheck()" placeholder="한줄소개를 작성해보세요" required>
+								<label for="">소개글*</label>
+							</div>
+				
 
-			<div>
-				<p>여기에 내용</p>
-			</div>
-			<input type="checkbox" name="accordion" id="answer06"> <label
-				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
+					<div class="inputbox">
 
-			<div>
-				<p>
-					<!-- 로그아웃 -->
-					<button>
-						<a href="LogoutService">로그아웃</a>
-					</button>
-				</p>
+						<input type="password" name="user_pw" id="user_pw"
+							oninput="pwCheck()" placeholder="영어,숫자 조합으로 8~16자" required>
+						<label for="">비밀번호*</label>
+					</div>
+					<div class="inputbox">
+
+
+						<input type="password" name="user_pw_check" id="user_pw_check"
+							oninput="pwCheck()" placeholder="동일하게 입력해주세요" required> <label
+							for="">비밀번호 재확인*</label> <span id="pwConfirm"></span>
+
+					</div>
+					<div class="inputbox">
+
+						<input type="" name="user_email"
+							placeholder="예) shoekream12@naver.com" required> <label
+							for="">이메일*</label>
+					</div>
+
+					<div class="inputbox">
+
+						<input type="text" name="user_phone"
+							placeholder="예) 010-1234-1234" required> <label for="">휴대폰번호*</label>
+					</div>
+					<div class="inputbox">
+
+						<input type="text" name="user_name" placeholder="예) 홍길동" required>
+						<label for="">이름*</label>
+					</div>
+					<button type="submit" id="join" style="
+   border: none; /* 테두리 제거 */
+    width: 212px;
+    height: 32px;
+    margin-top: 10px;
+    border-radius: 5px;
+        cursor: pointer;
+					">프로필 수정하기</button>
+				</div>
+			</div>	
+				<br>
+
+				<!-- 프로필 네임 안에 user_name? user_nickname? -->
+
 			</div>
 		</div>
+	</div>
+
+
+	<div class="sidebar">
+		<span class="area_desc"></span> <input type="checkbox"
+			name="accordion" id="answer00"> <label for="answer00"><span
+			id="emo">&#128269;</span><input type="text" placeholder="검색"><em></em></label>
+
+		<input type="checkbox" name="accordion" id="answer01"> <label
+			for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a
+			href="Main.jsp">홈</a><em></em></label> <input type="checkbox"
+			name="accordion" id="answer02"> <label for="answer02"><span
+			id="emo_post"><a id="modalOpenButton">&#9997;</a></span><a
+			id="modalOpenButton"> 게시글작성 </a><em></em></label> <input type="checkbox"
+			name="accordion" id="answer03"> <label for="answer03"><span
+			id="emo"><a href="chat.jsp">&#128172;</a></span> <a href="chat.jsp">채팅방
+				가기</a> <em></em></label> <input type="checkbox" name="accordion" id="answer04">
+		<label for="answer04"> <span id="emo"><a
+				href="MypageService?post_userid=<%=user_info.getUserId()%>">&#128100;</a></span>
+			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
+			<em></em></label> <input type="checkbox" name="accordion" id="answer05">
+		<label for="answer05"><span id="emo">&#128276;</span>알림<em></em></label>
+
+		<div>
+			<p>여기에 내용</p>
+		</div>
+		<input type="checkbox" name="accordion" id="answer06"> <label
+			for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
+
+		<div>
+			<p>
+				<!-- 로그아웃 -->
+				<button>
+					<a href="LogoutService">로그아웃</a>
+				</button>
+			</p>
+		</div>
+	</div>
 </body>
-		<script>
+<script>
 //모든 메뉴 아이템 요소를 가져옵니다.
 const menuItems = document.querySelectorAll('.sidebar input[type="checkbox"]');
 
@@ -136,7 +182,7 @@ function getSiblings(element) {
     return siblings;
 }
 </script>
-	<script type="text/javascript">
+<script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
