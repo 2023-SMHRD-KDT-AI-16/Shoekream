@@ -24,7 +24,7 @@
 </insert>
 
 <select id = "showboard" resultType = "com.smhrd.model.BoardDTO">
-select * from post_info
+select * from post_info ORDER BY posted_at DESC
 </select>
 
 <select id = "postuser" parameterType ="String" resultType="com.smhrd.model.UserDTO">
@@ -40,6 +40,11 @@ select count(*) from post_info where user_id=#{user_id}
 </select>
 
 <select id="id_post" parameterType ="String" resultType ="com.smhrd.model.BoardDTO">
-select * from post_info where user_id=#{user_id}
+select * from post_info where user_id=#{user_id} ORDER BY posted_at DESC
 </select>
+
+<select id="shoesPost" parameterType ="String" resultType ="com.smhrd.model.BoardDTO">
+SELECT * FROM post_info WHERE shoe_tag1 =#{shoe_tag} OR shoe_tag2 =#{shoe_tag}  OR shoe_tag3 =#{shoe_tag} ORDER BY posted_at DESC
+</select>
+
 </mapper>

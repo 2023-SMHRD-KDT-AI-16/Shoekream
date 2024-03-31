@@ -91,6 +91,14 @@ public class BoardDAO {
 		sqlSession.close();
 		return p_list;
 	}
+
+	//신발이 태그된 게시글 정보 
+	public ArrayList<BoardDTO> shoesPost(String shoe_tag) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		ArrayList<BoardDTO> p_list= (ArrayList) sqlSession.selectList("shoesPost",shoe_tag);
+		sqlSession.close();
+		return p_list;
+	}
 	
 
 }
