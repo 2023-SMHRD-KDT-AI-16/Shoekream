@@ -76,7 +76,7 @@ display: flex; flex-flow: row nowrap; overflow: hidden;
 
 
 
-/* 각영역의 라벨(중앙정렬) 사이드바*/
+
 .area_desc {
 	position: absolute;
 	top: 50%;
