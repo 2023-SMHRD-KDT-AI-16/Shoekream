@@ -49,7 +49,7 @@ color:gray;
                 <span>이미지 미리보기</span>
             </div>
             </td>
-							<td><img src="img/<%=user_info.getUserProfileImg()%>" alt=""
+							<td style="width:40px;"><img src="img/<%=user_info.getUserProfileImg()%>" alt=""
 								style="max-width: 50px; max-height: 50px;" /></td>
 							<td><%=user_info.getUserNick()%></td>
 						</tr>
