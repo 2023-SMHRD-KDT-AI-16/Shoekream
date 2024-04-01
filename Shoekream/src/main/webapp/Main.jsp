@@ -234,6 +234,7 @@ a {
 	min-height: 700px;
 	background: #ffffff;
 	align-content: center;
+	
 }
 
 .container .sidebar {
@@ -242,8 +243,8 @@ a {
 	right: -300px;
 	width: 300px;
 	height: 100%;
-	/*	background: #ffffff;
-	border: 1px solid #eee; */
+		background: #ffffff;
+
 	z-index: 30;
 	transition: .35s;
 }
