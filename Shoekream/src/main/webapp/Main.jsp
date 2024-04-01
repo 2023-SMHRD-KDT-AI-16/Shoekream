@@ -222,9 +222,7 @@ a {
 	width: 1920px;
 	height: auto;
 	position: relative;
-	background-image: url(img/goodwpss.jpg);
-	background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
-	background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
+	
 }
 
 .container .content {
