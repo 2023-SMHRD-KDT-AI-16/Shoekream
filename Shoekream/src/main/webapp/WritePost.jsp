@@ -12,6 +12,7 @@
 <style>
 /*신발 검색 옵션*/
 
+
 #shoesOptions{
 width:800px;
 height:auto;
