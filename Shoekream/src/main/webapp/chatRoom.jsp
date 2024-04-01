@@ -51,6 +51,7 @@
                 });
             }
         </script>
+        
   <script type="text/javascript">
 
   document.addEventListener('DOMContentLoaded', (event) => {
@@ -218,7 +219,7 @@ function appendMessage(content, className, messageId) {
 		<nav
 			class="navigation d-flex flex-column text-center navbar navbar-light hide-scrollbar">
 			<!-- Brand -->
-			<a href="Mypage.jsp" title="Messenger" class="d-none d-xl-block mb-6">
+			<a href="Main.jsp" title="Messenger" class="d-none d-xl-block mb-6">
 				<svg version="1.1" width="46px" height="46px" fill="currentColor"
 					xmlns="http://www.w3.org/2000/svg"
 					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -259,8 +260,8 @@ function appendMessage(content, className, messageId) {
 
 				<!-- New chat -->
 				<li class="nav-item"><a class="nav-link py-0 py-lg-8"
-					id="tab-create-chat" href="#tab-content-create-chat"
-					title="Create chat" data-bs-toggle="tab" role="tab">
+					id="tab-create-chat" href="WritePost.jsp"
+					title="게시판 글쓰기" data-bs-toggle="tab" role="tab">
 						<div class="icon icon-xl">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -300,15 +301,15 @@ function appendMessage(content, className, messageId) {
 								<path
 									d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
 							<div class="badge badge-circle bg-primary">
-								<span></span>
+								<span>^^</span>
 							</div>
 						</div>
 				</a></li>
 
 				<!-- Notification -->
 				<li class="nav-item"><a class="nav-link py-0 py-lg-8"
-					id="tab-notifications" href="#tab-content-notifications"
-					title="Notifications" data-bs-toggle="tab" role="tab">
+					id="tab-notifications" href="ProfileSetting.jsp"
+					title="ProfileSetting" data-bs-toggle="tab" role="tab">
 						<div class="icon icon-xl">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -322,7 +323,7 @@ function appendMessage(content, className, messageId) {
 				<!-- Support -->
 				<li class="nav-item d-none d-xl-block flex-xl-grow-1"><a
 					class="nav-link py-0 py-lg-8" id="tab-support"
-					href="#tab-content-support" title="Support" data-bs-toggle="tab"
+					href="Main.jsp" title="미구현.그냥 메인으로 감.ㅎ" data-bs-toggle="tab"
 					role="tab">
 						<div class="icon icon-xl">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
