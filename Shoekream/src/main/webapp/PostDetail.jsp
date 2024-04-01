@@ -179,9 +179,9 @@ List<CommentDTO> c_list=cdao.showComment(postIdx);
 <h2><%=post_user.getUserNick() %></h2>
 <span style="width: 30px;"></span>
 <% 
-if(user_info.getUserId().equals(result.getUserId())){
-	out.print("<button onclick='updatePost()''>게시글 수정</button>");
-%>
+if(user_info.getUserId().equals(result.getUserId())){%>
+<a href="UpdatePostService?postIdx=<%=postIdx %>"><button>게시글 수정</button></a>
+
 <span style="width: 10px;"></span>
 <a class="isdel" href="Main.jsp"><button onclick='deletePost()'>게시글 삭제</button></a>	
 	
