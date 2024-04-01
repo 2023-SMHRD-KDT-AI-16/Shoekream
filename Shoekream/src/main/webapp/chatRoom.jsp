@@ -1970,7 +1970,7 @@ function appendMessage(content, className, messageId) {
 							<a href="#">Marshall Wallaker</a>
 						</h6>
 						<p class="small">Today at 14:43</p>
-					</div>
+				</div>
 				</div>
 				<!-- Modal: Footer -->
 			</div>
