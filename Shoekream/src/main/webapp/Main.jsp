@@ -78,21 +78,21 @@ h1 {span { font-weight:revert-layer;
 
 }
 h1 {
-	color: white;
+	color: black;
 	margin-left: 45px;
 }
 /*팔로우 팔로워 폰트 수정*/
 span {span { font-weight:revert-layer;
 	font-size: x-large;
 	margin-left: 10px;
-	color: white;
+	color: black;
 }
 
 }
 h5 {span { font-weight:revert-layer;
 	font-size: x-large;
 	margin: auto;
-	color: white;
+	color: black;
 }
 
 }
@@ -107,17 +107,18 @@ a {
 }
 
 #profile_wrap .profile_box1 {
-	padding: 30px;
-	border: solid 2px;
-	border-color: white;
-	border-radius: 5%;
-	backdrop-filter: blur(15px);
+    padding: 30px;
+    border: solid 2px;
+    border-color: black;
+    border-radius: 5%;
+    backdrop-filter: blur(15px);
+    margin-top: 130px;
 }
 
 #profile_wrap .profile_box1 .photo {
 	width: 150px;
 	height: 150px;
-	background: white;
+	background: black;
 	border-radius: 50%;
 	display: flex;
 	flex-flow: row nowrap;
@@ -130,7 +131,7 @@ a {
 	
 }
 #profile_wrap .profile_box1 .photo img {
-	border: solid 3px;
+	border: solid 1px;
 	border-radius: 50%;
 }
 
@@ -222,7 +223,7 @@ a {
 	width: 1920px;
 	height: auto;
 	position: relative;
-	background-image: url(img/goodwpss.jpg);
+
 	background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
 	background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
 }
@@ -331,6 +332,8 @@ input[id*="answer"]:checked+label  em {
 .instagram-post {
 	margin-bottom: 20px;
 	padding: 10px;
+	border:1px solid;
+	border-radius:15px;
 }
 
 .post-header {
@@ -343,19 +346,20 @@ input[id*="answer"]:checked+label  em {
 	height: 50px;
 	border-radius: 50%;
 	margin-right: 10px;
-	border: 2px solid black; /*이미지 테두리 지정 */
+	border: 1px solid black; /*이미지 테두리 지정 */
 }
 
 .post-content img {
 	width: 100%;
 	height: auto;
 	margin-bottom: 10px;
+	
 }
 
 .post-footer {
 	margin-top: 10px;
 	border: 15;
-	border-bottom: solid 1px;
+	border-top: solid 1px;
 }
 
 .post-content>img {
@@ -384,33 +388,7 @@ input[id*="answer"]:checked+label  em {
 	cursor: pointer;
 }
 
-#modalOpenButton, #modalCloseButton {
-	cursor: pointer;
-}
 
-#modalContainer {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: rgba(0, 0, 0, 0.5);
-}
-
-#modalContent {
-	position: absolute;
-	background-color: #ffffff;
-	width: 1200px;
-	height: 800px;
-	padding: 15px;
-}
-
-#modalContainer.hidden {
-	display: none;
-}
 
 .hidden {
 	display: none;
@@ -477,7 +455,7 @@ img {
 	cursor: pointer;
 	wedth:70px;
 	height:70px;
-	
+
 }
 
 /*게시글 모달*/
@@ -488,7 +466,7 @@ height:800px;
 
 /*전체 검색*/
 #Search{
-width:850px;
+width:800px;
 height:auto;
 display: block;
 font-size:5px;
@@ -522,6 +500,15 @@ color: black;
     border: none;
     cursor: pointer;
 }
+
+#Shoetag{
+	box-shadow: 5px 3px 3px lightgray;
+}
+
+.likes{
+font-size:30px
+}
+
 </style>
 
 </head>
@@ -551,9 +538,9 @@ color: black;
 				<label for="menuicon" class="menubtn"> <span></span> <span></span>
 					<span></span>
 				</label>
-				<li class="logo"><a>SHOEKREAM</a></li>
+				<li class="logo" style="position: fixed"><a>SHOEKREAM</a></li>
 				<!-- 슈크림 메인 로고  -->
-				<select id="Search" name="selectedSearch" multiple="multiple" data-placeholder="&#128269; 닉네임 또는 신발 이름을 검색하세요"> </select>
+				
 			</ul>
 
 				
@@ -563,8 +550,10 @@ color: black;
 	
 
 	<!-- ----------------------------------- -->	
+	
 	<div class="container">
 		<div class="content" style="height: auto; margin-right: 520px">
+		<select id="Search" name="selectedSearch" multiple="multiple" data-placeholder="&#128269; 닉네임 또는 신발 이름을 검색하세요"> </select>
 			<span class="area_desc"></span>
 			<!-- 위에 괄호 안이 content영역 -->
 			<div id="instagram-posts">
@@ -874,7 +863,8 @@ function toggleLikeY(index,post_idx) {
 
 function writeComment(i,postIdx){
 	var inputComment = $('[name="comment"]').eq(i).val();
-	
+	var comment = document.getElementsByClassName('comment')[i]
+	var userNick = "<%=user_info.getUserNick()%>"
 	  if(inputComment.trim() !== '') {
 	        $.ajax({
 	            url: 'WriteCommentService',
@@ -883,7 +873,9 @@ function writeComment(i,postIdx){
 	            success: function(result){
 	                console.log("댓글 저장 성공");
 	                // 댓글 저장 후 입력 필드 초기화
-	                $('[name="comment"]').val('');
+	                 $('[name="comment"]').eq(i).val('');
+	                alert("댓글이 입력되었습니다");
+	                comment.innerText = userNick + ": " + inputComment;
 	            },
 	            error: function(){
 	                console.log("댓글 저장 실패");
@@ -973,17 +965,21 @@ if(post_result.post_user_id !== currentUserId) {
 						  <a href="javascript:show(${page})">
 						    <img src="post_img/${post_result.post_img}" alt="게시물 이미지">
 						    </a>
+						   
 						  </div>
-						  ${post_result.shoe_tag1 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag1}"><img src="shoe_img/${post_result.shoe_tag1}.png"/> <p>${post_result.tag1_name}</p></a>` : ''}
-					        ${post_result.shoe_tag2 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img src="shoe_img/${post_result.shoe_tag2}.png"/> <p>${post_result.tag2_name}</p></a>` : ''}
-					        ${post_result.shoe_tag3 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag3}"><img src="shoe_img/${post_result.shoe_tag3}.png"/> <p>${post_result.tag3_name}</p></a>` : ''}
-						  <div class="post-footer">
+						  ${post_result.shoe_tag1 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag1}"><img id="Shoetag"style="vertical-align: middle;border:1px solid;border-radius:3px" src="shoe_img/${post_result.shoe_tag1}.png"/> <span style="vertical-align: middle;font-size:20px">${post_result.tag1_name}</span></a><br>` : ''}
+					        ${post_result.shoe_tag2 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img id="Shoetag"style="vertical-align: middle;border:1px solid;border-radius:3px" src="shoe_img/${post_result.shoe_tag2}.png"/> <span style="vertical-align: middle;font-size:20px">${post_result.tag2_name}</span></a><br>` : ''}
+					        ${post_result.shoe_tag3 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag3}"><img id="Shoetag"style="vertical-align: middle;border:1px solid;border-radius:3px" src="shoe_img/${post_result.shoe_tag3}.png"/> <span style="vertical-align: middle;font-size:20px">${post_result.tag3_name}</span></a><br>` : ''}
+						 	<br>
+					        <p><a href="MypageService?post_userid=${post_result.post_user_id}"><b>${post_result.post_nick}</b></a> : ${post_result.post_content}</p>
+					        <div class="post-footer">
 						    <div class="emoji-icons" >
-						      <box-icon name='heart' class="h">
-						      <img src='img/${isLike}.png' id="like_${page}" onclick="${toggleLike}" class="heart_comment" style="height:40px;weight:40px">
+						      <box-icon name='heart' class="h" style="margin-left:10px">
+						      <span class="likes" style="vertical-align: middle;">${post_result.countlike}</span>
+						      <img src='img/${isLike}.png' id="like_${page}" onclick="${toggleLike}" class="heart_comment" style="height:60px;weight:50px;padding:10px;vertical-align: middle;">
 						      </box-icon>
 						      <a href="javascript:show(${page})">
-						      <img src='img/말풍선.png' class="heart_comment" style="height:40px;weight:40px">
+						      <img src='img/말풍선.png' class="heart_comment" style="height:60px;weight:50px;padding:10px;vertical-align: middle;">
 						      </a>
 						    </div>
 						    <style>
@@ -995,14 +991,9 @@ if(post_result.post_user_id !== currentUserId) {
 
 						</style>
 
-
-
-
-						    <span class="likes">${post_result.countlike}</span>
-						    <br>
-						    ${post_result.cmtcontent?`<span class="comments">${post_result.cmtcontent}</span>`:''}
-						    <br>
-						    <p>게시글내용${post_result.post_content}</p>
+						   
+						  	<span class="comment"></span> 
+						  	<br>
 						    <input type="text" placeholder="댓글달기..." id="postchat" name="comment">
 						    <button onclick="writeComment(${page},${post_result.post_idx})">댓글저장</button>  
 						      <div id="ex${page}" class="modal2" style="display: none;">
