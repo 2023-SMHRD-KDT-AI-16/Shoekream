@@ -83,20 +83,16 @@
 	        console.log("웹소켓이 열렸습니다~");
 	    }
 <% UserDTO user_info = (UserDTO) session.getAttribute("user_info"); %>
+
     var userId = '<%= user_info.getUserId() %>';
+
     console.log(userId);
+    
     let websocket;
     let chat = $('#chat'); // 메시지를 표시할 채팅창 전체 컨테이너
-    var writerNickDisplay=document.getElementById("writerNickDisplay")
-    
-    var urlParams = new URLSearchParams(window.location.search);
-    var writerId = urlParams.get('writerId');
-    var writerNick = urlParams.get('writerNick');
-    var writerProfile = urlParams.get('writerProfile');
-    writerNickDisplay.text(writerNick);
-    $('#writerProfileImage').attr('src', writerProfile);
-    
+   
     $(document).ready(connect);
+   
 
   //받은 메세지
     function onMessage(event) {
@@ -172,7 +168,7 @@ function appendMessage(content, className) {
     avatarDiv.className = "avatar avatar-responsive";
     let img = document.createElement('img');
     img.className = 'avatar-img';
-    img.src = className === 'message-out' ? "" : "";
+    img.src = className === 'message-out' ? "" : "img/<%=request.getParameter("writerProfile") %>";
     avatarDiv.appendChild(img);
 
     let messageContentDiv = document.createElement('div');
