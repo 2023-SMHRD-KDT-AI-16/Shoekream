@@ -28,7 +28,9 @@ public class MypageService extends HttpServlet {
 		System.out.println("MypageService 도착");
 		
 		request.setCharacterEncoding("UTF-8");
-		
+		if(request.getAttribute("update")!=null){
+			request.setAttribute("update", "update");
+		};
 		//마이페이지의 유저 아이디
 		String my_userid = request.getParameter("post_userid");
 		System.out.println(my_userid);
@@ -57,7 +59,7 @@ public class MypageService extends HttpServlet {
         int countfollow =fdao.countfollow(my_userid);
         int countfollower =fdao.countfollower(my_userid);
         
-		
+		request.setAttribute("userInfo", user_info.getUserInfo());
 		request.setAttribute("my_id", my_userid);
 		request.setAttribute("post_list", p_list);
 		request.setAttribute("my_nick", my_user_info.getUserNick());

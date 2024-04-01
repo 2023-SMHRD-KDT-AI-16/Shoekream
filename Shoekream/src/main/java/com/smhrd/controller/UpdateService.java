@@ -29,10 +29,16 @@ public class UpdateService extends HttpServlet {
 		DefaultFileRenamePolicy rename= new DefaultFileRenamePolicy();
 		
 		MultipartRequest multi = new MultipartRequest(request,path,maxSize,encoding,rename);
-		String profileImage= URLEncoder.encode(multi.getFilesystemName("profileImage"),"UTF-8");
+		String profileImage=user_info.getUserProfileImg();
+		if(multi.getFilesystemName("profileImage")!=null){
+			profileImage= URLEncoder.encode(multi.getFilesystemName("profileImage"),"UTF-8");
+		}
 		String user_nick = multi.getParameter("user_nick");
 		String user_pw = multi.getParameter("user_pw");
-		String user_email = multi.getParameter("user_email");
+		String user_email = user_info.getUserInfo();
+		if(multi.getParameter("user_email")!=null) {
+			user_email = multi.getParameter("user_email");
+		}
 		String post = multi.getParameter("post");
 		String user_name = multi.getParameter("user_name");
 		String user_phone = multi.getParameter("user_phone");
@@ -45,11 +51,13 @@ public class UpdateService extends HttpServlet {
 		int result=udao.updateuser(dto);
 		if(result>0) {
 			System.out.println("회원정보 수정 성공");
+			
 		}else {
 			System.out.println("회원정보 수정 실패");
 		}
 		
-		response.sendRedirect("MyPage.jsp");
+		
+		response.sendRedirect("MypageService?post_userid="+user_info.getUserId());
 		
 		
 	}

@@ -65,52 +65,51 @@
 	        appendMessage(msg.content, msg.senderId === userId ? 'message-out' : 'message'); // 메시지를 채팅창에 추가
 	    });
 	}
-	  function connect() {
-	        // 웹소켓 주소
-	        var wsUri = "ws://localhost:8081/Shoekream/echo.do";
-	        websocket = new WebSocket(wsUri);
-	        websocket.onopen = onOpen;
-	        websocket.onclose = function(evt) {
-	            console.log("세션종료", evt);
-	        };
-	        
-	        websocket.onmessage = onMessage;
-	      
-	        console.log('웹소켓 연결완료');
-	    }
+	 function connect() {
+		    var wsUri = "ws://localhost:8081/Shoekream/echo.do";
+		    websocket = new WebSocket(wsUri);
+		    websocket.onopen = function(evt) { console.log("웹소켓 연결됨"); };
+		    websocket.onclose = function(evt) { console.log("웹소켓 연결 끊김"); };
+		    websocket.onmessage = function(evt) { onMessage(evt); };
+		    websocket.onerror = function(evt) { console.log("웹소켓 에러 발생"); };
+		  }
 	    
 	    function onOpen() {
 	        console.log("웹소켓이 열렸습니다~");
 	    }
 <% UserDTO user_info = (UserDTO) session.getAttribute("user_info"); %>
+
     var userId = '<%= user_info.getUserId() %>';
+
     console.log(userId);
+    
     let websocket;
     let chat = $('#chat'); // 메시지를 표시할 채팅창 전체 컨테이너
-    var writerNickDisplay=document.getElementById("writerNickDisplay")
-    
-    var urlParams = new URLSearchParams(window.location.search);
-    var writerId = urlParams.get('writerId');
-    var writerNick = urlParams.get('writerNick');
-    var writerProfile = urlParams.get('writerProfile');
-    writerNickDisplay.text(writerNick);
-    $('#writerProfileImage').attr('src', writerProfile);
-    
+   
     $(document).ready(connect);
+   
 
   //받은 메세지
     function onMessage(event) {
-        console.log("메시지 수신됨: ", event.data);
-        try {
-            let finalData = JSON.parse(event.data); //받은 메세지 내용
-            saveMessage(finalData); // 메시지를 로컬 스토리지에 저장
-            let messageClass = finalData.senderId === userId ? 'message-out' : 'message';
-            appendMessage(finalData.content, messageClass);
-        } catch (error) {
-            console.error("Received message is not in JSON format:", event.data);
+    console.log("메시지 수신됨: ", event.data);
+    try {
+      let finalData = JSON.parse(event.data);
+      // 중복 메시지 표시 방지를 위해 messageId를 체크
+      if (!isMessageAlreadyDisplayed(finalData.messageId)) {
+        appendMessage(finalData.content, finalData.senderId === userId ? 'message-out' : 'message', finalData.messageId);
+        if(finalData.senderId !== userId) {
+          saveMessage(finalData); // 상대방으로부터 온 메시지만 저장
         }
+      }
+    } catch (error) {
+      console.error("Received message is not in JSON format:", event.data);
     }
-  
+  }
+
+  function isMessageAlreadyDisplayed(messageId) {
+    // 화면에 메시지가 이미 표시되었는지 확인하는 로직
+    return document.querySelector(`[data-message-id="${messageId}"]`) !== null;
+  }
     function saveMessage(data) {
         const storedMessages = JSON.parse(localStorage.getItem('chatMessages') || '[]'); // 기존에 저장된 메시지들을 불러옴
         storedMessages.push(data); // 새 메시지를 배열에 추가
@@ -120,9 +119,8 @@
     
     // 메시지 전송 함수, 기존의 submitFunction을 이 위치에 통합
     //내가 보내는 메세지
- function sendMessage(event) {
+function sendMessage(event) {
     if (event) event.preventDefault();
-    console.log("메시지 전송 성공!")
     if (websocket.readyState !== WebSocket.OPEN) {
         console.error("웹소켓이 연결되지 않았습니다.");
         return;
@@ -130,28 +128,29 @@
     const messageContent = $('#chatContent').val();
     if (!messageContent) {
         return;
-    console.log("메시지 전송 성공!")
     }
-   
-    // 현재 사용자의 ID를 포함하여 메시지 데이터 구성
-    const data = { 
+
+    const uniqueId = new Date().getTime(); // 메시지 고유 식별자로 타임스탬프 사용
+    const data = {
         content: messageContent,
-        senderId: userId // 현재 사용자의 고유 ID, 서버사이드에서 설정된 userId를 사용
+        senderId: userId,
+        messageId: uniqueId // 메시지에 고유 식별자 추가
     };
-    saveMessage(data);
+
+    appendMessage(data.content, 'message-out', data.messageId); // 수정: 고유 식별자도 함께 전달
+    saveMessage(data); // 메시지 저장 로직 유지
+
     let jsonData = JSON.stringify(data);
-    
     websocket.send(jsonData); // 웹소켓을 통해 메시지 전송
     $('#chatContent').val(''); // 입력 필드 초기화
-    console.log("메시지 전송 성공!!");
 }
 
-
     // 메시지를 채팅창에 추가하는 함수
-function appendMessage(content, className) {
-    console.log("appendMessage 호출됨.");
+function appendMessage(content, className, messageId) {
+    if(isMessageAlreadyDisplayed(messageId)) return; // 이미 표시된 메시지는 무시
+
     let messageDiv = document.createElement('div');
-    console.log("클래스 생성까지 성공");
+    messageDiv.setAttribute('data-message-id', messageId); // 메시지에 고유 식
     messageDiv.className = className;
     messageDiv.style.display = 'flex';
     messageDiv.style.marginBottom = '10px'; // 메시지 간 간격 조정
@@ -172,7 +171,7 @@ function appendMessage(content, className) {
     avatarDiv.className = "avatar avatar-responsive";
     let img = document.createElement('img');
     img.className = 'avatar-img';
-    img.src = className === 'message-out' ? "" : "";
+    img.src = className === 'message-out' ? "" : "img/<%=request.getParameter("writerProfile") %>";
     avatarDiv.appendChild(img);
 
     let messageContentDiv = document.createElement('div');
@@ -498,7 +497,7 @@ function appendMessage(content, className) {
 
 							   <!-- Divider -->
                                     <div class="message-divider">
-                                        <small class="text-muted">Friday, Sep 20</small>
+                                        <small class="text-muted"></small>
                                     </div>
 
                               

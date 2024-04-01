@@ -13,7 +13,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <link rel="stylesheet" href="CSS/MyPage.css">
+<style>
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    height: 100vh;
+}
 
+</style>
 <style type="text/css">
 #modalOpenButton, #modalCloseButton {
 	cursor: pointer;
@@ -76,6 +85,7 @@ height:800px;
 	boolean isfollow = (boolean) request.getAttribute("isfollow");
 	int countfollow = (int) request.getAttribute("countfollow");
 	int countfollower = (int) request.getAttribute("countfollower");
+	String userInfo= (String) request.getAttribute("userInfo");
 	%>
 	<button><a href="ChatRoomCreate?my_id=<%=my_id%>">채팅하기</a></button>
     <input type="checkbox" id="menuicon">
@@ -115,11 +125,17 @@ height:800px;
 						<h5>
 							<span>게시글 <%=post_list.size()%></span> <span>팔로워 <%=countfollower%></span>
 							<span>팔로우 <%=countfollow%></span>
+							<br>
+							<% if(userInfo!=null){%>
+							<span>소개글 <%=userInfo %></span>
+							<%} %>
 						</h5>
 					</ul>
 				</div>
 			</div>
 		</div>
+		
+		
 		<div class="content">
 			<div class="grid-container">
 				<!-- 마이페이지 게시물  -->
@@ -334,7 +350,7 @@ height:800px;
         });
       }	
 //---------------------------------------------------------------
-<%if(request.getParameter("update")!=null){%>
+<%if(request.getAttribute("update")!=null){%>
 alert("프로필을 수정했습니다")
 <%}%>
 	</script>
