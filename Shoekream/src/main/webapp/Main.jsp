@@ -529,7 +529,8 @@ font-size:30px
 
 	<!-- 왼쪽 상단 메뉴 아이콘 -->
 	<input type="checkbox" id="menuicon">
-
+	
+	
 	<header>
 		<div>
 			<ul class="navi">
@@ -541,10 +542,7 @@ font-size:30px
 				<li class="logo" style="position: fixed"><a>SHOEKREAM</a></li>
 				<!-- 슈크림 메인 로고  -->
 				
-			</ul>
-
-				
-				
+			</ul>			
 		</div>
 	</header>
 	
@@ -644,8 +642,9 @@ function getSiblings(element) {
 		int countfollow = fdao.countfollow(user_info.getUserId());
 		int countfollower = fdao.countfollower(user_info.getUserId());
 		%>
-<a href="MypageService?post_userid=<%=user_info.getUserId()%>">
+
 		<div id="profile_wrap">
+		<a href="MypageService?post_userid=<%=user_info.getUserId()%>">
 			<div class="profile_box1">
 				<div class="photo">
 					<img id="profile" src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지">
@@ -666,8 +665,9 @@ function getSiblings(element) {
 				</div>
 			</div>
 		</div>
+		</a>
 	</div>
-</a>
+
 
 
 
