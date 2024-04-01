@@ -99,6 +99,15 @@ public class BoardDAO {
 		sqlSession.close();
 		return p_list;
 	}
+
+	//게시글 삭제 메서드
+	public int delpost(Double post_idx) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result = sqlSession.delete("delpost",post_idx);
+		sqlSession.close();
+		System.out.println(result);
+		return result;
+	}
 	
 
 }

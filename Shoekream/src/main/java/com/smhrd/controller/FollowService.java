@@ -30,10 +30,10 @@ public class FollowService extends HttpServlet {
 		FollowDTO dto = new FollowDTO();
 		dto.setFollower(follower);
 		dto.setFollowee(followee);
-		
+		boolean isfollow=dao.isfollow(dto);
 int result=0;
 		
-		if(followyn.equals("y")) {
+		if(followyn.equals("y")&&!isfollow) {
 			
 			 result=dao.savefollow(dto);
 			

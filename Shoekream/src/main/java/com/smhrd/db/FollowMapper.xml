@@ -27,4 +27,6 @@ select count(*) from follow_info where followee=#{user_id}
 select count(*) from follow_info where follower=#{user_id}
 </select>
 
+
+
 </mapper>

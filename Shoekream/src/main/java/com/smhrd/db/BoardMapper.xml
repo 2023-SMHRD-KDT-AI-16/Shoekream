@@ -47,4 +47,8 @@ select * from post_info where user_id=#{user_id} ORDER BY posted_at DESC
 SELECT * FROM post_info WHERE shoe_tag1 =#{shoe_tag} OR shoe_tag2 =#{shoe_tag}  OR shoe_tag3 =#{shoe_tag} ORDER BY posted_at DESC
 </select>
 
+<delete id="delpost" >
+DELETE FROM post_info WHERE post_idx = #{post_idx}
+</delete>
+
 </mapper>

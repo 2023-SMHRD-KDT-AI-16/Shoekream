@@ -338,6 +338,7 @@ input[id*="answer"]:checked+label  em {
 	padding: 10px;
 	border:1px solid;
 	border-radius:15px;
+	/*background-color:#FFF7F1;*/
 }
 
 .post-header {
@@ -386,6 +387,7 @@ input[id*="answer"]:checked+label  em {
 
 .profile_box1 {
 	position: fixed;
+	/*background-color:#FFF7F1*/
 }
 
 .head {
@@ -505,9 +507,6 @@ color: black;
     cursor: pointer;
 }
 
-#Shoetag{
-	box-shadow: 5px 3px 3px lightgray;
-}
 
 .likes{
 font-size:30px
@@ -971,10 +970,14 @@ if(post_result.post_user_id !== currentUserId) {
 						    </a>
 						   
 						  </div>
-						  ${post_result.shoe_tag1 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag1}"><img id="Shoetag"style="vertical-align: middle;border:1px solid;border-radius:3px" src="shoe_img/${post_result.shoe_tag1}.png"/> <span style="vertical-align: middle;font-size:20px">${post_result.tag1_name}</span></a><br>` : ''}
-					        ${post_result.shoe_tag2 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img id="Shoetag"style="vertical-align: middle;border:1px solid;border-radius:3px" src="shoe_img/${post_result.shoe_tag2}.png"/> <span style="vertical-align: middle;font-size:20px">${post_result.tag2_name}</span></a><br>` : ''}
-					        ${post_result.shoe_tag3 ? `<a href="ShoespageService?shoeId=${post_result.shoe_tag3}"><img id="Shoetag"style="vertical-align: middle;border:1px solid;border-radius:3px" src="shoe_img/${post_result.shoe_tag3}.png"/> <span style="vertical-align: middle;font-size:20px">${post_result.tag3_name}</span></a><br>` : ''}
-						 	<br>
+						  <table style="background-color:whitesmoke; border-radius:10px;width: 780px;">
+						  
+						    ${post_result.shoe_tag1 ? `<tr><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag1}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag1}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag1_name}</span></a></td></tr>` : ''}
+						    ${post_result.shoe_tag2 ? `<tr><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag2}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag2_name}</span></a></td></tr>` : ''}
+						    ${post_result.shoe_tag3 ? `<tr><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag3}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag3}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag3_name}</span></a></td></tr>` : ''}
+						  
+						</table>
+						<br>
 					        <p><a href="MypageService?post_userid=${post_result.post_user_id}"><b>${post_result.post_nick}</b></a> : ${post_result.post_content}</p>
 					        <div class="post-footer">
 						    <div class="emoji-icons" >
