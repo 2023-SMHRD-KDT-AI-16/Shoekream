@@ -7,3 +7,5 @@ select count(*) from post_like_info where post_idx=26.0;
 delete from post_like_info where post_idx=26 and user_id='user';
 
 insert into post_like_info (post_idx,user_id,liked_at) values(26,'user',sysdate);
+
+COMMIT;

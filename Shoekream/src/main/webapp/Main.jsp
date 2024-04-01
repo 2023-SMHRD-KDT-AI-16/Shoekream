@@ -223,9 +223,13 @@ a {
 	width: 1920px;
 	height: auto;
 	position: relative;
+<<<<<<< HEAD
+	
+=======
 
 	background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
 	background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
+>>>>>>> branch 'main' of https://github.com/2023-SMHRD-KDT-AI-16/Shoekream.git
 }
 
 .container .content {

@@ -1,6 +1,6 @@
 input[id="menuicon"] {display: none;}
 body{
-	width: 1920px; height: 100%;
+   width: 1920px; height: 100%;
 }
 
 
@@ -13,7 +13,7 @@ header > div ul.navi > li > a {display: block; width: auto; padding: 20px;}
 header > div ul.navi > li.logp > a{padding: 20px 50px; font-size: 20px; font-weight: 900;}
 
 /* 왼쪽 프로필 */
-*{box-sizing: border-box; margin: 0; padding: 0; }
+*{box-sizing: border-box; margin: 0; padding: 0;}
 h1{font-weight: normal; font-size: x-large;}
 a{text-decoration: none; color: #222; }
 #profile_wrap{
@@ -31,34 +31,97 @@ border-radius: 50%;
 display: flex; flex-flow: row nowrap; overflow: hidden;
 }
 
-
-
-/* 각영역의 라벨(중앙정렬) */
-.area_desc {position: absolute; top: 50%;left: 50%; transform: translate(-50%, -50%); font-size: 20px; }
-
-/* 메뉴버튼 */
-.menubtn {display: block;  width: 50px; height: 50px; position: fixed; top: 50px; right: 16%; transform: translateY(-50%);cursor: pointer; }
-.menubtn span {display: block; position: absolute; width: 80%; height: 5px; border-radius: 30px; background: #222; transition: all .35s; }
-.menubtn span:nth-child(1) {top:20%;left: 50%; transform: translateX(-50%);}
-.menubtn span:nth-child(2) {top:50%;left: 50%; transform: translate(-50%,-50%);}
-.menubtn span:nth-child(3) {bottom: 20%;left: 50%; transform: translatex(-50%);}
-
 /* 컨텐츠영역 */
 .container { display: flex;  flex-direction: row-reverse; width: 1600px; position:relative; }
 .container .content {  width: 800px;  height: 900px; margin-top: 350px;  min-height: 700px;  border-top: 4px #222; background: #ffffff; align-content: center; flex: content rebv;}
 .container .sidebar { position:fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #ffffff; border:1px solid #eee;z-index: 30; transition: .35s;}
 
+/*   ==========================================================================================              */
+
+
+.area_desc {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 20px;
+}
+
+/* 메뉴버튼 */
+.menubtn {
+	display: block;
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	top: 50px;
+	right: 16%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	z-index: 100;
+}
+
+.menubtn span {
+	display: block;
+	position: absolute;
+	width: 80%;
+	height: 5px;
+	border-radius: 30px;
+	background: #222;
+	transition: all .35s;
+}
+
+.menubtn span:nth-child(1) {
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.menubtn span:nth-child(2) {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.menubtn span:nth-child(3) {
+	bottom: 20%;
+	left: 50%;
+	transform: translatex(-50%);
+}
+
+
+
 /* 체크 변화값 */
-input[id=menuicon]:checked ~ header .menubtn{z-index: 2;}
-input[id=menuicon]:checked ~ header .menubtn span:nth-child(1) {top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(135deg);}
-input[id=menuicon]:checked ~ header .menubtn span:nth-child(2) {left: 50%; transform: translate(-50%,-50%) scale(2);opacity: 0;}
-input[id=menuicon]:checked ~ header .menubtn span:nth-child(3) {bottom: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-135deg);}
-input[id=menuicon]:checked ~ .container .sidebar {right: 0;}
+input[id=menuicon]:checked ~ header .menubtn {
+	z-index: 2;
+}
+
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(1) {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(135deg);
+}
+
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(2) {
+	left: 50%;
+	transform: translate(-50%, -50%) scale(2);
+	opacity: 0;
+}
+
+input[id=menuicon]:checked ~ header .menubtn span:nth-child(3) {
+	bottom: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+input[id=menuicon]:checked ~ .container .sidebar {
+	right: 0;
+}
 /* 메뉴 버튼 기능구현 */
-input[id*="answer"]{
+input[id*="answer"] {
 	display: none;
 }
-input[id*="answer"] + label{
+
+input[id*="answer"]+label {
 	display: block;
 	padding: 20px;
 	border: 1px solid #292626;
@@ -69,7 +132,8 @@ input[id*="answer"] + label{
 	cursor: pointer;
 	position: relative;
 }
-input[id*="answer"] + label em {
+
+input[id*="answer"]+label em {
 	position: absolute;
 	top: 50%;
 	right: 10px;
@@ -77,44 +141,60 @@ input[id*="answer"] + label em {
 	height: 30px;
 	margin-top: -15px;
 	display: inline-block;
-	background:url(/MAIN/icon.png) 0 0 no-repeat; 
+	background: ("/MAIN/icon.png") 0 0 no-repeat;
 }
-input[id*="answer"] + label + div {
+
+input[id*="answer"]+label+div {
 	max-height: 0;
 	transition: all .35s;
 	overflow: hidden;
-	background: #edf8ff;
+	background: rgb(247, 239, 245);
 	font-size: 11px;
 }
-input[id*="answer"] + label + div p {
+
+input[id*="answer"]+label+div p {
 	display: inline-block;
 	padding: 20px;
 }
-input[id*="answer"]:checked + label + div {max-height: 100px;}
-input[id*="answer"]:checked + label  em {background-position: -30px;}
-/* 프로필 웹 스타일 수정 */
-#profile_wrap {
-    width: 360px;
-    margin: 0 auto; /* 화면 가운데 정렬을 위한 margin 설정 */
-    margin-bottom: 20px; /* 적당한 간격 설정 */
+
+input[id*="answer"]:checked+label+div {
+	max-height: 100px;
 }
 
-/* 컨테이너와 콘텐츠 배치 */
-.container {
-    display: flex;
-    flex-direction: column; /* 세로 정렬로 변경 */
-    align-items: center; /* 가운데 정렬 */
+input[id*="answer"]:checked+label  em {
+	background-position: -30px;
 }
 
-.container .content {
-    width: calc(100% - 20px); /* 화면 전체 너비에서 여백 고려하여 콘텐츠 영역의 너비 계산 */
-    height: 900px;
-    margin-top: 20px; /* 적절한 간격 설정 */
-    min-height: 700px;
-    border-top: 2px solid #222;
-     /* 테두리 지정 border: 1px solid #835151; */
-    background: #ffffff;
-    align-content: center;
+
+/*이모티콘 마진 적용*/
+#emo {
+	margin-right: 10px;
+}
+
+#emo_post {
+	margin-right: 5px;
+}
+/* 이모티콘의 크기 조절 */
+.sidebar label span {
+	font-size: 24px; /* 이모티콘의 크기를 24px로 설정 */
+}
+
+
+.sidebar label {
+	display: block;
+	padding: 10px;
+	transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 */
+}
+
+.sidebar label:hover {
+	background-color: pink; /* 마우스 호버 시 배경색 변경 */
+	margin: 1px;
+	transition: .35s;
+}
+
+#emo_post2 {
+	margin-left: 5px;
+	margin-right: 15px;
 }
 
 /* 사이드바 스타일 수정 */
@@ -138,6 +218,53 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
 #menuicon:not(:checked) ~ .sidebar {
     right: -300px;
 }
+
+
+
+
+
+
+
+
+/* 프로필 웹 스타일 수정 */
+#profile_wrap {
+    width: 360px;
+    margin: 0 auto; /* 화면 가운데 정렬을 위한 margin 설정 */
+    margin-bottom: 20px; /* 적당한 간격 설정 */
+}
+
+
+
+
+
+
+
+
+/* 컨테이너와 콘텐츠 배치 */
+.container {
+    display: flex;
+    flex-direction: column; /* 세로 정렬로 변경 */
+    align-items: center; /* 가운데 정렬 */
+}
+
+.container .content {
+    width: calc(100% - 20px); /* 화면 전체 너비에서 여백 고려하여 콘텐츠 영역의 너비 계산 */
+    height: 900px;
+    margin-top: 20px; /* 적절한 간격 설정 */
+    min-height: 700px;
+    border-top: 2px solid #222;
+     /* 테두리 지정 border: 1px solid #835151; */
+    background: #ffffff;
+    align-content: center;
+}
+
+
+
+
+
+
+
+
 /* 콘텐츠 영역 스타일 */
 .content {
     display: grid;
@@ -158,7 +285,6 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
     max-width: 350px;
     height: 400px;
 }
-/* 마이페이지 콘텐츠영역 */
 /* 스타일 수정 */
 .area_desc {
     display: none; /* 불필요한 요소 숨김 */
@@ -228,5 +354,4 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
 .right{
     cursor: pointer;
 }
-
 
