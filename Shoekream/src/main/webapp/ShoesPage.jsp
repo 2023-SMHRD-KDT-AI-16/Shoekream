@@ -52,8 +52,8 @@ height:800px;
         </div>
     </header>
     <div class="container">
-        <div id="profile_wrap">
-            <div class="profile_box1">
+        <div id="profile_wrap" >
+            <div class="profile_box1" style="height: 800px; margin-top:20px;">
                 <div class="photo"><img src="shoe_img/<%=shoes_info.getShoe_tag() %>.png" alt="신발사진" style="width: 650px;">
                 </div>
                 <div class="right">
@@ -89,31 +89,26 @@ height:800px;
         </div>
         <!-- 여기에 script 사용해서 게시물 여부에 따라 출력할지 지정  -->
     </div>
-    
-		<div class="sidebar">
+    		<div class="sidebar">
 			<span class="area_desc"></span> <input type="checkbox"
-				name="accordion" id="answer00"> <label for="answer00"><span
-				id="emo">&#128269;</span><input type="text" placeholder="검색"><em></em></label>
-
+				name="accordion" id="answer00"> 
+		
+			
 			<input type="checkbox" name="accordion" id="answer01"> <label
 				for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a href="Main.jsp">홈</a><em></em></label> <input
 				type="checkbox" name="accordion" id="answer02"> <label
-				for="answer02"><span id="emo_post"><a
-				id="modalOpenButton">&#9997;</a></span><a
-				id="modalOpenButton"> 게시글작성 </a><em></em></label> <input type="checkbox"
+				for="answer02"><span id="emo_post"> <a href="javascript:writePost()">&#9997;</a></span><a href="javascript:writePost()">게시글작성</a> <em></em></label> <input type="checkbox"
 				name="accordion" id="answer03"> <label for="answer03"><span
 				id="emo"><a href="chat.jsp">&#128172;</a></span>
 					<a href="chat.jsp">채팅방 가기</a>
 				 <em></em></label> 
 				<input type="checkbox" name="accordion" id="answer04">
 			<label for="answer04">
-			<span id="emo"><a href="MypageService?post_userid=<%= user_info.getUserId()%>">&#128100;</a></span>
-			<a href="MypageService?post_userid=<%= user_info.getUserId()%>">프로필</a>
+			<span id="emo"><a href="MypageService?post_userid=<%=user_info.getUserId()%>">&#128100;</a></span>
+			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
 			<em></em></label>
-														
 																
-			<input type="checkbox" name="accordion" id="answer05"> <label
-				for="answer05"><span id="emo">&#128276;</span>알림<em></em></label>
+			
 
 			<div>
 				<p>여기에 내용</p>
@@ -124,9 +119,7 @@ height:800px;
 			<div>
 				<p>
 					<!-- 로그아웃 -->
-					<button>
 						<a href="LogoutService">로그아웃</a>
-					</button>
 				</p>
 			</div>
 		</div>
