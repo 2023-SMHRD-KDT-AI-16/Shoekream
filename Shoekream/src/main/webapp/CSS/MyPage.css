@@ -168,7 +168,7 @@ input[id*="answer"]:checked + label  em {background-position: -30px;}
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 300px;
 }
 
 /* 게시글 스타일 수정 */
