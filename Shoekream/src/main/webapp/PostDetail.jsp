@@ -1,3 +1,9 @@
+<%@page import="com.smhrd.model.FollowDAO"%>
+<%@page import="com.smhrd.model.FollowDTO"%>
+<%@page import="com.smhrd.model.LikeDTO"%>
+<%@page import="com.smhrd.model.LikeDAO"%>
+<%@page import="com.smhrd.model.ShoesDAO"%>
+<%@page import="com.smhrd.model.UserDAO"%>
 <%@page import="com.smhrd.model.UserDTO"%>
 <%@page import="javax.swing.text.Document"%>
 <%@page import="java.util.List"%>
@@ -20,16 +26,58 @@
 
 UserDTO user_info= (UserDTO)session.getAttribute("user_info");
 Double postIdx=Double.parseDouble(request.getParameter("postIdx"));
-// postIdx를 사용하여 원하는 작업 수행
-out.println("Post Index: " + postIdx);
 
+//게시글 정보 불러오기 
 BoardDAO dao = new BoardDAO();
 BoardDTO result=dao.showDetail(postIdx);
 
+//게시글 작성한 사용자 정보 불러오기 
+UserDAO udao = new UserDAO();
+UserDTO post_user= udao.getUser(result.getUserId());
+
+
+//게시글에 태그된 신발 정보 불러오기 (이름)
+	ShoesDAO sdao = new ShoesDAO();
+			String tag1_name=null;
+			String tag2_name=null;
+			String tag3_name=null;
+			if(result.getShoeTag1()!=null) {
+				tag1_name = sdao.shoeName(result.getShoeTag1());
+				System.out.println("tag1: "+tag1_name);
+			}
+			
+			if(result.getShoeTag2()!=null) {
+				tag2_name = sdao.shoeName(result.getShoeTag2());
+				System.out.println("tag2: "+tag2_name);
+			}
+		
+			if(result.getShoeTag3()!=null) {
+				tag3_name = sdao.shoeName(result.getShoeTag3());
+				System.out.println("tag3: "+tag3_name);
+			}
+			
+// 좋아요 정보 가져오기
+			LikeDAO ldao = new LikeDAO();
+			LikeDTO ldto = new LikeDTO();
+			ldto.setPost_idx(postIdx);
+			ldto.setUser_id(user_info.getUserId());
+			boolean isLike = ldao.isLike(ldto);//좋아요 여부
+			int like = ldao.Like( postIdx);//좋아요 개수
+
+	//팔로우 여부 가져오기
+          FollowDTO fdto = new FollowDTO();
+          FollowDAO fdao = new FollowDAO();
+          fdto.setFollowee(result.getUserId());
+          fdto.setFollower(user_info.getUserId());
+          boolean isfollow = fdao.isfollow(fdto);//팔로우 여부 
+
+          
+//게시글 작성사가 로그인한 유저와 같을때 , 게시글 수정 버튼 출력
 if(user_info.getUserId().equals(result.getUserId())){
 	out.print("<button onclick='updatePost()''>게시글수정하기</button>");	
 }
 
+//게시글 댓글 
 CommentDAO cdao = new CommentDAO();
 List<CommentDTO> c_list=cdao.showComment(postIdx);
 
@@ -41,8 +89,16 @@ for(int i=0;i<c_list.size();i++){
 
 %>
 
+
+
+
+
+<img alt="작성자 프로필 이미지" src="img/<%=post_user.getUserProfileImg()%>">
 <img alt="게시글이미지" src="post_img/<%=result.getPostImg()%>">
  내용: <%=result.getPostContent() %>
+ 
+ 
+ 
  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
