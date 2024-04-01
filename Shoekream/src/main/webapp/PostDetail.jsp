@@ -180,7 +180,7 @@ List<CommentDTO> c_list=cdao.showComment(postIdx);
 <span style="width: 30px;"></span>
 <% 
 if(user_info.getUserId().equals(result.getUserId())){%>
-<a href="UpdatePostService?postIdx=<%=postIdx %>"><button>게시글 수정</button></a>
+<a href="UpdatePost.jsp?postIdx=<%=postIdx %>"><button>게시글 수정</button></a>
 
 <span style="width: 10px;"></span>
 <a class="isdel" href="Main.jsp"><button onclick='deletePost()'>게시글 삭제</button></a>	
@@ -209,7 +209,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 <%}else{ %>
 <img src='img/흰색하트.png' id="like" onclick="toggleLikeN(<%=postIdx %>)" class="heart_comment" style="height:60px;weight:50px;padding:10px;vertical-align: middle;">
 <%} %>
-
+<p><%=result.getPostContent() %></p>
 </div>
 
   <div class="vertical-line"></div>

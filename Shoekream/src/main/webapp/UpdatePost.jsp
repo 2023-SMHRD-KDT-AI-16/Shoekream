@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.BoardDTO"%>
+<%@page import="com.smhrd.model.BoardDAO"%>
 <%@page import="com.smhrd.model.UserDTO"%>
 <%@page import="com.smhrd.model.ShoesDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -87,7 +89,13 @@ align: center;
 </head>
 <body>
 
-<%UserDTO user_info = (UserDTO)session.getAttribute("user_info"); %>
+<%UserDTO user_info = (UserDTO)session.getAttribute("user_info"); 
+Double postIdx=Double.parseDouble(request.getParameter("postIdx"));
+
+//게시글 정보 불러오기 
+BoardDAO dao = new BoardDAO();
+BoardDTO result=dao.showDetail(postIdx);
+%>
 
 	<!-- <form id="uploadForm" action="WriterService" method="post"
 				enctype="multipart/form-data"> -->
@@ -104,8 +112,9 @@ align: center;
 					<table>
 						<tr>
 							<td rowspan="3" style="    width: 500px;
-    height: 600px;"><div id="preview" style=" width:600px; height:600px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center;">
-                <span>이미지 미리보기</span>
+    height: 600px;">
+    <div id="preview" style=" width:600px; height:600px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center;">
+                <img src="post_img/<%=result.getPostImg()%>">
             </div>
             </td>
 							<td style="width:40px; height: 60px; "><img src="img/<%=user_info.getUserProfileImg()%>" alt=""
@@ -115,7 +124,7 @@ align: center;
 						</tr>
 						<tr>
 							<td colspan="2" style="width: 400px; height: 50px;"><textarea name="content" rows="10" 
-									style="resize: none; width: 500px;height: 50px;" required></textarea></td>
+									style="resize: none; width: 500px;height: 50px;"  required><%=result.getPostContent() %></textarea></td>
 						</tr>
 						<tr>
 						
@@ -129,6 +138,7 @@ align: center;
 								<!-- <select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="Search for shoes">
 								</select> -->
 								<select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="신발을 검색하여 태그해보세요!">
+								
 								</select>
 							</td>
 						</tr>
