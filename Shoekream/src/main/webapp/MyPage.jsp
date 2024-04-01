@@ -13,7 +13,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <link rel="stylesheet" href="CSS/MyPage.css">
+<style>
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    height: 100vh;
+}
 
+</style>
 <style type="text/css">
 #modalOpenButton, #modalCloseButton {
 	cursor: pointer;
@@ -117,7 +126,7 @@ height:800px;
 							<span>게시글 <%=post_list.size()%></span> <span>팔로워 <%=countfollower%></span>
 							<span>팔로우 <%=countfollow%></span>
 							<br>
-							<% if(userInfo.equals("null")){%>
+							<% if(userInfo!=null){%>
 							<span>소개글 <%=userInfo %></span>
 							<%} %>
 						</h5>
