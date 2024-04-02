@@ -62,15 +62,18 @@ public class WriterService extends HttpServlet {
 		if(selectedShoes.length==1) {
 			dto.setShoeTag1(selectedShoes[0]);
 			result= dao.uploadTag1(dto);
+			System.out.println(result);
 		}else if(selectedShoes.length==2) {
 			dto.setShoeTag1(selectedShoes[0]);
 			dto.setShoeTag2(selectedShoes[1]);
 			result= dao.uploadTag2(dto);
+			System.out.println(result);
 		}else if(selectedShoes.length==3) {
 			dto.setShoeTag1(selectedShoes[0]);
 			dto.setShoeTag2(selectedShoes[1]);
 			dto.setShoeTag3(selectedShoes[2]);
 			result= dao.uploadTag3(dto);
+			System.out.println(result);
 		}}else {
 			result = dao.upload(dto);
 		}

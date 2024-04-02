@@ -322,7 +322,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 			        url: "ShowShoes",
 			        type: "get",
 			        success: function(result) {
-			            console.log(result);
+			            
 			            var arr = result;
 
 			            $('#shoesOptions').empty();

@@ -911,9 +911,9 @@ function writeComment(i,postIdx){
 var currentUserId = '<%=user_info.getUserId()%>';
     let page = 0;
 	var loading = 'false';
-	console.log("Test2")
+	
     function loadMorePosts() {
-		console.log("Test2")
+		
       const container = document.getElementById("instagram-posts");
 
       $.ajax({
@@ -921,18 +921,14 @@ var currentUserId = '<%=user_info.getUserId()%>';
 					data:{"index":page},
 					type:'get',
 					success: function(result){
-						console.log(result)
+						
 						if(result==="오류"){
 							loading = 'err'
 							alert("마지막 게시글입니다")
 						}else{
 							
 					var post_result =JSON.parse(result)		
-					console.log("result"+result)
-					
-					
-					var post_result = JSON.parse(result);
-console.log("result" + result);
+				
 
 // 팔로우 버튼 HTML 생성 로직
 var followButtonHTML = '';
@@ -1079,7 +1075,6 @@ $(document).ready(function() {
     // Select2 항목 선택 이벤트 핸들러 추가
     $('#Search').on('select2:select', function (e) {
         var data = e.params.data;
-        console.log(data)
 
         // 선택된 항목의 그룹을 확인
         var group = $(data.element).closest('optgroup').attr('label');
