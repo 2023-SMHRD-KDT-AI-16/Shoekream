@@ -38,11 +38,50 @@ public class BoardDAO {
 	}
 	
 	
-	//신발 태그 1개 업로드 
+	//신발 태그 3개 업로드 
 	public int uploadTag3(BoardDTO dto) {
 		System.out.println("upload 도착");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int result= sqlSession.insert("uploadTag3",dto);
+		sqlSession.close();
+		return result;
+	}
+	
+	
+	
+	//게시글을 수정하는 메서드
+	public int update(BoardDTO dto) {
+		System.out.println("update 도착");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result= sqlSession.update("update",dto);
+		sqlSession.close();
+		return result;
+	}
+	
+	//신발 태그 1개 수정 
+	public int updateTag1(BoardDTO dto) {
+		System.out.println("update 도착");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result= sqlSession.update("updateTag1",dto);
+		sqlSession.close();
+		return result;
+	}
+	
+	//신발 태그 2개 수정
+	public int updateTag2(BoardDTO dto) {
+		System.out.println("update 도착");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result= sqlSession.update("updateTag2",dto);
+		sqlSession.close();
+		return result;
+	}
+	
+	
+	//신발 태그 3개 수정
+	public int updateTag3(BoardDTO dto) {
+		System.out.println("update 도착");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result= sqlSession.update("updateTag3",dto);
 		sqlSession.close();
 		return result;
 	}

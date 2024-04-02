@@ -51,4 +51,29 @@ SELECT * FROM post_info WHERE shoe_tag1 =#{shoe_tag} OR shoe_tag2 =#{shoe_tag}  
 DELETE FROM post_info WHERE post_idx = #{post_idx}
 </delete>
 
+<!-- 게시글 업데이트 -->
+<update id="update" parameterType="com.smhrd.model.BoardDTO">
+	UPDATE post_info
+	SET post_content = #{post_content},post_img = #{post_img}
+	WHERE post_idx = #{post_idx}
+</update>
+
+<update id="updateTag1" parameterType="com.smhrd.model.BoardDTO">
+		UPDATE post_info
+	SET post_content = #{post_content},post_img = #{post_img},shoe_tag1=#{shoe_tag1}
+	WHERE post_idx = #{post_idx}
+</update>
+
+<update id="updateTag2" parameterType="com.smhrd.model.BoardDTO">
+	UPDATE post_info
+	SET post_content = #{post_content},post_img = #{post_img},shoe_tag1=#{shoe_tag1},shoe_tag2=#{shoe_tag2}
+	WHERE post_idx = #{post_idx}
+</update>
+
+<update id="updateTag3" parameterType="com.smhrd.model.BoardDTO">
+	UPDATE post_info
+	SET post_content = #{post_content},post_img = #{post_img},shoe_tag1=#{shoe_tag1},shoe_tag2=#{shoe_tag2},shoe_tag3=#{shoe_tag3}
+	WHERE post_idx = #{post_idx}
+</update>
+
 </mapper>

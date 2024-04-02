@@ -99,7 +99,7 @@ BoardDTO result=dao.showDetail(postIdx);
 
 	<!-- <form id="uploadForm" action="WriterService" method="post"
 				enctype="multipart/form-data"> -->
-				<form id="uploadForm" action="WriterService" method="post" enctype="multipart/form-data" 
+				<form id="uploadForm" action="UpdatePostService?postIdx=<%=result.getPostIdx() %>" method="post" enctype="multipart/form-data" 
 				style="margin-left: 4px;"
 				>
 
@@ -124,7 +124,7 @@ BoardDTO result=dao.showDetail(postIdx);
 						</tr>
 						<tr>
 							<td colspan="2" style="width: 400px; height: 50px;"><textarea name="content" rows="10" 
-									style="resize: none; width: 500px;height: 50px;"  required><%=result.getPostContent() %></textarea></td>
+									style="resize: none; width: 500px;height: 400px;"  required><%=result.getPostContent() %></textarea></td>
 						</tr>
 						<tr>
 						
@@ -143,7 +143,7 @@ BoardDTO result=dao.showDetail(postIdx);
 							</td>
 						</tr>
 					</table>
-					<button type="submit" style="
+					<button id="updateButton" type="submit" style="
     width: 216px;
     height: 36px;
     margin-left: 2px;
@@ -161,6 +161,9 @@ BoardDTO result=dao.showDetail(postIdx);
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 		<script>
+		document.getElementById("updateButton").addEventListener("click", function(event) {
+		    alert("수정되었습니다!");
+		});
 
 		function previewFile() {
 		    var preview = document.getElementById('preview'); // 미리보기를 표시할 div
