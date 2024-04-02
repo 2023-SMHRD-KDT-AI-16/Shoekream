@@ -22,6 +22,13 @@
 <meta charset="UTF-8">
 <title>SHOEKREAM</title>
 <style>
+.menubtn {
+    position: absolute; /* 고정 위치에서 상대 위치로 변경 */
+    top: 20px; /* 원하는 위치로 조정 */
+    right: 20px; /* 사이드바 내부에서의 위치 조정 */
+    z-index: 100; /* 필요에 따라 조정 */
+}
+
 input[id="menuicon"] {
 	display: none;
 }
@@ -36,33 +43,12 @@ header {
 	width: 100%;
 	background: #ffffff;
 }
-
-header>div {
-	position: relative;
-	width: 1920px;
-	margin: 15 auto;
-}
-
-header>div ul.navi {
-	font-size: 0;
-}
-
-header>div ul.navi>li {
-	font-size: 50px;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-header>div ul.navi>li>a {
-	display: block;
-	width: auto;
-	padding: 20px;
-}
-
-header>div ul.navi>li.logp>a {
-	padding: 20px 50px;
-	font-size: 20px;
-	font-weight: 900;
+/*사이드바*/
+.menubtn {
+    position: absolute; /* 고정 위치에서 상대 위치로 변경 */
+    top: 20px; /* 원하는 위치로 조정 */
+    right: 20px; /* 사이드바 내부에서의 위치 조정 */
+    z-index: 100; /* 필요에 따라 조정 */
 }
 
 /* 왼쪽 프로필 */
@@ -74,18 +60,22 @@ header>div ul.navi>li.logp>a {
 
 h1 {span { font-weight:revert-layer;
 	font-size: x-large;
+	
 }
 
 }
 h1 {
 	color: black;
-	margin-left: 45px;
+	
 }
+
 /*팔로우 팔로워 폰트 수정*/
-span {span { font-weight:revert-layer;
+.my {font-weight:revert-layer;
 	font-size: x-large;
-	margin-left: 10px;
 	color: black;
+	margin:10px;
+	 display: flex;
+    justify-content: center; 
 }
 
 }
@@ -104,15 +94,19 @@ a {
 #profile_wrap {
 	width: 360px;
 	margin-left: 40px;
+	    display: fixed;
+    justify-content: center; /* 수평 가운데 정렬 */
+    flex-direction: column; /* 자식 요소를 세로로 정렬 */
+    margin-top: 20px; /* 위쪽 여백 */
+    margin-bottom: 20px; /* 아래쪽 여백 */
 }
 
 #profile_wrap .profile_box1 {
-    padding: 30px;
-    border: solid 2px;
-    border-color: black;
+    padding: 60px;
     border-radius: 5%;
     backdrop-filter: blur(15px);
     margin-top: 130px;
+   
 }
 
 #profile_wrap .profile_box1 .photo {
@@ -123,7 +117,7 @@ a {
 	display: flex;
 	flex-flow: row nowrap;
 	overflow: hidden;
-	margin-left: 20px;
+	margin-left: 10px;
 }
 #profile{
 	width:150px;
@@ -133,14 +127,16 @@ a {
 #profile_wrap .profile_box1 .photo img {
 	border: solid 1px;
 	border-radius: 50%;
+		 display: flex;
+  justify-content: center;
 }
 
 #profile_wrap .profile_box1 .right {
-	
+	margin-left: 20px;
 }
 
 #profile_wrap .profile_box1 .right h1 {
-	
+	text-align: center;
 }
 
 #profile_wrap .profile_box1 .right p {
@@ -248,7 +244,7 @@ a {
 	right: -300px;
 	width: 300px;
 	height: 100%;
-		background: #ffffff;
+		background: #ebf1f7;
 
 	z-index: 30;
 	transition: .35s;
@@ -288,11 +284,11 @@ input[id*="answer"] {
 input[id*="answer"]+label {
 	display: block;
 	padding: 20px;
-	border: 1px solid #292626;
+	border: 1px solid #ffffff;
 	border-bottom: 0;
-	color: #312c2c;
+	color: #222;
 	font-weight: 900;
-	background: rgb(247, 239, 245);
+	background: #ebf1f7;
 	cursor: pointer;
 	position: relative;
 }
@@ -312,7 +308,7 @@ input[id*="answer"]+label+div {
 	max-height: 0;
 	transition: all .35s;
 	overflow: hidden;
-	background: #edf8ff;
+	background: #a0b3ce;
 	font-size: 11px;
 }
 
@@ -335,10 +331,10 @@ input[id*="answer"]:checked+label  em {
 
 .instagram-post {
 	margin-bottom: 20px;
+	margin-top:50px;
 	padding: 10px;
-	border:1px solid;
-	border-radius:15px;
-	/*background-color:#FFF7F1;*/
+	border-bottom:2px solid #a0b3ce;
+	width:600px;
 }
 
 .post-header {
@@ -354,6 +350,7 @@ input[id*="answer"]:checked+label  em {
 	border: 1px solid black; /*이미지 테두리 지정 */
 }
 
+
 .post-content img {
 	width: 100%;
 	height: auto;
@@ -364,7 +361,7 @@ input[id*="answer"]:checked+label  em {
 .post-footer {
 	margin-top: 10px;
 	border: 15;
-	border-top: solid 1px;
+	border-top: solid 2px #a0b3ce;
 }
 
 .post-content>img {
@@ -387,7 +384,8 @@ input[id*="answer"]:checked+label  em {
 
 .profile_box1 {
 	position: fixed;
-	/*background-color:#FFF7F1*/
+	border:2px solid white;
+	box-shadow: 1px 2px 5px #a0b3ce;
 }
 
 .head {
@@ -428,7 +426,7 @@ follow_0 {
 }
 
 .sidebar label:hover {
-	background-color: pink; /* 마우스 호버 시 배경색 변경 */
+	background-color: #2787f5; /* 마우스 호버 시 배경색 변경 */
 	margin: 1px;
 	transition: .35s;
 }
@@ -472,10 +470,10 @@ height:800px;
 
 /*전체 검색*/
 #Search{
-width:800px;
+width:600px;
 height:auto;
 display: block;
-font-size:5px;
+font-size:4px;
 color: black;
 }
 
@@ -512,6 +510,18 @@ color: black;
 font-size:30px
 }
 
+#shoekreamImg{
+    width: 300px;
+    height: 150px;
+    margin-top: -10px;
+    margin-left:20px;
+}
+
+#profile_wrap .profile_box1 .right h1 {
+    margin-bottom: 10px; /* 이름과 다음 항목 사이의 간격 */
+}
+
+
 </style>
 
 </head>
@@ -542,7 +552,7 @@ font-size:30px
 				<label for="menuicon" class="menubtn"> <span></span> <span></span>
 					<span></span>
 				</label>
-				<li class="logo" style="position: fixed"><a>SHOEKREAM</a></li>
+				<li class="logo" style="position: fixed"><a><img id="shoekreamImg" src = "img/슈크림.jpg"></a></li>
 				<!-- 슈크림 메인 로고  -->
 				
 			</ul>			
@@ -553,7 +563,7 @@ font-size:30px
 	<!-- ----------------------------------- -->	
 	
 	<div class="container">
-		<div class="content" style="height: auto; margin-right: 520px">
+		<div class="content" style="height: auto; margin-left: 320px; margin-top:30px">
 		<select id="Search" name="selectedSearch" multiple="multiple" data-placeholder="&#128269; 닉네임 또는 신발 이름을 검색하세요"> </select>
 			<span class="area_desc"></span>
 			<!-- 위에 괄호 안이 content영역 -->
@@ -565,19 +575,17 @@ font-size:30px
 
 		<!-- ------------------------------------------------------------------------- -->
 		<!-- 사이드바  -->
-
 		<div class="sidebar">
 			<span class="area_desc"></span> <input type="checkbox"
 				name="accordion" id="answer00"> 
-		
-			
+
 			<input type="checkbox" name="accordion" id="answer01"> <label
 				for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a href="Main.jsp">홈</a><em></em></label> <input
 				type="checkbox" name="accordion" id="answer02"> <label
 				for="answer02"><span id="emo_post"> <a href="javascript:writePost()">&#9997;</a></span><a href="javascript:writePost()">게시글작성</a> <em></em></label> <input type="checkbox"
 				name="accordion" id="answer03"> <label for="answer03"><span
 				id="emo"><a href="chat.jsp">&#128172;</a></span>
-					<a href="chat.jsp">채팅방 가기</a>
+					<a>채팅방 가기</a>
 				 <em></em></label> 
 				<input type="checkbox" name="accordion" id="answer04">
 			<label for="answer04">
@@ -647,17 +655,20 @@ function getSiblings(element) {
 				<div class="photo">
 					<img id="profile" src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지">
 				</div>
+				<br>
 				<div class="right">
 					<h1><%=user_info.getUserNick()%></h1>
 					<!-- 프로필 네임 안에 user_name? user_nickname? -->
-					<ul>
-						<h5>
-							<span>게시글 <%=countPost%></span> </span>
-						</h5>
-						<h5>
-							<span><span>팔로워 <%=countfollower%></span> <span>팔로우
-									<%=countfollow%></span>
-						</h5>
+					<ul class="my_info">
+						<p>
+							<span class="my">게시글 <%=countPost%></span> </span>
+						</p>
+						<p>
+							<span ><span class="my">팔로워 <%=countfollower%></span> 
+						</p>
+						<p>
+							<span class="my">팔로우<%=countfollow%></span>
+						</p>
 						<!-- 숫자사이에  넣으면 될듯?! -->
 					</ul>
 				</div>
@@ -961,19 +972,20 @@ if(post_result.post_user_id !== currentUserId) {
 						  </div>
 						  <div class="post-content">
 						  <a href="javascript:show(${page})">
-						    <img src="post_img/${post_result.post_img}" alt="게시물 이미지">
+						    <img src="post_img/${post_result.post_img}" alt="게시물 이미지" style="box-shadow: 1px 2px 5px #a0b3ce; margin-top:10px;border-radius:5px">
 						    </a>
 						   
-						  </div>
-						  <table style="background-color:whitesmoke; border-radius:10px;width: 780px;">
+						  
+						  <table style="box-shadow: 1px 2px 5px #a0b3ce; border-radius:10px;width: 580px;">
 						  
 						    ${post_result.shoe_tag1 ? `<tr><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag1}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag1}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag1_name}</span></a></td></tr>` : ''}
 						    ${post_result.shoe_tag2 ? `<tr><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag2}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag2_name}</span></a></td></tr>` : ''}
 						    ${post_result.shoe_tag3 ? `<tr><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag3}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag3}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag3_name}</span></a></td></tr>` : ''}
 						  
 						</table>
+						</div>
 						<br>
-					        <p><a href="MypageService?post_userid=${post_result.post_user_id}"><b>${post_result.post_nick}</b></a> : ${post_result.post_content}</p>
+					        <p style="font-size:20px"><a href="MypageService?post_userid=${post_result.post_user_id}"><b>${post_result.post_nick}</b></a> : ${post_result.post_content}</p>
 					        <div class="post-footer">
 						    <div class="emoji-icons" >
 						      <box-icon name='heart' class="h" style="margin-left:10px">
@@ -1166,7 +1178,10 @@ function formatSelectedSearch(selection) {
    }else{
   var $option = $('<span><img src="img/' + selection.title + '" class="user-image" style="width: 60px" /> ' + selection.text + '</span>'); }
     
-	 $option.css('color', 'black'); // 글자색을 검정색으로 설정 
+	$option.css({
+	    'color': 'black', // 글자색을 검정색으로 설정
+	    'font-size': '13px' // 글자 크기를 16px로 설정
+	});
 	 return $option;
 }
 
