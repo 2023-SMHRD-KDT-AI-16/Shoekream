@@ -115,7 +115,7 @@ align: center;
 						</tr>
 						<tr>
 							<td colspan="2" style="width: 400px; height: 50px;"><textarea name="content" rows="10" 
-									style="resize: none; width: 500px;height: 50px;" required></textarea></td>
+									style="resize: none; width: 500px;height: 400px;" required></textarea></td>
 						</tr>
 						<tr>
 						

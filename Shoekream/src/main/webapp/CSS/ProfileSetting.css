@@ -4,6 +4,9 @@ input[id="menuicon"] {display: none;}
 body{
 	width: 1920px; height: 100%;
 }
+a{
+	text-decoration: none !important;
+}
 .container {
 	display: flex;
 	flex-direction: row-reverse;
@@ -367,7 +370,7 @@ top: -5px;
     }
 
     #checkbutton:hover {
-        color: blue; /* 호버 시 텍스트 색상 변경 */
+        color: rgb(0, 0, 0); /* 호버 시 텍스트 색상 변경 */
     }
 #join {
    
