@@ -46,11 +46,6 @@ public class WriterService extends HttpServlet {
 		System.out.println("content:"+content);
 		String [] selectedShoes = multi.getParameterValues("selectedShoes");
 		
-		for(int i = 0;i<selectedShoes.length;i++) {
-			System.out.println("신발인덱스"+selectedShoes[i]);
-		}
-		
-		
 		//-----------------------------------------------------------
 		HttpSession session = request.getSession();
 		UserDTO user_info = (UserDTO) session.getAttribute("user_info");
@@ -63,7 +58,7 @@ public class WriterService extends HttpServlet {
 		
 		
 		int result=0;
-		
+		if(selectedShoes!=null){
 		if(selectedShoes.length==1) {
 			dto.setShoeTag1(selectedShoes[0]);
 			result= dao.uploadTag1(dto);
@@ -76,7 +71,7 @@ public class WriterService extends HttpServlet {
 			dto.setShoeTag2(selectedShoes[1]);
 			dto.setShoeTag3(selectedShoes[2]);
 			result= dao.uploadTag3(dto);
-		}else {
+		}}else {
 			result = dao.upload(dto);
 		}
 		
@@ -87,9 +82,7 @@ public class WriterService extends HttpServlet {
 			System.out.println("등록 실패");
 		}
 		
-		request.setAttribute("result",result);
-		response.sendRedirect("Main.jsp?post_result="+result);
-		
+
 		
 		
 	}
