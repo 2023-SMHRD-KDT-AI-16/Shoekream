@@ -98,7 +98,7 @@ align: center;
 				<!-- 게시글 파일 선택 -->
 		
 
-		<input type="file" id="fileInput" name="filename" onchange="previewFile()">
+		<input type="file" id="fileInput" name="filename" onchange="previewFile()" required>
 				<!-- 게시글 파일 미리보기, 본문 작성  -->
 			
 					<table>
@@ -133,7 +133,7 @@ align: center;
 							</td>
 						</tr>
 					</table>
-					<button type="submit" style="
+					<button id ="uploadPost" type="submit" style="
     width: 216px;
     height: 36px;
     margin-left: 2px;
@@ -227,6 +227,13 @@ align: center;
 			    $selection.css('color', 'black');
 			    return $selection;
 			}
+			
+			$(document).ready(function() {
+			    $('#uploadPost').on('click', function(e) {
+			        window.top.location.reload();
+			        alert('게시글이 등록되었습니다')
+			    });
+			});
 		</script>
 </body>
 </html>
