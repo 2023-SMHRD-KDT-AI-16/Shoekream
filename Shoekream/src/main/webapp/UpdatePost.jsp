@@ -147,11 +147,12 @@ BoardDTO result=dao.showDetail(postIdx);
     width: 216px;
     height: 36px;
     margin-left: 2px;
-					">게시글 작성</button>
-					<button id="modalCloseButton" style=" 
+					">수정</button>
+					<a href="PostDetail.jsp?postIdx=<%=postIdx%>"><button type="button" style=" 
+					
     width: 216px;
     height: 36px;
-					">닫기</button>
+					">취소</button></a>
 			</form>
 		
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -160,11 +161,6 @@ BoardDTO result=dao.showDetail(postIdx);
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 		<script>
-		const modalCloseButton = document.getElementById('modalCloseButton');
-		const modal = document.getElementById('modalContainer');
-		modalCloseButton.addEventListener('click', () => {
-			  modal.classList.add('hidden');
-			});
 
 		function previewFile() {
 		    var preview = document.getElementById('preview'); // 미리보기를 표시할 div

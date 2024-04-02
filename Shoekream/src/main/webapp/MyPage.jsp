@@ -24,33 +24,7 @@
 
 </style>
 <style type="text/css">
-#modalOpenButton, #modalCloseButton {
-   cursor: pointer;
-}
 
-#modalContainer {
-   width: 100%;
-   height: 100%;
-   position: fixed;
-   top: 0;
-   left: 0;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background: rgba(0, 0, 0, 0.5);
-}
-
-#modalContent {
-   position: absolute;
-   background-color: #ffffff;
-   width: 600px;
-   height: auto;
-   padding: 15px;
-}
-
-#modalContainer.hidden {
-   display: none;
-}
 
 .hidden {
       display: none;
