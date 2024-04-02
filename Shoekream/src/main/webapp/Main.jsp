@@ -331,7 +331,7 @@ input[id*="answer"]:checked+label  em {
 
 .instagram-post {
 	margin-bottom: 20px;
-	margin-top:50px;
+	margin-top:80px;
 	padding: 10px;
 	border-bottom:2px solid #a0b3ce;
 	width:600px;
@@ -562,7 +562,7 @@ font-size:30px
 	<!-- ----------------------------------- -->	
 	
 	<div class="container">
-		<div class="content" style="height: auto; margin-left: 320px; margin-top:30px">
+		<div class="content" style="height: auto; margin-left: 320px; margin-top:70px">
 		<select id="Search" name="selectedSearch" multiple="multiple" data-placeholder="&#128269; 닉네임 또는 신발 이름을 검색하세요"> </select>
 			<span class="area_desc"></span>
 			<!-- 위에 괄호 안이 content영역 -->
@@ -967,7 +967,7 @@ if(post_result.post_user_id !== currentUserId) {
 						  </div>
 						  <div class="post-content">
 						  <a href="javascript:show(${page})">
-						    <img src="post_img/${post_result.post_img}" alt="게시물 이미지" style="box-shadow: 1px 2px 5px #a0b3ce; margin-top:10px;border-radius:5px">
+						    <img src="post_img/${post_result.post_img}" alt="게시물 이미지" style="box-shadow: 1px 2px 5px #a0b3ce; margin-top:10px;border-radius:5px;height:500px;">
 						    </a>
 						   
 						  
@@ -1000,7 +1000,7 @@ if(post_result.post_user_id !== currentUserId) {
 						</style>
 
 					        <p style="font-size:20px"><a href="MypageService?post_userid=${post_result.post_user_id}"><b>${post_result.post_nick}</b></a> : ${post_result.post_content}</p>
-						   
+						   <span></span>
 						  	<span class="comment"></span> 
 						  	<br>
 						    <input type="text" placeholder="댓글을 입력해주세요" id="postchat" name="comment" style="width:500px">
@@ -1035,7 +1035,7 @@ if(post_result.post_user_id !== currentUserId) {
 
     // 스크롤 이벤트를 감지하여 무한 스크롤 함수를 호출
 $(window).scroll(function(){
-  if($(window).scrollTop()+200>=$(document).height() - $(window).height())
+  if($(window).scrollTop()+300>=$(document).height() - $(window).height())
    {
       if(loading==='false')    //실행 가능 상태라면?
         {

@@ -72,6 +72,7 @@ a{text-decoration: none; color: #222; }
 #profile_wrap .profile_box1 .photo{
 width: 1000px; height: 550px; background:#fff;
     border:5px solid #ebf1f7;
+    border-radius:10px;
 display: flex; flex-flow: row nowrap; overflow: hidden;
 }
 
@@ -289,7 +290,7 @@ input[id*="answer"]:checked+label  em {
     gap: 20px;
     margin-top: 10px;
      margin-right: -30px;
-     margin-left: 30px;
+     margin-left: 50px;
 }
 
 /* 게시글 스타일 수정 */
@@ -316,6 +317,10 @@ input[id*="answer"]:checked+label  em {
 .right{
     cursor: pointer;
     background-color:#ebf1f7;
+        display: flex; /* 이를 통해 내부 요소를 수평 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: start; /* 시작 지점에서 정렬 */
+    padding: 20px; /* 필요에 따라 패딩 조정 */
 }
 
 
@@ -331,6 +336,9 @@ width:450px;
 height:450px
 }
 
+.post_img:hover{
+opacity: 0.5;
+}
 
 /* 컨테이너와 콘텐츠 배치 */
 .container {
@@ -381,21 +389,23 @@ height:450px
         </div>
     </header>
     <div class="container">
-        <div id="profile_wrap" style="width: 1400px; height: 700px; margin-bottom: 0px; margin-left: 400px;">
+        <div id="profile_wrap" style="width: 1400px; height: 700px; margin-bottom: 0px; margin-left: 100px;">
         
             <div class="profile_box1" style="height: auto;margin-top:20px;width: 1000px;z-index:30;">
-                <div class="photo"><img src="shoe_img/<%=shoes_info.getShoe_tag() %>.png" alt="신발사진" style="width: 650px;">
+                <div class="photo"><img src="shoe_img/<%=shoes_info.getShoe_tag() %>.png" alt="신발사진" style="width: 650px; border-radius:10px">
                 
-                <div class="right" style="width: 700px;">
-                    <h1>shoesname</h1>
-                    <p><%=shoes_info.getShoe_name() %></p>
-                    <br>
+                <div class="right" style="width: 700px">
+                    
+                    <span>
+                    
+                    
 
                     <!-- 프로필 네임 안에 user_name? user_nickname? -->
                     <ul  style="padding-left: 0px;">
-                        <h5><span>brand <%=shoes_info.getShoe_maker() %></span><br> 
-                        <span>price <%=shoes_info.getShoe_price() %></span><br> </h5> 
-                    </ul>
+                    <h3><span><%=shoes_info.getShoe_name() %></span></h3>
+                        <span>brand : <%=shoes_info.getShoe_maker() %></span><br> 
+                        <span>price : <%=shoes_info.getShoe_price() %></span><br>
+                    </span></ul>
                 </div>
               </div>  
             </div>

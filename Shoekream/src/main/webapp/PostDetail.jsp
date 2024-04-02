@@ -52,7 +52,7 @@ margin-left:50px;
 }
 
 .vertical-line {
-  border-left: 2px solid black; /* 왼쪽 테두리를 세로선으로 사용 */
+  border-left: 2px solid gray; /* 왼쪽 테두리를 세로선으로 사용 */
   height: 700px; /* 세로선의 높이 */
   margin-top: 20px;
 }
@@ -202,14 +202,15 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 <div style="justify-content:left;">
 <img id="post_img" alt="게시글이미지" src="post_img/<%=result.getPostImg()%>" >
 </div>
-
+<p style="font-size:20px; margin-left:80px ; width:400px"><%=result.getPostContent() %></p>
+<span style="margin-left:250px"></span>
 <span class="likes" style="vertical-align: middle;"><%=like %></span>
 <%if(isLike==true){%>
 <img src='img/빨간색하트.png' id="like" onclick="toggleLikeY(<%=postIdx %>)" class="heart_comment" style="height:60px;weight:50px;padding:10px;vertical-align: middle;">
 <%}else{ %>
 <img src='img/흰색하트.png' id="like" onclick="toggleLikeN(<%=postIdx %>)" class="heart_comment" style="height:60px;weight:50px;padding:10px;vertical-align: middle;">
 <%} %>
-<p><%=result.getPostContent() %></p>
+
 </div>
 
   <div class="vertical-line"></div>

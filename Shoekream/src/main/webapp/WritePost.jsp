@@ -230,8 +230,9 @@ align: center;
 			
 			$(document).ready(function() {
 			    $('#uploadPost').on('click', function(e) {
+			    	alert('게시글이 등록되었습니다')
 			        window.top.location.reload();
-			        alert('게시글이 등록되었습니다')
+			        
 			    });
 			});
 		</script>
