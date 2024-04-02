@@ -33,21 +33,21 @@ section {
 }
 h2{
     font-size: 2em;
-    color: #fff;
+    color: rgb(0, 0, 0);
     text-align: center;
 }
 .inputbox{
     position: relative;
     margin: 30px 0;
     width: 310px;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid rgb(0, 0, 0);
 }
 .inputbox label{
     position: absolute;
     top: 10px;
     left: 5px;
     transform: translateY(-50%);
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-size: 1em;
     pointer-events: none;
     transition: .5s;
@@ -64,19 +64,19 @@ top: -5px;
     outline: none;
     font-size: 1em;
     padding:0 35px 0 5px;
-    color: #fff;
+    color: rgb(0, 0, 0);
 }
 .inputbox ion-icon{
     position: absolute;
     right: 8px;
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-size: 1.2em;
     top: 20px;
 }
 .forget{
     margin: -15px 0 15px ;
     font-size: .9em;
-    color: #fff;
+    color: rgb(0, 0, 0);
     display: flex;
     justify-content: space-between;  
 }
@@ -95,7 +95,7 @@ top: -5px;
 }
 #login{
     width: 100%;
-    height: 40px;
+    height: 60px;
     border-radius: 20px;
     background: #fff;
     border:none;
@@ -109,13 +109,13 @@ top: -5px;
 
 .register{
     font-size: .9em;
-    color: #fff;
+    color: rgb(0, 0, 0);
     text-align: center;
     margin: 25px 0 10px;
 }
 .register p a{
     text-decoration: none;
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-weight: 600;
 }
 .register p a:hover{
@@ -123,16 +123,11 @@ top: -5px;
 }
 
 .form-box{
-    color: #fff;
+    color: rgb(0, 0, 0);
     text-align: center;
      
 }
-.naver img {
-        width: 300px;
-        height: 40px;
-        object-fit: fill; /* 이미지를 비율을 유지하면서 컨테이너에 맞게 조정합니다. */
-        border-radius: 8px;
-         border: 2px solid rgba(255,255,255,0.5);    
+.naver img {  
         transition: background-color 0.3s; /* 호버 효과를 위한 전환 효과 설정 */
     }
 /* .error{
@@ -141,13 +136,7 @@ top: -5px;
     color: red;
     text-align: left;
 } */
- #login:hover {
-	    z-index: 30;
-        background-color: rgb(255, 128, 128); /* 마우스 호버 시 배경색 변경 */
-        margin: 2px;
-        transition: .35s;
-        cursor: pointer; /* 호버 시 포인터 변경 */
-    }
+ 
       .naver img:hover {
         background-color: rgba(0, 0, 0, 0.1); /* 호버 시 배경색 변경 */
     	 margin: 2px;

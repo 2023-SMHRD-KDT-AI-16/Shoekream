@@ -37,9 +37,10 @@
 					</div>
 					<span class="error"> </span>
 					<div class="forget">
+					<!--  
 						<label for=""><input type="checkbox">아이디 기억하기 <a
-							href="#">비밀번호 찾기</a></label>
-					</div>
+							href="#">비밀번호 찾기</a></label>-->
+			 	</div>
 					<button type="submit" id="login"
 						style="width: 303.63636px; height: 43.636359999999996px; 
 						border: 2px solid rgba(255,255,255,0.5);
@@ -50,11 +51,10 @@
 				<br>
 <div class="naver">
     <a href="<%=apiURL%>">
-        <img height="40" width="300"
-            src="https://go.at.or.kr/images/naver.png" />
+        <img style="height:60px" src="img/btnW_완성형.png" />
     </a>
 </div>
-				<div class="join_pass">
+				<div class="join_pass"></div>
 					<br> <label for="" >아이디가 없으신가요? <a href="Join.jsp">
 							회원가입 하러가기</a></label>
 				</div>
