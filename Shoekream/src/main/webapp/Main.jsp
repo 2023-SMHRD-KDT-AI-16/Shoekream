@@ -125,7 +125,7 @@ a {
 	
 }
 #profile_wrap .profile_box1 .photo img {
-	border: solid 1px;
+	border: solid 2px #a0b3ce;
 	border-radius: 50%;
 		 display: flex;
   justify-content: center;
@@ -308,7 +308,7 @@ input[id*="answer"]+label+div {
 	max-height: 0;
 	transition: all .35s;
 	overflow: hidden;
-	background: #a0b3ce;
+	background: #2787f5;
 	font-size: 11px;
 }
 
@@ -347,7 +347,7 @@ input[id*="answer"]:checked+label  em {
 	height: 50px;
 	border-radius: 50%;
 	margin-right: 10px;
-	border: 1px solid black; /*이미지 테두리 지정 */
+	border: 1px solid gray; /*이미지 테두리 지정 */
 }
 
 
@@ -361,7 +361,6 @@ input[id*="answer"]:checked+label  em {
 .post-footer {
 	margin-top: 10px;
 	border: 15;
-	border-top: solid 2px #a0b3ce;
 }
 
 .post-content>img {
@@ -541,7 +540,7 @@ font-size:30px
 
 
 	<!-- 왼쪽 상단 메뉴 아이콘 -->
-	<input type="checkbox" id="menuicon">
+	<input type="checkbox" id="menuicon" checked>
 	
 	
 	<header>
@@ -552,7 +551,7 @@ font-size:30px
 				<label for="menuicon" class="menubtn"> <span></span> <span></span>
 					<span></span>
 				</label>
-				<li class="logo" style="position: fixed"><a><img id="shoekreamImg" src = "img/슈크림.jpg"></a></li>
+				<li class="logo" style="position: fixed"><a href="Main.jsp"><img id="shoekreamImg" src = "img/슈크림.jpg"></a></li>
 				<!-- 슈크림 메인 로고  -->
 				
 			</ul>			
@@ -966,7 +965,7 @@ if(post_result.post_user_id !== currentUserId) {
 						      <h2 class="head">${post_result.post_nick} 
 						      ${followButtonHTML} 
 						      </h2>
-						      <p>${post_result.posted_at}</p>
+						      <p style="margin-left: 400px;">${post_result.posted_at}</p>
 						    </div>
 						    <div></div>
 						  </div>
@@ -978,14 +977,13 @@ if(post_result.post_user_id !== currentUserId) {
 						  
 						  <table style="box-shadow: 1px 2px 5px #a0b3ce; border-radius:10px;width: 580px;">
 						  
-						    ${post_result.shoe_tag1 ? `<tr><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag1}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag1}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag1_name}</span></a></td></tr>` : ''}
-						    ${post_result.shoe_tag2 ? `<tr><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag2}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag2_name}</span></a></td></tr>` : ''}
-						    ${post_result.shoe_tag3 ? `<tr><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag3}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag3}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag3_name}</span></a></td></tr>` : ''}
+						    ${post_result.shoe_tag1 ? `<tr class="tag"><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag1}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag1}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag1_name}</span></a></td></tr>` : ''}
+						    ${post_result.shoe_tag2 ? `<tr class="tag"><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag2}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag2}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag2_name}</span></a></td></tr>` : ''}
+						    ${post_result.shoe_tag3 ? `<tr class="tag"><td style="width:80px"><a href="ShoespageService?shoeId=${post_result.shoe_tag3}"><img id="Shoetag" style="vertical-align: middle;border-radius:3px" src="shoe_img/${post_result.shoe_tag3}.png"/></td><td> <span style="vertical-align: middle;font-size:20px">${post_result.tag3_name}</span></a></td></tr>` : ''}
 						  
 						</table>
 						</div>
 						<br>
-					        <p style="font-size:20px"><a href="MypageService?post_userid=${post_result.post_user_id}"><b>${post_result.post_nick}</b></a> : ${post_result.post_content}</p>
 					        <div class="post-footer">
 						    <div class="emoji-icons" >
 						      <box-icon name='heart' class="h" style="margin-left:10px">
@@ -999,16 +997,17 @@ if(post_result.post_user_id !== currentUserId) {
 						    <style>
 						    /* SVG 이미지에 호버 효과 적용 */
 						    .heart_comment:hover {
-						        opacity: 0.7; /* 호버 시 투명도 변경 */
+						        opacity: 0.5; /* 호버 시 투명도 변경 */
 						   
 						    }
-
+							
 						</style>
 
+					        <p style="font-size:20px"><a href="MypageService?post_userid=${post_result.post_user_id}"><b>${post_result.post_nick}</b></a> : ${post_result.post_content}</p>
 						   
 						  	<span class="comment"></span> 
 						  	<br>
-						    <input type="text" placeholder="댓글달기..." id="postchat" name="comment">
+						    <input type="text" placeholder="댓글을 입력해주세요" id="postchat" name="comment" style="width:500px">
 						    <button onclick="writeComment(${page},${post_result.post_idx})">댓글저장</button>  
 						      <div id="ex${page}" class="modal2" style="display: none;">
 						   <iframe src="PostDetail.jsp?postIdx=${post_result.post_idx}" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
@@ -1158,9 +1157,9 @@ function formatSearch(item) {
 	var group = $(item.element).closest('optgroup').attr('label');
 	console.log("라벨"+group)
    if(group==='Shoes'){
-	   var $option = $('<span><img src="shoe_img/' + item.title +'.png" class="user-image" style="width: 70px" /> ' + item.text + '</span>');
+	   var $option = $('<span><img src="shoe_img/' + item.title +'.png" class="user-image" style="width: 70px;border-radius:50%" /> ' + item.text + '</span>');
    }else{
-  var $option = $('<span><img src="img/' + item.title + '" class="shoe-image" style="width: 60px" /> ' + item.text + '</span>'); }
+  var $option = $('<span><img src="img/' + item.title + '" class="shoe-image" style="width: 60px;border-radius:50%" /> ' + item.text + '</span>'); }
     
 	if(!item.title){
 		 $option = $('<span>' + item.text + '</span>');

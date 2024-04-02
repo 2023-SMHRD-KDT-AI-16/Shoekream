@@ -14,27 +14,30 @@ header > div ul.navi > li.logp > a{padding: 20px 50px; font-size: 20px; font-wei
 
 /* 왼쪽 프로필 */
 *{box-sizing: border-box; margin: 0; padding: 0;}
-h1{font-weight: normal; font-size: x-large;}
+h1{font-weight: normal; font-size: x-large; margin-bottom: 30px;}
 a{text-decoration: none; color: #222; }
 #profile_wrap{
-  width: 360px;  
+  width: 900px;  
     
 } 
 #profile_wrap .profile_box1 {
   padding: 30px; 
   /* border: 1px solid #555;  테두리 지정 */
     font-size: x-large;
+    display: flex; /* 이를 통해 내부 요소를 수평 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center;
 }
 #profile_wrap .profile_box1 .photo{
-width: 150px; height: 150px; background: lightgreen;
+width: 300px; height: 300px; background: lightgreen;
 border-radius: 50%;
 display: flex; flex-flow: row nowrap; overflow: hidden;
+
 }
 
 /* 컨텐츠영역 */
 .container { display: flex;  flex-direction: row-reverse; width: 1600px; position:relative; }
-.container .content {  width: 800px;  height: 900; margin-top: 350px;  min-height: 700px;  border-top: 4px #222; background: #ffffff; align-content: center; flex: content rebv;}
-.container .sidebar { position:fixed; top: 0; right: -300px; width: 300px; height: 100%; background: #ffffff; border:1px solid #eee;z-index: 30; transition: .35s;}
+.container .content {  width: 800px;  height: 900; margin-top: 350px;  min-height: 700px;  border-top: 4px #a0b3ce; background: #ffffff; align-content: center; flex: content rebv;}
 
 /*   ==========================================================================================              */
 
@@ -89,7 +92,6 @@ display: flex; flex-flow: row nowrap; overflow: hidden;
 }
 
 
-
 /* 체크 변화값 */
 input[id=menuicon]:checked ~ header .menubtn {
 	z-index: 2;
@@ -124,11 +126,11 @@ input[id*="answer"] {
 input[id*="answer"]+label {
 	display: block;
 	padding: 20px;
-	border: 1px solid #292626;
+	border: 1px solid #ffffff;
 	border-bottom: 0;
-	color: #312c2c;
+	color: #222;
 	font-weight: 900;
-	background: rgb(247, 239, 245);
+	background: #ebf1f7;
 	cursor: pointer;
 	position: relative;
 }
@@ -141,14 +143,14 @@ input[id*="answer"]+label em {
 	height: 30px;
 	margin-top: -15px;
 	display: inline-block;
-	background: ("/MAIN/icon.png") 0 0 no-repeat;
+	background: url(/MAIN/icon.png) 0 0 no-repeat;
 }
 
 input[id*="answer"]+label+div {
 	max-height: 0;
 	transition: all .35s;
 	overflow: hidden;
-	background: rgb(247, 239, 245);
+	background: #2787f5;
 	font-size: 11px;
 }
 
@@ -165,10 +167,9 @@ input[id*="answer"]:checked+label  em {
 	background-position: -30px;
 }
 
-
 /*이모티콘 마진 적용*/
 #emo {
-	margin-right: 10px;
+	margin-right: 5px;
 }
 
 #emo_post {
@@ -179,7 +180,6 @@ input[id*="answer"]:checked+label  em {
 	font-size: 24px; /* 이모티콘의 크기를 24px로 설정 */
 }
 
-
 .sidebar label {
 	display: block;
 	padding: 10px;
@@ -187,7 +187,7 @@ input[id*="answer"]:checked+label  em {
 }
 
 .sidebar label:hover {
-	background-color: pink; /* 마우스 호버 시 배경색 변경 */
+	background-color: #2787f5; /* 마우스 호버 시 배경색 변경 */
 	margin: 1px;
 	transition: .35s;
 }
@@ -228,7 +228,7 @@ input[id*="answer"]:checked+label  em {
 
 /* 프로필 웹 스타일 수정 */
 #profile_wrap {
-    width: 360px;
+    width: 600px;
     margin: 0 auto; /* 화면 가운데 정렬을 위한 margin 설정 */
     margin-bottom: 20px; /* 적당한 간격 설정 */
 }
@@ -255,7 +255,7 @@ input[id*="answer"]:checked+label  em {
     border-top: 2px solid #222;
      /* 테두리 지정 border: 1px solid #835151; */
     background: #ffffff;
-    align-content: center;
+    align-content: start;
 }
 
 
@@ -299,8 +299,8 @@ input[id*="answer"]:checked+label  em {
 
 /* 게시글 스타일 수정 */
 .grid-container > div {
-    height: 350px; /* 게시글 영역 높이 수정 */
-    width: 400px; /* 게시글 영역 너비 수정 */
+    height: 430px; /* 게시글 영역 높이 수정 */
+    width: 370px; /* 게시글 영역 너비 수정 */
   /* 게시글 배경    background-color: #555; */ 
     display: flex; /* 게시글 가로 배열 */
     justify-content: center; 
@@ -353,5 +353,7 @@ input[id*="answer"]:checked+label  em {
 /* 프로필 화면에 닉네임 , 게시글, 팔로우, 팔로잉, 환경설정 포인터 적용 */
 .right{
     cursor: pointer;
+    flex-grow: 1;
+
 }
 
