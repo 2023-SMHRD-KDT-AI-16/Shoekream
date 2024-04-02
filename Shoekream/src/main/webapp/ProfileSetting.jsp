@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+a{
+	text-decoration: none !important;
+	color: black;
+	z-index:30;
+}
 input[id="menuicon"] {display: none;}
 body{
 	width: 1920px; height: 100%;
@@ -276,7 +281,7 @@ section {
     width: 600px;
     height: 800px;
     background: transparent;
-    border: 2px solid rgba(255,255,255,0.5);
+ 
     border-radius: 20px;
     backdrop-filter: blur(15px);
     display: flex;
@@ -422,7 +427,7 @@ top: -5px;
 					
 					<form id="profileForm" action="UpdateService" method="post"
 				enctype="multipart/form-data">
-	<div class="inputbox">
+	
 		<div class="container">
 			<div id="profile_wrap" style="width: 1000px; height: auto;">
 				<div class="profile_box1" style="width: 1000px; height: auto; margin-top: 20px;">
@@ -517,41 +522,34 @@ top: -5px;
 	</div>
 
 
-	<div class="sidebar">
-		<span class="area_desc"></span> <input type="checkbox"
-			name="accordion" id="answer00"> <label for="answer00"><span
-			id="emo">&#128269;</span><input type="text" placeholder="검색"><em></em></label>
-
-		<input type="checkbox" name="accordion" id="answer01"> <label
-			for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a
-			href="Main.jsp">홈</a><em></em></label> <input type="checkbox"
-			name="accordion" id="answer02"> <label for="answer02"><span
-			id="emo_post"><a id="modalOpenButton">&#9997;</a></span><a
-			id="modalOpenButton"> 게시글작성 </a><em></em></label> <input type="checkbox"
-			name="accordion" id="answer03"> <label for="answer03"><span
-			id="emo"><a href="chat.jsp">&#128172;</a></span> <a href="chat.jsp">채팅방
-				가기</a> <em></em></label> <input type="checkbox" name="accordion" id="answer04">
-		<label for="answer04"> <span id="emo"><a
-				href="MypageService?post_userid=<%=user_info.getUserId()%>">&#128100;</a></span>
+	
+		<div class="sidebar">
+			<span class="area_desc"></span> 
+		
+			
+			<input type="checkbox" name="accordion" id="answer01"> <label
+				for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a href="Main.jsp">홈</a><em></em></label> <input
+				type="checkbox" name="accordion" id="answer02"> <label
+				for="answer02"><span id="emo_post"> <a href="javascript:writePost()">&#9997;</a></span><a href="javascript:writePost()">게시글작성</a> <em></em></label> <input type="checkbox"
+				name="accordion" id="answer03"> <label for="answer03"><span
+				id="emo"><a href="chat.jsp">&#128172;</a></span>
+					<a href="chat.jsp">채팅방 가기</a>
+				 <em></em></label> 
+				<input type="checkbox" name="accordion" id="answer04">
+			<label for="answer04">
+			<span id="emo"><a href="MypageService?post_userid=<%=user_info.getUserId()%>">&#128100;</a></span>
 			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
-			<em></em></label> <input type="checkbox" name="accordion" id="answer05">
-		<label for="answer05"><span id="emo">&#128276;</span>알림<em></em></label>
-
-		<div>
-			<p>여기에 내용</p>
+			<em></em></label>
+																
+			<input type="checkbox" name="accordion" id="answer06"> <label
+				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
+	
+			<div>
+				<p>
+						<a href="LogoutService">로그아웃</a>
+				</p>
+			</div>
 		</div>
-		<input type="checkbox" name="accordion" id="answer06"> <label
-			for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
-
-		<div>
-			<p>
-				<!-- 로그아웃 -->
-				<button>
-					<a href="LogoutService">로그아웃</a>
-				</button>
-			</p>
-		</div>
-	</div>
 </body>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>	

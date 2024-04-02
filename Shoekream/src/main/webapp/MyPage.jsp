@@ -18,7 +18,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 220px;
    height: auto;
 }
 
@@ -182,12 +182,6 @@ height:800px;
 			<span id="emo"><a href="MypageService?post_userid=<%=user_info.getUserId()%>">&#128100;</a></span>
 			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
 			<em></em></label>
-																
-			
-
-			<div>
-				<p>여기에 내용</p>
-			</div>
 			<input type="checkbox" name="accordion" id="answer06"> <label
 				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
 	
