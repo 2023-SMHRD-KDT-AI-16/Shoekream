@@ -61,6 +61,7 @@ a{text-decoration: none; color: #222; }
  height: 1000px;
  border: none;
 } 
+
 #profile_wrap .profile_box1 {
   padding: 30px; 
   border: solid 2px;
@@ -69,7 +70,7 @@ a{text-decoration: none; color: #222; }
 	height: 1000px;
 }
 #profile_wrap .profile_box1 .photo{
-width: 640px; height: 550px; background: rgb(200, 154, 226);
+width: 1000px; height: 550px; background: #33333329;
 
 display: flex; flex-flow: row nowrap; overflow: hidden;
 }
@@ -339,7 +340,7 @@ follow_0 {
     font-size: 24px; /* 폰트 사이즈 */
     margin-left: 80px; /* 게시글 마진 왼쪽*/
     margin-top: 10px;
-    border: solid; /* 이미지 테두리 */
+    border: solid 1px; /* 이미지 테두리 */
     
 }
 /* 게시글 사진 크기 지정 한번에 안되서 각각 지정할게요 */
@@ -438,11 +439,12 @@ follow_0 {
         </div>
     </header>
     <div class="container">
-        <div id="profile_wrap" >
-            <div class="profile_box1" style="height: 800px; margin-top:20px;">
+        <div id="profile_wrap" style="width: 1400px; height: 700px; margin-bottom: 0px; margin-left: 400px;">
+        
+            <div class="profile_box1" style="height: auto;margin-top:20px;width: 1000px;z-index:30;">
                 <div class="photo"><img src="shoe_img/<%=shoes_info.getShoe_tag() %>.png" alt="신발사진" style="width: 650px;">
-                </div>
-                <div class="right">
+                
+                <div class="right" style="width: 700px;">
                     <h1>shoesname</h1>
                     <p><%=shoes_info.getShoe_name() %></p>
                     <br>
@@ -453,6 +455,7 @@ follow_0 {
                         <span>price <%=shoes_info.getShoe_price() %></span><br> </h5> 
                     </ul>
                 </div>
+              </div>  
             </div>
         </div>
         <div class="content">
@@ -466,7 +469,7 @@ follow_0 {
 	<iframe src="PostDetail.jsp?postIdx=<%=p_list.get(i).getPostIdx() %>" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
 				</div>
 					<a href="javascript:show(<%=i %>)"><img
-						src="post_img/<%=p_list.get(i).getPostImg()%>" alt="사진"></a>
+						src="post_img/<%=p_list.get(i).getPostImg()%>" alt="사진" style="width:350px;"></a>
 				</div>
 				<%
 				}
