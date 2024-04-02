@@ -7,8 +7,22 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="./CSS/JoinSuccess.css" />
 <link rel="stylesheet" href="" />
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="" />
 <style>
+body {
+    width: 100%; /* 화면 전체 너비를 차지하도록 설정 */
+    height: 100%; /* 화면 전체 높이를 차지하도록 설정 */
+    margin: 0; /* 바디의 기본 마진을 제거하여 정확한 위치 조절 가능 */
+    padding: 0; /* 바디의 기본 패딩을 제거하여 정확한 위치 조절 가능 */
+    position: relative;
+    background-image: url(img/goodwpss.jpg);
+    background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
+    background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
+    display: flex;
+    justify-content: center; /* 내부 요소를 가운데 정렬 */
+    align-items: center; /* 내부 요소를 가운데 정렬 */
+}
+
 .MAIN-JOIN {
     display: flex;
     flex-direction: column;
@@ -18,18 +32,13 @@
     padding: 80px 80px 40px;
     position: relative;
     width: 500px;
-    left: 500px;
-    padding-top: 40px;
+    border-radius: 5%;
+    background-color: #ffffff00;
+    border: 4px solid white;
+    backdrop-filter: blur(15px);
+    color: white;
     height: 600px;
-	border-radius: 5%;
-	background-color: #ffffff00;
-	border: 4px solid white;
-	backdrop-filter: blur(15px);
-	color: white;
-	
-    margin-top: 60px;
-	
-	}
+}
   
   .MAIN-JOIN .element {
     position: relative;
@@ -159,16 +168,7 @@ z-index: 1;
 
 }
 
-body{
-	
-	
-	width: 1920px;
-	height: auto;
-	position: relative;
-	background-image: url(img/goodwpss.jpg);
-	background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
-	background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
-}
+
 </style>
 </head>
 <body>
@@ -176,7 +176,10 @@ body{
 	<ul class="actions vertical">
 		<div class="body">
 
-		<div class="MAIN-JOIN">
+		<div class="MAIN-JOIN" style="
+    margin-left: 0px;
+    left: auto;
+		">
 			<div class="element"></div>
 			<img class="icon-jam-icons" src="./img/check.png" />
 			<div class="section-text">

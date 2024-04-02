@@ -1,17 +1,5 @@
 @charset "UTF-8";
-.MAIN-JOIN {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-    padding: 80px 80px 40px;
-    position: relative;
-    width: 500px;
-    left: 500px;
-    margin-left: 550px;
 
-  }
   
   .MAIN-JOIN .element {
     position: relative;
@@ -138,13 +126,3 @@ z-index: 1;
   cursor: pointer;
 }
 
-body{
-		display: flex;
-	flex-direction: row-reverse;
-	width: 1920px;
-	height: auto;
-	position: relative;
-	background-image: url(img/goodwpss.jpg);
-	background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
-	background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
-}
