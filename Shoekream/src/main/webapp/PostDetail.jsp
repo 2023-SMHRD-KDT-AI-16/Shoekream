@@ -221,7 +221,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
   <table class="shoe-table">
         <tr>
             <td class="shoe_img">
-            <a class="modal-shoe-link" href="ShoespageService?shoeId=<%=result.getShoeTag2()%>">
+            <a class="modal-shoe-link" href="ShoespageService?shoeId=<%=result.getShoeTag1()%>">
             <img class="tagimg" src="shoe_img/<%=result.getShoeTag1()%>.png"></a>
             </td>
             <td><%=tag1_name %></td>
@@ -234,7 +234,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
         </tr>
         <%if(tag3_name!=null){ %>
         <tr>
-            <td class="shoe_img"><a class="modal-shoe-link" href="ShoespageService?shoeId=<%=result.getShoeTag3()%>"><img  class="tagimg" src="shoe_img/<%=result.getShoeTag2()%>.png"></a>
+            <td class="shoe_img"><a class="modal-shoe-link" href="ShoespageService?shoeId=<%=result.getShoeTag3()%>"><img  class="tagimg" src="shoe_img/<%=result.getShoeTag3()%>.png"></a>
             </td>
             <td><%=tag3_name %></td>
         </tr>

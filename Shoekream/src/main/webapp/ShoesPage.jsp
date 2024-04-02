@@ -19,6 +19,7 @@
         }
         
         
+        
        	/*게시글 모달*/
 .modal2{
 max-width:1200px !important;
@@ -64,16 +65,16 @@ a{text-decoration: none; color: #222; }
 
 #profile_wrap .profile_box1 {
   padding: 30px; 
-  border: solid 2px;
     font-size: x-large;
     width: 700px;
 	height: 1000px;
 }
 #profile_wrap .profile_box1 .photo{
-width: 1000px; height: 550px; background: #33333329;
-
+width: 1000px; height: 550px; background:#fff;
+    border:5px solid #ebf1f7;
 display: flex; flex-flow: row nowrap; overflow: hidden;
 }
+
 
 
 
@@ -128,7 +129,6 @@ display: flex; flex-flow: row nowrap; overflow: hidden;
 }
 
 
-
 /* 체크 변화값 */
 input[id=menuicon]:checked ~ header .menubtn {
 	z-index: 2;
@@ -163,11 +163,11 @@ input[id*="answer"] {
 input[id*="answer"]+label {
 	display: block;
 	padding: 20px;
-	border: 1px solid #292626;
+	border: 1px solid #ffffff;
 	border-bottom: 0;
-	color: #312c2c;
+	color: #222;
 	font-weight: 900;
-	background: rgb(247, 239, 245);
+	background: #ebf1f7;
 	cursor: pointer;
 	position: relative;
 }
@@ -180,14 +180,14 @@ input[id*="answer"]+label em {
 	height: 30px;
 	margin-top: -15px;
 	display: inline-block;
-	background: (/MAIN/icon.png) 0 0 no-repeat;
+	background: url(/MAIN/icon.png) 0 0 no-repeat;
 }
 
 input[id*="answer"]+label+div {
 	max-height: 0;
 	transition: all .35s;
 	overflow: hidden;
-	background: rgb(247, 239, 245);
+	background: #2787f5;
 	font-size: 11px;
 }
 
@@ -204,13 +204,9 @@ input[id*="answer"]:checked+label  em {
 	background-position: -30px;
 }
 
-/* 팔로우 버튼 */
-follow_0 {
-	height: 20px;
-}
 /*이모티콘 마진 적용*/
 #emo {
-	margin-right: 10px;
+	margin-right: 5px;
 }
 
 #emo_post {
@@ -221,7 +217,6 @@ follow_0 {
 	font-size: 24px; /* 이모티콘의 크기를 24px로 설정 */
 }
 
-
 .sidebar label {
 	display: block;
 	padding: 10px;
@@ -229,7 +224,7 @@ follow_0 {
 }
 
 .sidebar label:hover {
-	background-color: pink; /* 마우스 호버 시 배경색 변경 */
+	background-color: #2787f5; /* 마우스 호버 시 배경색 변경 */
 	margin: 1px;
 	transition: .35s;
 }
@@ -239,40 +234,12 @@ follow_0 {
 	margin-right: 15px;
 }
 
-
-/* 프로필 웹 스타일 수정 */
-#profile_wrap {
-    width: 700px;
-    margin: 0 auto; /* 화면 가운데 정렬을 위한 margin 설정 */
-    margin-bottom: 20px; /* 적당한 간격 설정 */
-   
-}
-
-/* 컨테이너와 콘텐츠 배치 */
-.container {
-    display: flex;
-    flex-direction: column; /* 세로 정렬로 변경 */
-    align-items: center; /* 가운데 정렬 */
-    
-}
-
-.container .content {
-    width: calc(100% - 20px); /* 화면 전체 너비에서 여백 고려하여 콘텐츠 영역의 너비 계산 */
-    height: 900px;
-    margin-top: 20px; /* 적절한 간격 설정 */
-    min-height: 700px;
-
-     /* border: 1px solid #ffffff; */
-     border-top: 2px solid rgb(0, 0, 0);
-     
-}
-
 /* 사이드바 스타일 수정 */
 .sidebar {
     width: 300px;
     height: 100%;
-    background: #ffffff;
-  
+    background: #ebf1f7;
+    border: 1px solid #eee;
     z-index: 30;
     transition: .35s;
     position: fixed;
@@ -288,6 +255,7 @@ follow_0 {
 #menuicon:not(:checked) ~ .sidebar {
     right: -300px;
 }
+
 /* 콘텐츠 영역 스타일 */
 .content {
     display: grid;
@@ -316,16 +284,18 @@ follow_0 {
 }
 
 .grid-container {
-    display: grid;
+  display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
+     margin-right: -30px;
+     margin-left: 30px;
 }
 
 /* 게시글 스타일 수정 */
 .grid-container > div {
-    height: 350px; /* 게시글 영역 높이 수정 */
-    width: 400px; /* 게시글 영역 너비 수정 */
+ height: 430px; /* 게시글 영역 높이 수정 */
+    width: 370px; /* 게시글 영역 너비 수정 */
   /* 게시글 배경    background-color: #555; */ 
     display: flex; /* 게시글 가로 배열 */
     justify-content: center; 
@@ -336,78 +306,50 @@ follow_0 {
     align-items: 교차축(cross axis)을 따라서 요소들의 정렬 방식을 지정합니다. 주로 수직 방향으로 요소를 정렬하는 데 사용됩니다.
 
     center: 요소들을 컨테이너의 가운데로 정렬합니다. */
-    color: black; /* 글자 색 */
+    color: white; /* 글자 색 */
     font-size: 24px; /* 폰트 사이즈 */
     margin-left: 80px; /* 게시글 마진 왼쪽*/
     margin-top: 10px;
-    border: solid 1px; /* 이미지 테두리 */
     
-}
-/* 게시글 사진 크기 지정 한번에 안되서 각각 지정할게요 */
-.my_post1 > img{
-    width: 350px;
-    height: 350px;
-    cursor: pointer;
-
-}
-.my_post2 > img{
-    width: 350px;
-    height: 350px;
-    cursor: pointer;
-}
-.my_post3 > img{
-    width: 350px;
-    height: 350px;
-    cursor: pointer;
-}
-.my_post4 > img{
-    width: 350px;
-    height: 350px;
-    cursor: pointer;
-}
-.my_post5 > img{
-    width: 350px;
-    height: 350px;
-    cursor: pointer;
-}
-.my_post6 > img{
-    width: 350px;
-    height: 350px;
-    cursor: pointer;
 }
 
 .right{
     cursor: pointer;
+    background-color:#ebf1f7;
 }
 
 
-#mdopen, #mdc {
-    cursor: pointer;
-  }
-  
-  #mdct {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  
-  #modalContent {
-    position: absolute;
-    background-color: #ffffff;
+#shoekreamImg{
     width: 300px;
     height: 150px;
-    padding: 15px;
-  }
-  
-  #mdct.hidden {
-    display: none;
-  }
+    margin-top: -37px;
+    margin-left:-47px;
+}
+
+.post_img{
+width:450px;
+height:450px
+}
+
+
+/* 컨테이너와 콘텐츠 배치 */
+.container {
+    display: flex;
+    flex-direction: column; /* 세로 정렬로 변경 */
+    align-items: center; /* 가운데 정렬 */
+}
+
+.container .content {
+    width: calc(100% - 20px); /* 화면 전체 너비에서 여백 고려하여 콘텐츠 영역의 너비 계산 */
+    height: 900%;
+    margin-top: 20px; /* 적절한 간격 설정 */
+    min-height: 700px;
+    border-top: 5px solid #ebf1f7;
+     /* 테두리 지정 border: 1px solid #835151; */
+    background: #ffffff;
+    align-content: start;
+
+}
 
 
 
@@ -424,7 +366,7 @@ follow_0 {
 	ShoesDTO shoes_info=(ShoesDTO)request.getAttribute("shoes_info");
 	ArrayList<BoardDTO> p_list =(ArrayList<BoardDTO>)request.getAttribute("p_list");
 	%>    
-	<input type="checkbox" id="menuicon" style="display:none;">
+	<input type="checkbox" id="menuicon" style="display:none;" checked>
     <header>
         <div>
             <ul class="navi">
@@ -434,7 +376,7 @@ follow_0 {
                     <span></span>
                     <span></span>
                 </label>
-                <li class="logo"><a>SHOEKREAM</a> </li>
+               <li class="logo" ><a href="Main.jsp"><img id="shoekreamImg" src = "img/슈크림.jpg"></a></li>
             </ul>
         </div>
     </header>
@@ -468,8 +410,8 @@ follow_0 {
 				 <div id="ex<%=i %>" class="modal2" style="display: none;">
 	<iframe src="PostDetail.jsp?postIdx=<%=p_list.get(i).getPostIdx() %>" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
 				</div>
-					<a href="javascript:show(<%=i %>)"><img
-						src="post_img/<%=p_list.get(i).getPostImg()%>" alt="사진" style="width:350px;"></a>
+					<a href="javascript:show(<%=i %>)"><img class="post_img"
+						src="post_img/<%=p_list.get(i).getPostImg()%>" alt="사진"></a>
 				</div>
 				<%
 				}
@@ -478,18 +420,19 @@ follow_0 {
         </div>
         <!-- 여기에 script 사용해서 게시물 여부에 따라 출력할지 지정  -->
     </div>
-    		<div class="sidebar">
+    	
+    	 <!-- 사이드바  -->
+		<div class="sidebar">
 			<span class="area_desc"></span> <input type="checkbox"
 				name="accordion" id="answer00"> 
-		
-			
+
 			<input type="checkbox" name="accordion" id="answer01"> <label
 				for="answer01"><span id="emo"><a href="Main.jsp">&#127968;</a></span><a href="Main.jsp">홈</a><em></em></label> <input
 				type="checkbox" name="accordion" id="answer02"> <label
 				for="answer02"><span id="emo_post"> <a href="javascript:writePost()">&#9997;</a></span><a href="javascript:writePost()">게시글작성</a> <em></em></label> <input type="checkbox"
 				name="accordion" id="answer03"> <label for="answer03"><span
 				id="emo"><a href="chat.jsp">&#128172;</a></span>
-					<a href="chat.jsp">채팅방 가기</a>
+					<a>채팅방 가기</a>
 				 <em></em></label> 
 				<input type="checkbox" name="accordion" id="answer04">
 			<label for="answer04">
@@ -497,27 +440,21 @@ follow_0 {
 			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
 			<em></em></label>
 																
-			
-
-			<div>
-				<p>여기에 내용</p>
-			</div>
 			<input type="checkbox" name="accordion" id="answer06"> <label
 				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
-
+	
 			<div>
 				<p>
-					<!-- 로그아웃 -->
 						<a href="LogoutService">로그아웃</a>
 				</p>
 			</div>
 		</div>
-</body>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+		
+		<div id="writePost" class="modal2" style="display: none;">
+	<iframe src="WritePost.jsp" frameborder="0" style="width: 1200px; height: 800px;"></iframe>
+	</div>
+
+		  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script>
 //모든 메뉴 아이템 요소를 가져옵니다.
 const menuItems = document.querySelectorAll('.sidebar input[type="checkbox"]');
@@ -547,6 +484,15 @@ function getSiblings(element) {
     }
     return siblings;
 }
+</script>
+    		
+</body>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+	<script>
 
 //------------------------------------------------------------------------
 //모달 여러개...
@@ -556,7 +502,16 @@ function getSiblings(element) {
        fadeDuration: 100,
        fadeDelay: 1,
      });
-   }	
+   }
+
+ //게시글 작성 모달
+ function writePost() {
+	   console.log("게시글 작성")
+     $("#writePost").modal({
+       fadeDuration: 100,
+       fadeDelay: 1,
+     });
+   }
 </script>
 
 

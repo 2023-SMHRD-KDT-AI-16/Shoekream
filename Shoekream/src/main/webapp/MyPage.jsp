@@ -47,8 +47,8 @@ height:450px
 #shoekreamImg{
     width: 300px;
     height: 150px;
-    margin-top: -10px;
-    margin-left:20px;
+    margin-top: -30px;
+    margin-left:0px;
 }
 
 .sidebar { position:fixed; top: 0; right: -300px; width: 300px; height: 100%; background:#ebf1f7; border:1px solid #eee;z-index: 30; transition: .35s;}
@@ -243,54 +243,7 @@ function getSiblings(element) {
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
-   const modalOpenButton = document.getElementById('modalOpenButton');
-   const modalCloseButton = document.getElementById('modalCloseButton');
-   const modal = document.getElementById('modalContainer');
-   const fileInput = document.getElementById('fileInput');
-   const nextButton = document.getElementById('nextButton');
-   const prevButton = document.getElementById('prevButton');
-   const preview = document.getElementById('preview');
-   const fileSelectionScreen = document.getElementById('fileSelectionScreen');
-   const photoPreviewScreen = document.getElementById('photoPreviewScreen');
-
-   modalOpenButton.addEventListener('click', () => {
-     modal.classList.remove('hidden');
-     fileSelectionScreen.style.display = 'block'; // Show file selection screen
-     photoPreviewScreen.style.display = 'none'; // Hide photo preview screen
-   });
-
-   modalCloseButton.addEventListener('click', () => {
-     modal.classList.add('hidden');
-   });
-
-   nextButton.addEventListener('click', () => {
-     // Check if a file is selected
-     if (fileInput.files.length > 0) {
-       // Display the selected image
-       const file = fileInput.files[0];
-       const reader = new FileReader();
-       reader.onload = function(event) {
-         const img = document.createElement('img');
-         img.src = event.target.result;
-         img.style.maxWidth = '100%'; // Adjust as needed
-         preview.innerHTML = ''; // Clear previous preview
-         preview.appendChild(img);
-       };
-       reader.readAsDataURL(file);
-       fileSelectionScreen.style.display = 'none'; // Hide file selection screen
-       photoPreviewScreen.style.display = 'block'; // Show photo preview screen
-     } else {
-       alert('파일을 선택하세요.');
-     }
-   });
-
-   prevButton.addEventListener('click', () => {
-     // Show file selection screen and hide photo preview screen
-     fileSelectionScreen.style.display = 'block';
-     photoPreviewScreen.style.display = 'none';
-   });
-
-   
+ 
    //----------------------------------------------------------
    //신발 정보 검색
    

@@ -37,7 +37,7 @@ display: flex; flex-flow: row nowrap; overflow: hidden;
 
 /* 컨텐츠영역 */
 .container { display: flex;  flex-direction: row-reverse; width: 1600px; position:relative; }
-.container .content {  width: 800px;  height: 900; margin-top: 350px;  min-height: 700px;  border-top: 4px #a0b3ce; background: #ffffff; align-content: center; flex: content rebv;}
+.container .content {  width: 800px;  height: 900; margin-top: 350px;  min-height: 700px; border-top: 5px solid #ebf1f7; background: #ffffff; align-content: center; flex: content rebv;}
 
 /*   ==========================================================================================              */
 
