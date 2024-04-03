@@ -29,6 +29,7 @@ section {
         background-color: #ebf1f7;
 }
 
+
 .form-box{
   position: relative;
     width: 500px;
