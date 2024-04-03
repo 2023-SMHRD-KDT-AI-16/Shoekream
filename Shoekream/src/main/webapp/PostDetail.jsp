@@ -22,7 +22,7 @@
 .content-container {
   display: flex;
   align-items: flex-start; /* 세로선을 상단에 정렬 */
-  margin-top:10px;
+  margin-top:5px;
 }
 
 #left_zone {
@@ -62,7 +62,7 @@ margin-left:50px;
   margin-left: 20px; /* 세로선과의 간격 */
   border-collapse: collapse; /* 테이블 경계 스타일 */
   width:480px;
-  background-color: whitesmoke;
+  background-color: #ebf1f7; 
   border-radius:10px
 }
 
@@ -102,6 +102,11 @@ border-radius: 50px;
 #inputcomment{
 width:375px;
 margin:20px;
+
+#fbtn:hover{
+background-color:#2787f5; 
+}
+
 
 
 
@@ -180,19 +185,19 @@ List<CommentDTO> c_list=cdao.showComment(postIdx);
 <span style="width: 30px;"></span>
 <% 
 if(user_info.getUserId().equals(result.getUserId())){%>
-<a href="UpdatePost.jsp?postIdx=<%=postIdx %>"><button>게시글 수정</button></a>
+<a href="UpdatePost.jsp?postIdx=<%=postIdx %>"><button style="border:none;border-radius:5px">게시글 수정</button></a>
 
 <span style="width: 10px;"></span>
-<a class="isdel" href="Main.jsp"><button onclick='deletePost()'>게시글 삭제</button></a>	
+<a class="isdel" href="Main.jsp"><button onclick='deletePost()' style="border:none;border-radius:5px">게시글 삭제</button></a>	
 	
 
-<span style="width: 100px;"></span>
+<span style="width: 30px;"></span>
 <p style="margin-top:70px">작성일자:<%=result.getPostedAt()%></p>
 <%}else{%>
 <%if(isfollow==true){ %>
-<button class="follow" onclick="togglefollowY(<%=postIdx%>)">팔로잉</button>
+<button id="fbtn" class="follow" onclick="togglefollowY(<%=postIdx%>)" style="border:none;border-radius:5px">팔로잉</button>
 <%}else{ %>
-<button  class="follow" onclick="togglefollowN(<%=postIdx%>)">팔로우</button><%} %>
+<button id="fbtn" class="follow" onclick="togglefollowN(<%=postIdx%>)" style="border:none;border-radius:5px">팔로우</button><%} %>
 <span style="width: 150px;"></span>
 <p style="margin-top:70px">작성일자:<%=result.getPostedAt()%></p>
 <%} %>
@@ -202,9 +207,10 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 <div style="justify-content:left;">
 <img id="post_img" alt="게시글이미지" src="post_img/<%=result.getPostImg()%>" >
 </div>
-<p style="font-size:20px; margin-left:80px ; width:400px"><%=result.getPostContent() %></p>
+<p style="font-size:20px; margin-left:50px ;width: 500px;margin-bottom:0px;
+    background-color:#ebf1f7; border-radius:5px"><%=result.getPostContent() %></p>
 <span style="margin-left:250px"></span>
-<span class="likes" style="vertical-align: middle;"><%=like %></span>
+<span class="likes" style="vertical-align: middle;"><b style="font-size:40px"><%=like %></b></span>
 <%if(isLike==true){%>
 <img src='img/빨간색하트.png' id="like" onclick="toggleLikeY(<%=postIdx %>)" class="heart_comment" style="height:60px;weight:50px;padding:10px;vertical-align: middle;">
 <%}else{ %>
@@ -276,7 +282,8 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 
   <form action=#>
   <input type="text" name="postIdx" style="height:20px;display:none" value="<%=postIdx%>">
-  <input id="inputcomment" type="text" name="comment" style="height:20px"> <button type="submit" onclick="writeComment()">댓글작성</button>
+  <input id="inputcomment" type="text" name="comment" style="height:20px;border:none;background-color:whitesmoke" placeholder="댓글을 입력해주세요"> 
+  <button type="submit" style="border:none;border-radius:5px" onclick="writeComment()">댓글작성</button>
   </form>
  </div> 
 
@@ -489,7 +496,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 			        });
 			    }
 
-			    likeCountElement.textContent = likeCount;
+			    likeCountElement.innerHTML = `<b style="font-size:40px">${likeCount}</b>`;
 			}
 			//좋아요 안누른 게시글 일때
 			function toggleLikeY(post_idx) {
@@ -530,7 +537,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 			        });
 			    }
 
-			    likeCountElement.textContent = likeCount;
+			    likeCountElement.innerHTML = `<b style="font-size:40px">${likeCount}</b>`;
 			}	
 			
 			function togglefollowN(post_user_id) {
@@ -610,7 +617,8 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 			   $('.isdel').on('click', function(e) {
 				  
 					var del =confirm('게시글을 삭제하시겠습니까?')
-					if(del){
+				
+					if(del==true){
 					 var postIdx = $('[name="postIdx"]').val();	
 					$.ajax({
 						url: "DeleteService",
@@ -629,6 +637,11 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 
 			        // 최상위 창의 URL을 변경하여 부모 페이지 이동 시도
 			        window.top.location.href = targetUrl;}
+					else{
+						 e.preventDefault(); // 기본 이벤트 차단
+						 location.reload();
+						
+			        }
 			    });
 			});
 			
