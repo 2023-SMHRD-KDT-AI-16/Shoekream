@@ -619,6 +619,8 @@ menuItems.forEach(item => {
     });
 });
 
+
+
 // 요소의 형제 요소를 가져오는 함수
 function getSiblings(element) {
     const siblings = [];
