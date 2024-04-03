@@ -84,6 +84,10 @@ align: center;
   
 }
 
+button:hover{
+background-color:#2787f5; 
+}
+
 /* 상하 높이 ?  위아래 설정시 */
 </style>
 </head>
@@ -100,13 +104,13 @@ BoardDTO result=dao.showDetail(postIdx);
 	<!-- <form id="uploadForm" action="WriterService" method="post"
 				enctype="multipart/form-data"> -->
 				<form id="uploadForm" action="UpdatePostService?postIdx=<%=result.getPostIdx() %>" method="post" enctype="multipart/form-data" 
-				style="margin-left: 4px;"
+				style="margin-left: 4px;;margin-top:40px"
 				>
 
 				<!-- 게시글 파일 선택 -->
 		
 
-		<input type="file" id="fileInput" name="filename" onchange="previewFile()">
+		<input type="file" id="fileInput" name="filename" style="margin-left:200px" onchange="previewFile()" >
 				<!-- 게시글 파일 미리보기, 본문 작성  -->
 			
 					<table>
@@ -124,7 +128,7 @@ BoardDTO result=dao.showDetail(postIdx);
 						</tr>
 						<tr>
 							<td colspan="2" style="width: 400px; height: 50px;"><textarea name="content" rows="10" 
-									style="resize: none; width: 500px;height: 400px;"  required><%=result.getPostContent() %></textarea></td>
+									style="resize: none; width: 500px;height: 200px;border:none;" placeholder="내용을 입력해주세요!"  required><%=result.getPostContent() %></textarea></td>
 						</tr>
 						<tr>
 						
@@ -135,6 +139,8 @@ BoardDTO result=dao.showDetail(postIdx);
  ArrayList<ShoesDTO> s_list = sdao.showShoes();
  %> 
 								<br> 
+								<hr>
+								<p>• 신발 태그 </p>
 								<!-- <select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="Search for shoes">
 								</select> -->
 								<select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="신발을 검색하여 태그해보세요!">
@@ -146,12 +152,16 @@ BoardDTO result=dao.showDetail(postIdx);
 					<button id="updateButton" type="submit" style="
     width: 216px;
     height: 36px;
-    margin-left: 2px;
+     margin-left: 100px;
+    border:none;
+    border-radius:10px;
 					">수정</button>
 					<a href="PostDetail.jsp?postIdx=<%=postIdx%>"><button type="button" style=" 
 					
     width: 216px;
     height: 36px;
+       border:none;
+    border-radius:10px;
 					">취소</button></a>
 			</form>
 		
