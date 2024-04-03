@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.smhrd.model.BoardDAO;
+import com.smhrd.model.BoardDTO;
 import com.smhrd.model.FollowDAO;
 import com.smhrd.model.FollowDTO;
 import com.smhrd.model.UserDTO;
@@ -23,7 +25,13 @@ public class FollowService extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserDTO user_info = (UserDTO)session.getAttribute("user_info");
 		String follower = user_info.getUserId();
-		String followee= request.getParameter("post_userid");
+		Double post_idx= Double.parseDouble(request.getParameter("post_idx"));
+		
+		BoardDAO bdao = new BoardDAO();
+		BoardDTO post_info=bdao.showDetail(post_idx);
+		String followee= post_info.getUserId();
+		System.out.println("followee 아이디 : "+followee);
+		
 		String followyn = request.getParameter("follow");
 		System.out.println("팔로우 여부:"+followyn);
 		FollowDAO dao = new FollowDAO();
