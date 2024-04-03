@@ -112,7 +112,7 @@ a {
 #profile_wrap .profile_box1 .photo {
 	width: 150px;
 	height: 150px;
-	background: black;
+	
 	border-radius: 50%;
 	display: flex;
 	flex-flow: row nowrap;
@@ -652,7 +652,7 @@ function getSiblings(element) {
 		<a href="MypageService?post_userid=<%=user_info.getUserId()%>">
 			<div class="profile_box1">
 				<div class="photo">
-					<img id="profile" src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지">
+					<img id="profile" src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지" style="width:150px;height:150px">
 				</div>
 				<br>
 				<div class="right">

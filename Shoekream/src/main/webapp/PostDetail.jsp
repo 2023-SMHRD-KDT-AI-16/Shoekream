@@ -175,7 +175,7 @@ List<CommentDTO> c_list=cdao.showComment(postIdx);
 <div id="left_zone">
 
 <div class="user-profile">
-  <a href="MypageService?post_userid=<%=post_user.getUserId()%>" class="modal-external-link"><img id="post_user_img" alt="작성자 프로필 이미지" src="img/<%=post_user.getUserProfileImg()%>"></a>
+  <a href="MypageService?post_userid=<%=post_user.getUserId()%>" class="modal-external-link"><img id="post_user_img" alt="작성자 프로필 이미지" style="margin-left:50px"src="img/<%=post_user.getUserProfileImg()%>"></a>
 <h2><%=post_user.getUserNick() %></h2>
 <span style="width: 30px;"></span>
 <% 
@@ -190,9 +190,9 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 <p style="margin-top:70px">작성일자:<%=result.getPostedAt()%></p>
 <%}else{%>
 <%if(isfollow==true){ %>
-<button class="follow" onclick="togglefollowY(<%=postIdx%>)">팔로잉</button>
+<button class="follow" onclick="togglefollowY(<%=post_user.getUserId()%>)">팔로잉</button>
 <%}else{ %>
-<button  class="follow" onclick="togglefollowN(<%=postIdx%>)">팔로우</button><%} %>
+<button  class="follow" onclick="togglefollowN(<%=post_user.getUserId()%>)">팔로우</button><%} %>
 <span style="width: 150px;"></span>
 <p style="margin-top:70px">작성일자:<%=result.getPostedAt()%></p>
 <%} %>
@@ -584,6 +584,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 			            data: { "post_userid": post_userid, "follow": "n" },
 			            type: 'get',
 			            success: function (result) {
+			            	console.log(result)
 			                console.log("팔로우 DB삭제완료");
 			            },
 			            error: function () {

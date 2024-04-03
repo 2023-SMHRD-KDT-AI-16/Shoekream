@@ -25,22 +25,30 @@ public class FollowService extends HttpServlet {
 		String follower = user_info.getUserId();
 		String followee= request.getParameter("post_userid");
 		String followyn = request.getParameter("follow");
-		
+		System.out.println("팔로우 여부:"+followyn);
 		FollowDAO dao = new FollowDAO();
 		FollowDTO dto = new FollowDTO();
 		dto.setFollower(follower);
 		dto.setFollowee(followee);
+	
+		System.out.println(dto.getFollowee()+":"+	dto.getFollower());
 		boolean isfollow=dao.isfollow(dto);
-int result=0;
-		
-		if(followyn.equals("y")&&!isfollow) {
+
+		int result=0;
+	
+		if(!isfollow) {//팔로우 안했을때 
+			if(followyn.equals("y")) {
+				 result=dao.savefollow(dto);
+					System.out.println("팔로우 저장 :"+result);
+			}
+			}else {
+				if(followyn.equals("n")) { 
+				result=dao.delfollow(dto);
+				System.out.println("팔로우 삭제:"+result);
+				}
 			
-			 result=dao.savefollow(dto);
-			
-			
-		}else {
-			result=dao.delfollow(dto);
 		}
+		
 		
 		PrintWriter out;
 		
