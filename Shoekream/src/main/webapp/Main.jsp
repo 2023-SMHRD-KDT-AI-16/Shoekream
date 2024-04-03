@@ -112,7 +112,7 @@ a {
 #profile_wrap .profile_box1 .photo {
 	width: 150px;
 	height: 150px;
-	background: black;
+	
 	border-radius: 50%;
 	display: flex;
 	flex-flow: row nowrap;
@@ -657,7 +657,7 @@ function getSiblings(element) {
 		<a href="MypageService?post_userid=<%=user_info.getUserId()%>">
 			<div class="profile_box1">
 				<div class="photo">
-					<img id="profile" src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지">
+					<img id="profile" src="img/<%=user_info.getUserProfileImg()%>" alt="프로필이미지" style="width:150px;height:150px">
 				</div>
 				<br>
 				<div class="right">
@@ -719,7 +719,7 @@ function togglefollowN(page,post_user_id) {
         
         $.ajax({
             url: "FollowService",
-            data: { "post_userid": post_userid, "follow": "y" },
+            data: { "post_idx": post_userid, "follow": "y" },
             type: 'get',
             success: function (result) {
                 console.log("팔로우 DB저장완료");
@@ -733,7 +733,7 @@ function togglefollowN(page,post_user_id) {
         followButton.textContent = '팔로우';
         $.ajax({
             url: "FollowService",
-            data: { "post_userid": post_userid, "follow": "n" },
+            data: { "post_idx": post_userid, "follow": "n" },
             type: 'get',
             success: function (result) {
                 console.log("팔로우 DB삭제완료");
@@ -756,7 +756,7 @@ function togglefollowY(page,post_user_id) {
 		followButton.textContent = '팔로우';
         $.ajax({
             url: "FollowService",
-            data: { "post_userid": post_userid, "follow": "n" },
+            data: { "post_idx": post_userid, "follow": "n" },
             type: 'get',
             success: function (result) {
                 console.log("팔로우 DB삭제완료");
@@ -771,7 +771,7 @@ function togglefollowY(page,post_user_id) {
         
         $.ajax({
             url: "FollowService",
-            data: { "post_userid": post_userid, "follow": "y" },
+            data: { "post_idx": post_userid, "follow": "y" },
             type: 'get',
             success: function (result) {
                 console.log("팔로우 DB저장완료");
@@ -939,7 +939,7 @@ var currentUserId = '<%=user_info.getUserId()%>';
 var followButtonHTML = '';
 if(post_result.post_user_id !== currentUserId) {
     var isfollow = post_result.isfollow ? "팔로잉" : "팔로우";
-    var togglefollow = post_result.isfollow ? `togglefollowY(${page}, '${post_result.post_user_id}')` : `togglefollowN(${page}, '${post_result.post_user_id}')`;
+    var togglefollow = post_result.isfollow ? `togglefollowY(${page}, '${post_result.post_idx}')` : `togglefollowN(${page}, '${post_result.post_idx}')`;
     followButtonHTML = `<button id="follow_${page}" onclick="${togglefollow}" style="">${isfollow}</button>`;
 } else {
     // 현재 사용자가 게시물 작성자와 같은 경우, 팔로우 버튼을 숨김

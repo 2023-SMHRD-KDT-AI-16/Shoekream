@@ -175,7 +175,7 @@ List<CommentDTO> c_list=cdao.showComment(postIdx);
 <div id="left_zone">
 
 <div class="user-profile">
-  <a href="MypageService?post_userid=<%=post_user.getUserId()%>" class="modal-external-link"><img id="post_user_img" alt="작성자 프로필 이미지" src="img/<%=post_user.getUserProfileImg()%>"></a>
+  <a href="MypageService?post_userid=<%=post_user.getUserId()%>" class="modal-external-link"><img id="post_user_img" alt="작성자 프로필 이미지" style="margin-left:50px"src="img/<%=post_user.getUserProfileImg()%>"></a>
 <h2><%=post_user.getUserNick() %></h2>
 <span style="width: 30px;"></span>
 <% 
@@ -185,7 +185,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 <span style="width: 10px;"></span>
 <button onclick='deletePost(<%=postIdx%>)'>게시글 삭제</button></a>	
 	
-
+<%=result.getUserId() %>
 <span style="width: 100px;"></span>
 <p style="margin-top:70px">작성일자:<%=result.getPostedAt()%></p>
 <%}else{%>
@@ -538,13 +538,13 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 			    var followButton = document.querySelector('.follow');
 			    followButton.classList.toggle('active');
 			    var post_userid = post_user_id;
-			    console.log("togglefollowN , post_userid:" + post_userid);
+			    console.log("togglefollowN , post_idx:" + post_userid);
 			    if (followButton.classList.contains('active')) {
 			        followButton.textContent = '팔로잉';
 			        
 			        $.ajax({
 			            url: "FollowService",
-			            data: { "post_userid": post_userid, "follow": "y" },
+			            data: { "post_idx": post_userid, "follow": "y" },
 			            type: 'get',
 			            success: function (result) {
 			                console.log("팔로우 DB저장완료");
@@ -558,7 +558,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 			        followButton.textContent = '팔로우';
 			        $.ajax({
 			            url: "FollowService",
-			            data: { "post_userid": post_userid, "follow": "n" },
+			            data: { "post_idx": post_userid, "follow": "n" },
 			            type: 'get',
 			            success: function (result) {
 			                console.log("팔로우 DB삭제완료");
@@ -575,15 +575,16 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 			    var followButton = document.querySelector('.follow');
 			    followButton.classList.toggle('active');
 			    var post_userid = post_user_id;
-			    console.log("post_userid: " + post_userid);
+			    console.log("post_idx: " + post_userid);
 
 			    if (followButton.classList.contains('active')) {
 			        followButton.textContent = '팔로우';
 			        $.ajax({
 			            url: "FollowService",
-			            data: { "post_userid": post_userid, "follow": "n" },
+			            data: { "post_idx": post_userid, "follow": "n" },
 			            type: 'get',
 			            success: function (result) {
+			            	console.log(result)
 			                console.log("팔로우 DB삭제완료");
 			            },
 			            error: function () {
@@ -594,7 +595,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 			        followButton.textContent = '팔로잉';
 			        $.ajax({
 			            url: "FollowService",
-			            data: { "post_userid": post_userid, "follow": "y" },
+			            data: { "post_idx": post_userid, "follow": "y" },
 			            type: 'get',
 			            success: function (result) {
 			                console.log("팔로우 DB저장완료");
