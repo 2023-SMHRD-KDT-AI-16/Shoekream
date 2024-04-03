@@ -591,7 +591,9 @@ font-size:30px
 			<span id="emo"><a href="MypageService?post_userid=<%=user_info.getUserId()%>">&#128100;</a></span>
 			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
 			<em></em></label>
-																
+							
+							
+									
 			<input type="checkbox" name="accordion" id="answer06"> <label
 				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
 	
