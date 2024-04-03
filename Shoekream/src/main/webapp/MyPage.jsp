@@ -104,7 +104,7 @@ width:300px;
    </header>
    <div class="container">
       <div id="profile_wrap">
-         <div class="profile_box1">
+         <div class="profile_box1" style="width:660px; ">
             <div class="photo">
                <img id="my_profile_img" src="img/<%=my_profile%>" alt="기본프로필"> 
             </div>

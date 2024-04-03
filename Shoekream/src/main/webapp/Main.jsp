@@ -666,7 +666,7 @@ function getSiblings(element) {
 							<span ><span class="my">팔로워 <%=countfollower%></span> 
 						</p>
 						<p>
-							<span class="my">팔로우<%=countfollow%></span>
+							<span class="my">팔로우 <%=countfollow%></span>
 						</p>
 						<!-- 숫자사이에  넣으면 될듯?! -->
 					</ul>

@@ -38,7 +38,7 @@ header {width: 100%;background: #ffffff;}
 header > div {position: relative; width: 1920px;   margin:15 auto;}
 header > div ul.navi{font-size: 0;}
 header > div ul.navi > li{font-size: 50px; display: inline-block; vertical-align: middle;}
-header > div ul.navi > li > a {display: block; width: auto; padding: 20px;}
+header > div ul.navi > li > a {display: block; width: auto; }
 header > div ul.navi > li.logp > a{padding: 20px 50px; font-size: 20px; font-weight: 900;}
 
 
@@ -420,7 +420,9 @@ top: -5px;
 				<label for="menuicon" class="menubtn"> <span></span> <span></span>
 					<span></span>
 				</label>
-				<li class="logo"><a>SHOEKREAM</a></li>
+				<li class="logo"><a href="Main.jsp"><img id="shoekreamImg" src = "img/슈크림.jpg" style="    width: 360px; 
+    margin-left: 40px;
+				"></a></li>
 			</ul>
 		</div>
 	</header>
