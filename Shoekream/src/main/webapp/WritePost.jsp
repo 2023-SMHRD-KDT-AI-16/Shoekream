@@ -82,6 +82,9 @@ align: center;
   
 }
 
+button:hover{
+background-color:#2787f5; 
+}
 /* 상하 높이 ?  위아래 설정시 */
 </style>
 </head>
@@ -92,13 +95,13 @@ align: center;
 	<!-- <form id="uploadForm" action="WriterService" method="post"
 				enctype="multipart/form-data"> -->
 				<form id="uploadForm" action="WriterService" method="post" enctype="multipart/form-data" 
-				style="margin-left: 4px;"
+				style="margin-left: 4px;margin-top:40px"
 				>
 
 				<!-- 게시글 파일 선택 -->
 		
 
-		<input type="file" id="fileInput" name="filename" onchange="previewFile()" required>
+		<input type="file" id="fileInput" name="filename" onchange="previewFile()" style="margin-left:200px" required>
 				<!-- 게시글 파일 미리보기, 본문 작성  -->
 			
 					<table>
@@ -109,13 +112,13 @@ align: center;
             </div>
             </td>
 							<td style="width:40px; height: 60px; "><img src="img/<%=user_info.getUserProfileImg()%>" alt=""
-								style="max-width: 50px; max-height: 50px; border-radius: 50%;
+								style="width: 50px; height: 50px; border-radius: 50%; margin-left:20px;
     border: solid 1px;" /></td>
-							<td id="user_id"><%=user_info.getUserNick()%></td>
+							<td id="user_id"><b><%=user_info.getUserNick()%></b></td>
 						</tr>
 						<tr>
 							<td colspan="2" style="width: 400px; height: 50px;"><textarea name="content" rows="10" 
-									style="resize: none; width: 500px;height: 400px;" required></textarea></td>
+									style="resize: none; width: 500px;height: 200px;border:none;" placeholder="내용을 입력해주세요!"></textarea></td>
 						</tr>
 						<tr>
 						
@@ -126,6 +129,8 @@ align: center;
  ArrayList<ShoesDTO> s_list = sdao.showShoes();
  %> 
 								<br> 
+								<hr>
+								<p>• 신발 태그 </p>
 								<!-- <select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="Search for shoes">
 								</select> -->
 								<select id="shoesOptions" name="selectedShoes" multiple="multiple" data-placeholder="신발을 검색하여 태그해보세요!">
@@ -136,11 +141,15 @@ align: center;
 					<button id ="uploadPost" type="submit" style="
     width: 216px;
     height: 36px;
-    margin-left: 2px;
+    margin-left: 100px;
+    border:none;
+    border-radius:10px;
 					">게시글 작성</button>
 					<button id="modalCloseButton" style=" 
     width: 216px;
     height: 36px;
+      border:none;
+    border-radius:10px;
 					">닫기</button>
 			</form>
 		
