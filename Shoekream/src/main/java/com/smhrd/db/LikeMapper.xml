@@ -21,4 +21,8 @@ delete from post_like_info where post_idx=#{post_idx} and user_id=#{user_id}
 <select id = "isLike" parameterType="com.smhrd.model.LikeDTO" resultType="boolean">
 select case when count(*)>0 then 1 else 0 end result from post_like_info where post_idx=#{post_idx} and user_id=#{user_id}
 </select>
+
+<delete id="delpost_like">
+DELETE FROM post_like_info WHERE post_idx= #{post_idx}
+</delete>
 </mapper>

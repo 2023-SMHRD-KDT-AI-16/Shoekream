@@ -48,4 +48,12 @@ public class LikeDAO {
 	}
 	
 	
+	public int delpost_like(Double post_idx) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result=0;
+		result = sqlSession.insert("delpost_like", post_idx);
+		sqlSession.close();
+		return result;
+	}
+	
 }
