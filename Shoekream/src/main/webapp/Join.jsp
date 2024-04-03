@@ -17,11 +17,11 @@
               
                 <form action="JoinService" id = "JoinForm">
                   
-                    <h2>SHOEKREAM</h2>
-                    <br>
+                    <h2> <img src="./img/슈크림.jpg" alt="SHOEKREAM 로고" style="width: 200px; height: 100px;"></h2>
                     <h3>회원가입</h3>
 
 <style>
+
     #checkbutton {
         background-color: transparent; /* 배경을 투명하게 설정 */
         cursor: pointer; /* 호버 시 포인터 변경 */
@@ -33,8 +33,138 @@
 
     #checkbutton:hover {
        margin: 2px;
-       background-color: green;
+       background-color: #ebf1f7; 
     }
+    @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+/* 미디어 쿼리가 정의되지 않은 CSS 부분 */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins',sans-serif;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background: url('./goodwpss.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    background: #ebf1f7;
+}
+
+.form-box{
+    position: relative;
+    width: 600px;
+    height: 900px;
+    background: #fff;
+    border: 2px solid black;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+h2{
+    font-size: 2em;
+    color: black;
+    text-align: center;
+}
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid black;
+}
+.inputbox label{
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    transform: translateY(-50%);
+    color: rgb(0, 0, 0);
+    font-size: 1em;
+    pointer-events: none;
+    transition: .5s;
+}
+input:focus ~ label,
+input:valid ~ label{
+top: -5px;
+}
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding:0 35px 0 5px;
+    color: rgb(0, 0, 0);
+}
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: rgb(0, 0, 0);
+    font-size: 1.2em;
+    top: 20px;
+}
+.forget{
+    margin: -15px 0 15px ;
+    font-size: .9em;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;  
+}
+
+.forget label input{
+    margin-right: 5px;
+    
+    
+}
+.forget label a{
+    color: #ff007f;
+    text-decoration: none;
+}
+.forget label a:hover{
+    text-decoration: underline;
+}
+
+
+.register{
+    font-size: .9em;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.register p a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+}
+.register p a:hover{
+    text-decoration: underline;
+}
+
+.form-box{
+    color: rgb(0, 0, 0);
+    text-align: center;
+     
+}
+   #checkbutton {
+        background-color: #2787f5;  /* 배경을 투명하게 설정 */
+        border: none; /* 테두리 제거 */
+    }
+
+    #checkbutton:hover {
+        
+    }
+
+    
+    
 </style>
                     <div class="inputbox"  >  
                         <input type="text"  name="user_id" id="user_id" placeholder="영어,숫자 조합으로 6~12자" required>
@@ -88,17 +218,18 @@
 	border-radius: 20px;
 	font-size: 1em;
 	font-weight: 600;
-	background-color: #ffffff;
+
 	/* 기본 배경색 */
 	/* 테두리 스타일 */
 	padding: 10px 20px;
 	/* 안쪽 여백 */
 	transition: background-color 0.5 ease;
 	/* 배경색 변화를 부드럽게 만듦 */
+    background: #2787f5;
 }
 
 #join:hover {
-	background-color: #0000001a;
+	background-color:#ebf1f7; 
 	margin : 2px;
 	/* 호버 시 배경색 변경 */
 }
