@@ -46,5 +46,14 @@ public class CommentDAO {
 	}
 	
 	
+	public int delpost_comment(Double post_idx) {
+		System.out.println("delpostcomment 메서드");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result=0;
+		result = sqlSession.insert("delpost_comment", post_idx);
+		sqlSession.close();
+		return result;
+	}
+	
 	
 }

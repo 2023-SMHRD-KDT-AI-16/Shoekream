@@ -13,4 +13,7 @@
 select * from comment_info where post_idxf=#{post_idxf}
 </select>
 
+<delete id="delpost_comment">
+DELETE FROM comment_info WHERE post_idxf= #{post_idxf}
+</delete>
 </mapper>
