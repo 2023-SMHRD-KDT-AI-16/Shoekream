@@ -15,7 +15,7 @@ body {
     margin: 0; /* 바디의 기본 마진을 제거하여 정확한 위치 조절 가능 */
     padding: 0; /* 바디의 기본 패딩을 제거하여 정확한 위치 조절 가능 */
     position: relative;
-    background-image: url(img/goodwpss.jpg);
+    background-image: url();
     background-size: cover; /* 배경 이미지를 컨테이너에 맞게 조절 */
     background-attachment: fixed; /* 배경 이미지를 화면에 고정 */
     display: flex;
@@ -34,9 +34,9 @@ body {
     width: 500px;
     border-radius: 5%;
     background-color: #ffffff00;
-    border: 4px solid white;
+    border: 4px solid ;
     backdrop-filter: blur(15px);
-    color: white;
+    color: black;
     height: 600px;
 }
   
@@ -96,8 +96,7 @@ body {
     justify-content: center;
     padding: 16px;
     position: relative;
-    border: 2px solid;
-    border-color: rgb(121, 26, 175);
+   
     
     background-color: rgb(145, 44, 158);
     border-radius: 20px;
@@ -105,8 +104,11 @@ body {
   .MAIN-JOIN .button{
 	   	
    		cursor: pointer;
-   		background-color: rgb(121, 26, 175);
+   		background-color: #2787f5; 
   }
+.MAIN-JOIN .button:hover {
+    background-color: #509bf5; /* 마우스 오버 시 더 연한 파란색으로 변경 */
+}
   
   .MAIN-JOIN .text-container {
     display: inline-flex;
@@ -126,7 +128,7 @@ body {
     margin-top: -1px;
     font-family: var(--button-l-font-family);
     font-weight: var(--button-l-font-weight);
-    color: rgb(255 255 255);
+    color: rgb(0 0 0);
     font-size: var(--button-l-font-size);
     letter-spacing: var(--button-l-letter-spacing);
     line-height: var(--button-l-line-height);
@@ -157,7 +159,7 @@ z-index: 1;
 .close-btn {
  width: 50px;
  height: 50px;
- background-color: #ffffff;
+ background-color: black;
  border: 0;
  color: black;
 }
@@ -165,7 +167,7 @@ z-index: 1;
 /* Close button hover effect */
 .close-btn a:hover {
   cursor: pointer;
-
+ color: red;
 }
 
 
@@ -181,7 +183,7 @@ z-index: 1;
     left: auto;
 		">
 			<div class="element"></div>
-			<img class="icon-jam-icons" src="./img/check.png" />
+			<img class="icon-jam-icons" src="./img/check1.png" />
 			<div class="section-text">
 				<div class="top">
 					<div class="main-headline">완료되었습니다!</div>

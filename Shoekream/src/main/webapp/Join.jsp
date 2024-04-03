@@ -26,7 +26,6 @@
         background-color: transparent; /* 배경을 투명하게 설정 */
         cursor: pointer; /* 호버 시 포인터 변경 */
         border-color : white;
-        color : white;
 		border-radius: 5px;
 		   transition: all 0.3s ease;
     }
@@ -160,7 +159,7 @@ top: -5px;
     }
 
     #checkbutton:hover {
-        
+            color: green;
     }
 
     
