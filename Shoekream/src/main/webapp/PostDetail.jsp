@@ -176,8 +176,7 @@ List<CommentDTO> c_list=cdao.showComment(postIdx);
 
 <div class="user-profile">
   <a href="MypageService?post_userid=<%=post_user.getUserId()%>" class="modal-external-link"><img id="post_user_img" alt="작성자 프로필 이미지" style="margin-left:50px"src="img/<%=post_user.getUserProfileImg()%>"></a>
-<h2><%=post_user.getUserNick() %></h2>
-<span style="width: 30px;"></span>
+<h2 sytle="margin-right:20px"><%=post_user.getUserNick() %></h2>
 <% 
 if(user_info.getUserId().equals(result.getUserId())){%>
 <a href="UpdatePost.jsp?postIdx=<%=postIdx %>"><button>게시글 수정</button></a>
@@ -185,8 +184,7 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 <span style="width: 10px;"></span>
 <button onclick='deletePost(<%=postIdx%>)'>게시글 삭제</button></a>	
 	
-<%=result.getUserId() %>
-<span style="width: 100px;"></span>
+<span style="width: 50px;"></span>
 <p style="margin-top:70px">작성일자:<%=result.getPostedAt()%></p>
 <%}else{%>
 <%if(isfollow==true){ %>
@@ -204,11 +202,11 @@ if(user_info.getUserId().equals(result.getUserId())){%>
 </div>
 <p style="font-size:20px; margin-left:80px ; width:400px"><%=result.getPostContent() %></p>
 <span style="margin-left:250px"></span>
-<span class="likes" style="vertical-align: middle;"><%=like %></span>
+<span class="likes" style="vertical-align: middle;font-size:40px;"><%=like %></span>
 <%if(isLike==true){%>
-<img src='img/빨간색하트.png' id="like" onclick="toggleLikeY(<%=postIdx %>)" class="heart_comment" style="height:60px;weight:50px;padding:10px;vertical-align: middle;">
+<img src='img/빨간색하트.png' id="like" onclick="toggleLikeY(<%=postIdx %>)" class="heart_comment" style="height:40px;weight:40px;padding:10px;vertical-align: middle;">
 <%}else{ %>
-<img src='img/흰색하트.png' id="like" onclick="toggleLikeN(<%=postIdx %>)" class="heart_comment" style="height:60px;weight:50px;padding:10px;vertical-align: middle;">
+<img src='img/흰색하트.png' id="like" onclick="toggleLikeN(<%=postIdx %>)" class="heart_comment" style="height:40px;weight:40px;padding:10px;vertical-align: middle;">
 <%} %>
 
 </div>
