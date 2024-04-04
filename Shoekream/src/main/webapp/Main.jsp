@@ -591,11 +591,7 @@ font-size:30px
 			<label for="answer04">
 			<span id="emo"><a href="MypageService?post_userid=<%=user_info.getUserId()%>">&#128100;</a></span>
 			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
-			<em></em></label>
-
-							
-							
-									
+			<em></em></label>							
 									
 			<input type="checkbox" name="accordion" id="answer06"> <label
 				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
@@ -623,6 +619,9 @@ menuItems.forEach(item => {
         this.parentElement.classList.add('active');
     });
 });
+
+
+
 
 
 
