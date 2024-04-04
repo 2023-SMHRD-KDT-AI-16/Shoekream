@@ -2,7 +2,7 @@
 <a href="https://www.miricanvas.com/v/131r577">PPT 보러가기</a>
 ## 서비스 소개
 - 서비스명 : MZ 세대를 위한 신발 SNS  
-- 서비스 설명 :  ============= 
+- 서비스 설명 : 실시간 채팅으로 빠른 정보공유와 직관적인 UI 검색기능 활성화 SNS 
 
 ## 프로젝트기간
 - 2024년3월20일 ~ 2024년 4월4일 
@@ -16,79 +16,58 @@
 -  신발 검색 및 태그
 -  네이버 API 로그인
 ## 기술스택
-- FRONT-END : HTML, CSS, JS, FIGMA
-- BACK-END : JAVA, PYTHON, JUPYTER, ECLIPSE, APACHE TOMCAT, ORACLE DB
-- ETC : NAVER, GITHUB
+![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/fbb90356-2a0a-4776-b2ec-382f11a39143)
+
 
 ## 시스템 아키텍처
+![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/e9fe1fbb-5812-4504-a88b-f52a15723d82)
+
 
 ## 유스케이스
-
+- 승영 담당
 ## 서비스 흐름도
-
+- 용진 담당
 ## ER 다이어그램
+![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/6aa42cbd-d531-4873-9c39-3ad2c4bdf11b)
 
 ## 화면구성
-
+ 이거는 내일 마무리.( 이미지 적용예정) 
+ -로그인/회원가입
+ -메인화면 
+ -프로필
+ -상대프로필
+ -채팅
+ -팔로우 뷰 
+ 
 ## 팀원역할
-- 정은아 (팀장) : 프로젝트 총괄
-- 네이버 로그인 API 구현
-- 데이터크롤링
-- 신발 태그 및 검색기능 구현
-- 게시글, 댓글 기능 구현
-- DB 설계 및 구축  
-## 트러블슈팅
-
-
 <table>
     <tr>
-        <th>예시</th>
-        <th>내용</th>
+        <td>정은아</td>
+        <td>PM, Back-End, Front-End, Design, DB, Crawling</td>
+        <td>github</td>
+    </tr>
+     <tr>
+        <td>장용진</td>
+        <td>Back-End </td>
+         <td>github</td>
+    </tr> 
+     <tr>
+        <td>오종원</td>
+        <td>Front-End, Design, UI/UX</td>
+         <td>github</td>
     </tr>
     <tr>
-        <td>사용언어</td>
-        <td>
-            <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
-            <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/>
-            <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
-            <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
-        </td>
+        <td>유승영</td>
+        <td>Front-End, Crawling </td>
+        <td>github</td>
     </tr>
-    <tr>
-        <td>라이브러리</td>
-        <td>
-            <img src="https://img.shields.io/badge/BootStrap-7952B3?style=for-the-badge&logo=BootStrap&logoColor=white"/>
-            <img src="https://img.shields.io/badge/KakaoMap-FFCD00?style=for-the-badge&logo=Kakao&logoColor=white"/>
-        </td>
-    </tr>
-    <tr>
-        <td>개발도구</td>
-        <td>
-            <img src="https://img.shields.io/badge/Eclipse-2C2255?style=for-the-badge&logo=Eclipse&logoColor=white"/>
-            <img src="https://img.shields.io/badge/RaskpberryPi-A22846?style=for-the-badge&logo=RaskpberryPi&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white"/>
-            <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=VisualStudioCode&logoColor=white"/>
-        </td>
-    </tr>
-    <tr>
-        <td>서버환경</td>
-        <td>
-            <img src="https://img.shields.io/badge/Apache Tomcat-D22128?style=for-the-badge&logo=Apache Tomcat&logoColor=white"/>
-        </td>
-    </tr>
-    <tr>
-        <td>데이터베이스</td>
-        <td>
-            <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white"/>
-            <img src="https://img.shields.io/badge/Oracle 11g-F80000?style=for-the-badge&logo=Oracle&logoColor=white"/>
-        </td>
-    </tr>
-    <tr>
-        <td>협업도구</td>
-        <td>
-            <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"/>
-            <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
-        </td>
-    </tr>
+</table>
+
+## 트러블슈팅
+
+![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/5ca02c88-c98d-41e7-b330-d8df5683a437)
+![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/0ecb92b7-cb5b-4277-ae55-5d2920066c92)
+
+
 
 
