@@ -963,7 +963,7 @@ if(post_result.post_user_id !== currentUserId) {
 						isLike="흰색하트"
 						toggleLike=`toggleLikeN(${page}, '${post_result.post_idx}')`
 					}
-					 if(isfollow=="팔로우"){
+					 if(isfollow==="팔로잉"){
 					const postData= `
 						<div class="instagram-post">
 						  <div class="post-header">
@@ -1033,6 +1033,9 @@ if(post_result.post_user_id !== currentUserId) {
       
       page++;
       loading = 'false'}
+					 else{
+    	  container.innerHTML += ` <div  style="height:500px;margin-left:200px"><div><br><br><br><br><br><br><br><br><h3>팔로우를 추가해주세요!<h3>`;
+      }
       ;}
 					},
 					//요청에 실패했을때
