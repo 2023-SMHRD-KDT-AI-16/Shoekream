@@ -591,7 +591,11 @@ font-size:30px
 			<label for="answer04">
 			<span id="emo"><a href="MypageService?post_userid=<%=user_info.getUserId()%>">&#128100;</a></span>
 			<a href="MypageService?post_userid=<%=user_info.getUserId()%>">프로필</a>
-			<em></em></label>							
+			<em></em></label>
+
+							
+							
+									
 									
 			<input type="checkbox" name="accordion" id="answer06"> <label
 				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
@@ -619,9 +623,6 @@ menuItems.forEach(item => {
         this.parentElement.classList.add('active');
     });
 });
-
-
-
 
 
 
@@ -962,7 +963,7 @@ if(post_result.post_user_id !== currentUserId) {
 						isLike="흰색하트"
 						toggleLike=`toggleLikeN(${page}, '${post_result.post_idx}')`
 					}
-					 
+					 if(isfollow==="팔로잉"){
 					const postData= `
 						<div class="instagram-post">
 						  <div class="post-header">
@@ -1031,7 +1032,10 @@ if(post_result.post_user_id !== currentUserId) {
       
       
       page++;
-      loading = 'false'
+      loading = 'false'}
+					 else{
+    	  container.innerHTML += ` <div  style="height:500px;margin-left:200px"><div><br><br><br><br><br><br><br><br><h3>팔로우를 추가해주세요!<h3>`;
+      }
       ;}
 					},
 					//요청에 실패했을때
@@ -1210,6 +1214,12 @@ document.getElementById('heart').addEventListener('click', function() {
 </script>
 	<!--End of Tawk.to Script-->
 
+
+</body>
+</html>ta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
 
 </body>
 </html>
