@@ -990,7 +990,10 @@ if(post_result.post_user_id !== currentUserId) {
 						  
 						</table>
 						</div>
+						  
 						<br>
+						<p style="font-size:20px"><a href="MypageService?post_userid=${post_result.post_user_id}"><b>${post_result.post_nick}</b></a> : ${post_result.post_content}</p>
+						  
 					        <div class="post-footer">
 						    <div class="emoji-icons" >
 						      <box-icon name='heart' class="h" style="margin-left:10px">
@@ -1010,8 +1013,7 @@ if(post_result.post_user_id !== currentUserId) {
 							
 						</style>
 
-					        <p style="font-size:20px"><a href="MypageService?post_userid=${post_result.post_user_id}"><b>${post_result.post_nick}</b></a> : ${post_result.post_content}</p>
-						   <span></span>
+					       <span></span>
 						  	<span class="comment"></span> 
 						  	<br>
 						    <input type="text" placeholder="댓글을 입력해주세요" id="postchat" name="comment" style="width:500px">
