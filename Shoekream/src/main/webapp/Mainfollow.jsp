@@ -585,7 +585,7 @@ font-size:30px
 				for="answer02"><span id="emo_post"> <a href="javascript:writePost()">&#9997;</a></span><a href="javascript:writePost()">게시글작성</a> <em></em></label> <input type="checkbox"
 				name="accordion" id="answer03"> <label for="answer03"><span
 				id="emo"><a href="chat.jsp">&#128172;</a></span>
-					<a href="Mainfolllow.jsp">채팅방 가기</a>
+					<a>채팅방 가기</a>
 				 <em></em></label> 
 				<input type="checkbox" name="accordion" id="answer04">
 			<label for="answer04">
@@ -963,7 +963,7 @@ if(post_result.post_user_id !== currentUserId) {
 						isLike="흰색하트"
 						toggleLike=`toggleLikeN(${page}, '${post_result.post_idx}')`
 					}
-					 
+					 if(isfollow=="팔로우"){
 					const postData= `
 						<div class="instagram-post">
 						  <div class="post-header">
@@ -1032,7 +1032,7 @@ if(post_result.post_user_id !== currentUserId) {
       
       
       page++;
-      loading = 'false'
+      loading = 'false'}
       ;}
 					},
 					//요청에 실패했을때
@@ -1211,6 +1211,12 @@ document.getElementById('heart').addEventListener('click', function() {
 </script>
 	<!--End of Tawk.to Script-->
 
+
+</body>
+</html>ta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
 
 </body>
 </html>
