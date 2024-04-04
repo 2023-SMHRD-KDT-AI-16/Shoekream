@@ -441,8 +441,8 @@ opacity: 0.5;
 				type="checkbox" name="accordion" id="answer02"> <label
 				for="answer02"><span id="emo_post"> <a href="javascript:writePost()">&#9997;</a></span><a href="javascript:writePost()">게시글작성</a> <em></em></label> <input type="checkbox"
 				name="accordion" id="answer03"> <label for="answer03"><span
-				id="emo"><a href="chat.jsp">&#128172;</a></span>
-					<a>채팅방 가기</a>
+				id="emo"><a href="Mainfollow.jsp">🙂</a></span>
+					<a href="Mainfollow.jsp">팔로우 </a>
 				 <em></em></label> 
 				<input type="checkbox" name="accordion" id="answer04">
 			<label for="answer04">
