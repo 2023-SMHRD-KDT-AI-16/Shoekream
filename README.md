@@ -24,7 +24,9 @@
 
 
 ## 유스케이스
-- 승영 담당
+- 승영 담당(![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157584487/3f34ecc0-bcee-450f-8989-4672d319c480)
+
+- ![image]()
 ## 서비스 흐름도
 - 용진 담당
 ## ER 다이어그램
