@@ -1216,10 +1216,4 @@ document.getElementById('heart').addEventListener('click', function() {
 
 
 </body>
-</html>ta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
 </html>
