@@ -596,6 +596,7 @@ font-size:30px
 							
 							
 									
+									
 			<input type="checkbox" name="accordion" id="answer06"> <label
 				for="answer06"><span id="emo_post2">&#9776;</span>더보기<em></em></label>
 	
@@ -622,6 +623,12 @@ menuItems.forEach(item => {
         this.parentElement.classList.add('active');
     });
 });
+
+
+
+
+
+
 
 // 요소의 형제 요소를 가져오는 함수
 function getSiblings(element) {
