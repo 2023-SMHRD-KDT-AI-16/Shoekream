@@ -127,6 +127,7 @@ top: -5px;
     color: rgb(0, 0, 0);
     text-align: center;
     margin: 25px 0 10px;
+    
 }
 .register p a{
     text-decoration: none;
