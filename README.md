@@ -60,22 +60,22 @@
     <tr>
         <td>정은아</td>
         <td>PM, Back-End, Front-End, Design, DB, Crawling</td>
-        <td>github</td>
+       <td align="center"><a href="https://github.com/JeongEun-A" target="_blank">github</a></td>
     </tr>
      <tr>
         <td>장용진</td>
         <td>Back-End </td>
-         <td>github</td>
+         <td align="center"><a href="https://github.com/SaveJobs" target="_blank">github</a></td>
     </tr> 
      <tr>
         <td>오종원</td>
         <td>Front-End, Design, UI/UX</td>
-         <td>github</td>
+      <td align="center"><a href="https://github.com/jong-won-oh" target="_blank">github</a></td>
     </tr>
     <tr>
         <td>유승영</td>
         <td>Front-End, Crawling </td>
-        <td>github</td>
+       <td align="center"><a href="https://github.com/tmddud2024" target="_blank">github</a></td>
     </tr>
 </table>
 
