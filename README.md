@@ -25,15 +25,22 @@
 
 ## 📝유스케이스
 
-![image]![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157584487/779cc078-770e-4a8d-8179-9c1ec0e09493)
+![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157584487/779cc078-770e-4a8d-8179-9c1ec0e09493)
 
 
+##🖱️메뉴구성도
+![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657712/61f67009-e886-4153-9b31-e58d9dfe978c)
 
 
 ## 🔄서비스 흐름도
 - 용진 담당
+
+
+
 ## 📚ER 다이어그램
 ![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/6aa42cbd-d531-4873-9c39-3ad2c4bdf11b)
+
+
 
 ## 🖥️화면구성
 
