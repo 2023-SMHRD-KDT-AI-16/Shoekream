@@ -1,5 +1,9 @@
-# ![KakaoTalk_20240402_182119455](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/b77a1bfd-a43d-4518-bfc7-b2b4f60024c5) <br>(팀명: 슈크림팀)
-<a href="https://www.miricanvas.com/v/131r577">PPT 보러가기</a>
+# ![KakaoTalk_20240402_182119455](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/b77a1bfd-a43d-4518-bfc7-b2b4f60024c5) <br> (팀명: 슈크림팀)
+<a href="https://www.miricanvas.com/v/131r577"> 🔗 PPT 보러가기 🔗</a>
+<br><br>
+![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657712/04a59da2-f88a-4425-b6a5-e4607aec901c)
+
+
 ## 🌟서비스 소개
 - 서비스명 : MZ 세대를 위한 신발 SNS  
 - 서비스 설명 : 실시간 채팅으로 빠른 정보공유와 직관적인 UI 검색기능 활성화 SNS 
@@ -42,6 +46,7 @@
 
 ## 📚ER 다이어그램
 ![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/6aa42cbd-d531-4873-9c39-3ad2c4bdf11b)
+
 
 
 ## 👥팀원역할
