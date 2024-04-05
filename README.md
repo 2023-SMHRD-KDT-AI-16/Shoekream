@@ -44,10 +44,9 @@
 
 ## 🖥️화면구성
 
-### 로그인
- ![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/61d32b57-0893-47a3-9c8f-02c4aaedb813)
 ### 회원가입 
-![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/74778783-0c49-4501-a880-13dbaff6ccba)
+ ![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/74778783-0c49-4501-a880-13dbaff6ccba)
+ 
 ### 메인화면
 ![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/ed7048b0-4b56-4a09-89ec-ddd2e184462e)
 
@@ -62,7 +61,7 @@
 
 ### 게시글 작성 및 수정 
 ![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/f88059c0-b05e-43ae-a831-3ef77c000f07)
-![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157657703/b7ecab8b-5d24-4c4b-9e1c-5c19f865b467)
+
 
 
 ## 👥팀원역할
