@@ -24,7 +24,9 @@
 
 
 ## 📝유스케이스
-![image](![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157584487/d833715e-d3ed-4fe3-b3fa-787159a942fd)
+
+![image]![image](https://github.com/2023-SMHRD-KDT-AI-16/Shoekream/assets/157584487/779cc078-770e-4a8d-8179-9c1ec0e09493)
+
 
 
 
